@@ -1,5 +1,5 @@
 {
-    "orgName": "Test B2B Company",
+    "orgName": "Test B2C Company",
     "edition": "Developer",
     "country": "US",  
     "features": [ 
@@ -27,10 +27,10 @@
             "enableOrders": true,
             "enableEnhancedCommerceOrders": true,
             "enableOptionalPricebook": true,
-            "enableNegativeQuantity" : false,
+            "enableNegativeQuantity" : true,
             "enableOrderEvents" : false,
             "enableReductionOrders" : true,
-            "enableZeroQuantity" : false
+            "enableZeroQuantity" : true
         },
         "commerceSettings": {
           "commerceEnabled": true

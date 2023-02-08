@@ -8,8 +8,7 @@
 export SFDX_NPM_REGISTRY="http://platform-cli-registry.eng.sfdc.net:4880/"
 export SFDX_S3_HOST="http://platform-cli-s3.eng.sfdc.net:9000/sfdx/media/salesforce-cli"
 # 
-#templateName="b2c-lite-storefront"
-templateName="B2B Commerce"
+templateName="B2C Commerce"
 # 
 function echo_attention() {
   local green='\033[0;32m'
@@ -61,7 +60,7 @@ sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01addition
 sfdx force:mdapi:deploy -d Deploy/ -w -1 
 
 
-sfdx force:community:create --name "$storename" --templatename "B2B Commerce" --urlpathprefix "$storename" --description "Store $storename created by the script."
+sfdx force:community:create --name "$storename" --templatename "$templateName" --urlpathprefix "$storename" --description "Store $storename created by the script."
 echo ""
 
 storeId=""

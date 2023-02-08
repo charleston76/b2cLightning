@@ -28,12 +28,13 @@ echo_attention "Starting the scratch org creation at $(date)"
 echo ""
 echo ""
 
+scratchOrgDuration=1
 scratchOrgName=$1
 storename=$2
 
-echo_attention "Creating the $scratchOrgName scratch org with one day of duration."
+echo_attention "Creating the $scratchOrgName scratch org with $scratchOrgDuration days of duration."
 echo_attention "That can take few seconds to a couple minutes, please, be patient."
-sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d 30
+sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d $scratchOrgDuration
 
 echo_attention "Setting the $scratchOrgName as default"
 sfdx force:config:set defaultusername=$scratchOrgName

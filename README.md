@@ -70,7 +70,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2B storeFront
+    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2C storeFront
     ```
     
 That will do all the configuration needed to achieve:
@@ -166,17 +166,17 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
     * The "-d" parameter, tells the amount of days that you want your scratch organization last
     * Example:
         ```
-        sfdx force:org:create -f config/project-scratch-def.json -a tmpB2b -d 1
+        sfdx force:org:create -f config/project-scratch-def.json -a tmpB2C -d 1
         ```
     * Set that as you default organization:
         ```
-        sfdx force:config:set defaultusername=tmpB2b
+        sfdx force:config:set defaultusername=tmpB2C
         ```
 1. Deploy the things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
     * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/createDigitalExpSetupStore.sh tmpB2B storeFront
+    ./scripts/bash/createDigitalExpSetupStore.sh tmpB2C storeFront
     ```
 
 ## Other org types
