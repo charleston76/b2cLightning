@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>B2BDeliverySample</members>
+		<members>CancelOrder</members>
+		<members>ContactController</members>
+		<members>GetDesiredDeliveryDate</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>Advanced_Check-Out</members>
+		<members>Advanced_Check-Out_Summary</members>
+        <name>Flow</name>
+    </types>
+	<types>
+		<members>cartActivity</members>
+		<members>cartContents</members>
+		<members>cartItems</members>
+		<members>cancelOrder</members>
+		<members>contactListItem</members>
+		<members>desiredDeliveryDate</members>
+		<members>eventWithData</members>
+		<members>orderDeliveryDate</members>
+		<members>productDetails</members>
+		<members>productDetailsDisplay</members>
+		<name>LightningComponentBundle</name>
+	</types>
+    <types>
+		<members>Admin</members>
+        <members>Buyer Profile</members>
+        <members>Commerce Business User Profile</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>EmployeePhotos</members>
+        <name>StaticResource</name>
+    </types>
+	<version>56.0</version>
+</Package>
+<!--
+
+	Missing flows:
+		Advanced_Shipping_Subflow
+
+	Activity: Create Cancel Order Action for Order Summary Detail
+		Configure that in the checkout page
+			Advanced Checkout
+		You need to add  in the Order Confirmation Page
+			orderDeliveryDate
+
+	Activity: Subscribe to Platform Events Using Lightning Web Components (not worked on scratch org)
+		The process builder trigger an platform event... but
+		that doesn't worked in the scratch org... I need to confirm on developer org
+	Activity: Create Custom Product Detail Display Using Lightning Web Components
+		You need to add the 
+			Product Detail page
+	Activity: Cross-component Communication - Child to Parent
+		Add the productDetails.htm into the cart product page
+	Activity: Cross-Component Communication - Parent to Child
+
+	Activity: Cross-Component Communication - Advanced Events with Data
+		Flexipage updated, need check the default org definition	
+	
+	Activity: Error Handling and Diagnostics Setup
+		Open the process builder
+			Process CommerceDiagnosticEvents
+		And configure the store id there
+
+
+-->

@@ -1,0 +1,11 @@
+.menuItemstreegrid .slds-scrollable_y, 
+.menuItemstreegrid .slds-scrollable--y {
+    overflow: visible !important;
+    overflow-y: visible !important;
+    min-height: 400px;
+    margin-bottom: 200px;
+}
+
+.slds-dueling-list__options {
+    height: 20rem !important;
+}

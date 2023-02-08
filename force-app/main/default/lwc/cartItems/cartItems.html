@@ -1,0 +1,148 @@
+<template>
+    <ul>
+        <template for:each={displayItems} for:item="lineItem">
+            <li
+                key={lineItem.cartItem.cartItemId}
+                class="slds-p-vertical_medium"
+            >
+                <figure>
+                    <a
+                        tabindex="-1"
+                        href={lineItem.productUrl}
+                        data-productid={lineItem.cartItem.productDetails.productId}
+                        onclick={handleProductDetailNavigation}
+                    >
+                        <img
+                            src={lineItem.productImageUrl}
+                            alt={lineItem.productImageAlternativeText}
+                            data-productid={lineItem.cartItem.productDetails.productId}
+                        />
+                    </a>
+                </figure>
+                <div class="details slds-has-flexi-truncate">
+                    <h3
+                        class="item-name slds-text-heading_medium slds-p-bottom_small slds-truncate"
+                        title={lineItem.cartItem.productDetails.name}
+                    >
+                        <a
+                            href={lineItem.productUrl}
+                            data-productid={lineItem.cartItem.productDetails.productId}
+                            onclick={handleProductDetailNavigation}
+                            tabindex="0"
+                        >
+                            {lineItem.cartItem.productDetails.name}
+                        </a>
+                    </h3>
+                    <div class="line-item-properties">
+                        <dl class="product-fields">
+                            <dt class="slds-truncate">SKU#</dt>
+                            <dd
+                                class="slds-truncate"
+                                title={lineItem.cartItem.productDetails.sku}
+                            >
+                                {lineItem.cartItem.productDetails.sku}
+                            </dd>
+                            <dt class="slds-truncate">Price per unit</dt>
+                            <dd class="slds-truncate">
+                                <lightning-formatted-number
+                                    format-style="currency"
+                                    currency-code={currencyCode}
+                                    currency-display-as="symbol"
+                                    maximum-fraction-digits="2"
+                                    value={lineItem.cartItem.unitAdjustedPrice}
+                                ></lightning-formatted-number>
+                            </dd>
+                        </dl>
+                        <div class="quantity-price-remove">
+                            <div
+                                class="quantity-selector slds-grid slds-grid_vertical-align-center slds-text-title_caps"
+                            >
+                                <label
+                                    for={lineItem.cartItem.cartItemId}
+                                    class="selector-label slds-m-right_x-small"
+                                    >{labels.quantity}
+                                </label>
+                                <input
+                                    class="selector-input slds-p-horizontal_medium slds-p-vertical_x-small"
+                                    disabled={isCartDisabled}
+                                    id={lineItem.cartItem.cartItemId}
+                                    data-item-id={lineItem.cartItem.cartItemId}
+                                    max="100000"
+                                    min="1"
+                                    required
+                                    type="number"
+                                    value={lineItem.cartItem.quantity}
+                                    onblur={handleQuantitySelectorBlur}
+                                    onclick={handleQuantitySelectorClick}
+                                />
+                            </div>
+                            <div
+                                class="price slds-p-horizontal_medium slds-has-flexi-truncate"
+                            >
+                                <lightning-formatted-number
+                                    aria-label={lineItem.originalPriceLabel}
+                                    format-style="currency"
+                                    currency-code={currencyCode}
+                                    class="original-price slds-truncate slds-text-heading_small"
+                                    currency-display-as="symbol"
+                                    maximum-fraction-digits="2"
+                                    value={lineItem.cartItem.totalListPrice}
+                                >
+                                </lightning-formatted-number>
+                                <lightning-formatted-number
+                                    format-style="currency"
+                                    currency-code={currencyCode}
+                                    class="negotiated-price slds-truncate slds-text-heading_large"
+                                    currency-display-as="symbol"
+                                    maximum-fraction-digits="2"
+                                    value={lineItem.cartItem.totalPrice}
+                                >
+                                </lightning-formatted-number>
+                            </div>
+                            <div class="slds-p-around_xx-small remove">
+                                <lightning-button-icon
+                                    icon-name="utility:close"
+                                    variant="bare"
+                                    alternative-text="remove"
+                                    onclick={handleDeleteCartItem}
+                                    data-cartitemid={lineItem.cartItem.cartItemId}
+                                    disabled={isCartDisabled}
+                                >
+                                </lightning-button-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </template>
+    </ul>
+    <!-- Estimated Arrival Date -->
+    <template if:true={openModal}>
+        <div class="slds-modal slds-fade-in-open slds-backdrop">
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                <lightning-button-icon icon-name="utility:close" alternative-text="Close this window" size="large"
+                    variant="bare-inverse" onclick={closeModal} class="slds-modal__close">
+                </lightning-button-icon>
+                </div>
+                <!-- body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    Estimated arrivals are shown below:
+                    <ul>
+                        <template for:each={estimatedArrivalDates} for:item="item">
+                            <li
+                                key={item.cartItemId}
+                                if:true={item.estimatedArrival}>
+                                    CartItemId {item.cartItemId} has an estimated arrival of: {item.estimatedArrival}
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+                <div class="slds-modal__footer">
+                <lightning-button icon-name="utility:close" label="close" variant="brand" onclick={closeModal}>
+                </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

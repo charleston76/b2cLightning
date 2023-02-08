@@ -1,0 +1,15 @@
+{
+    "records": [
+        {
+            "attributes": {
+                "type": "CommerceEntitlementPolicy",
+                "referenceId": "CommerceEntitlementPolicyRef1"
+            },
+            "Name": "Entitlement Policy",
+            "Description": "Entitlement Policy",
+            "IsActive": true,
+            "CanViewPrice": true,
+            "CanViewProduct": true
+        }
+    ]
+}
