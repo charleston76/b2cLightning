@@ -344,7 +344,7 @@ zip -r -X ../"$communityExperienceBundleName"ToDeploy.zip *
 cd ../..
 
 # Uncomment the line below if you'd like to pause the script in order to save the zip file to deploy
-# read -p "Press any key to resume ..."
+read -p "Wait a little and, press <Enter> to resume... Just to avoind the UNABLE_TO_LOCK_ROW error..."
 
 echo "Deploy the new zip including the flow, ignoring warnings, then clean-up."
 sfdx force:mdapi:deploy -g -f experience-bundle-package/"$communityExperienceBundleName"ToDeploy.zip --wait -1 --verbose --singlepackage

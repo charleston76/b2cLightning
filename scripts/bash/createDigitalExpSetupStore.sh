@@ -8,7 +8,7 @@
 export SFDX_NPM_REGISTRY="http://platform-cli-registry.eng.sfdc.net:4880/"
 export SFDX_S3_HOST="http://platform-cli-s3.eng.sfdc.net:9000/sfdx/media/salesforce-cli"
 # 
-templateName="B2C Commerce"
+templateName="B2B Commerce (LWR)"
 # 
 function echo_attention() {
   local green='\033[0;32m'

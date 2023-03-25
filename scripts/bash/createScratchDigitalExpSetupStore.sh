@@ -28,7 +28,7 @@ echo_attention "Starting the scratch org creation at $(date)"
 echo ""
 echo ""
 
-scratchOrgDuration=1
+scratchOrgDuration=30
 scratchOrgName=$1
 storename=$2
 
