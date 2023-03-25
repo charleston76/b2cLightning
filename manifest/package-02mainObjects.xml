@@ -131,6 +131,7 @@
 	</types>
     <types>
         <members>Account.Business_Account</members>
+        <members>Account.Business_Account</members>
         <name>RecordType</name>
     </types>
     <types>
