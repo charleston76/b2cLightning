@@ -13,5 +13,9 @@
 		<members>Security</members>
 		<name>Settings</name>
 	</types>
+	<types>
+		<members>AuthorizeNet</members>
+		<name>NamedCredential</name>
+	</types>
 	<version>55.0</version>
 </Package>
