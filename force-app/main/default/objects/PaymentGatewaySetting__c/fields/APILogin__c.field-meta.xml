@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>APILogin__c</fullName>
+    <description>API Login used to connect into the payment gateway</description>
+    <externalId>false</externalId>
+    <inlineHelpText>API Login used to connect into the payment gateway</inlineHelpText>
+    <label>API Login</label>
+    <length>150</length>
+    <maskChar>asterisk</maskChar>
+    <maskType>all</maskType>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>EncryptedText</type>
+</CustomField>

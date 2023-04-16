@@ -15,6 +15,18 @@ public with sharing class B2BAuthorizeNetRequest {
     
     private String loginId = 'YOUR_API_LOGIN_HERE';
     private String transKey = 'YOUR_TRANSACTION_KEY_HERE';
+
+    // The user will need to have read access as plain text at the values
+    // To do that, we need to create a trigger that add user in this permission set the require the activation (SessionPermSetActivation)
+    //      SELECT Id, Name, Label, Type, HasActivationRequired FROM PermissionSet WHERE Name = 'PaymentGatewaySettingViewer'
+    // 
+    //      PermissionSetAssignment psa = new PermissionSetAssignment
+    //      (PermissionSetId = myPermissionSetId, AssigneeId = myAssigneeId);
+    //      insert psa; 
+    //
+    // This activation is done just when the user needs to do this thing
+    // After that, we can remove the record to deactivate the permission
+
     
     public HttpResponse sendRequest(String json) {
         HttpRequest request = new HttpRequest();

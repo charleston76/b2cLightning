@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
@@ -6,17 +5,17 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>imgBox</members>
         <members>imagelocation1</members>
         <members>Images</members>
+        <members>imgBox</members>
         <name>CspTrustedSite</name>
     </types>
     <types>
         <members>CommerceDiagnosticCustomObject__c.B2B_Edition__c</members>
         <members>CommerceDiagnosticCustomObject__c.B2B_Version__c</members>
         <members>CommerceDiagnosticCustomObject__c.Browser_Device_Type__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Context_Id_2__c</members>
         <members>CommerceDiagnosticCustomObject__c.Context_Id__c</members>
+        <members>CommerceDiagnosticCustomObject__c.Context_Id_2__c</members>
         <members>CommerceDiagnosticCustomObject__c.Context_Map__c</members>
         <members>CommerceDiagnosticCustomObject__c.Correlation_Id__c</members>
         <members>CommerceDiagnosticCustomObject__c.Count__c</members>
@@ -26,25 +25,25 @@
         <members>CommerceDiagnosticCustomObject__c.Event_Created_By__c</members>
         <members>CommerceDiagnosticCustomObject__c.Event_Created_Date__c</members>
         <members>CommerceDiagnosticCustomObject__c.Is_Retry__c</members>
-        <members>CommerceDiagnosticCustomObject__c.OS_Version__c</members>
+        <members>CommerceDiagnosticCustomObject__c.Operation__c</members>
         <members>CommerceDiagnosticCustomObject__c.Operation_Stage__c</members>
         <members>CommerceDiagnosticCustomObject__c.Operation_State__c</members>
         <members>CommerceDiagnosticCustomObject__c.Operation_Status__c</members>
         <members>CommerceDiagnosticCustomObject__c.Operation_Time__c</members>
-        <members>CommerceDiagnosticCustomObject__c.Operation__c</members>
+        <members>CommerceDiagnosticCustomObject__c.OS_Version__c</members>
         <members>CommerceDiagnosticCustomObject__c.Service_Name__c</members>
         <members>CommerceDiagnosticCustomObject__c.User__c</members>
         <members>CommerceDiagnosticCustomObject__c.WebStore_Id__c</members>
         <members>CommerceDiagnosticCustomObject__c.WebStore_Type__c</members>
         <members>OrderSummary.Status</members>
-        <members>ProductAttribute.Color__c</members>
-        <members>ProductAttribute.Size__c</members>
-        <members>ProductAttribute.Wearing_Style__c</members>
         <members>ProductAttribute.Blend__c</members>
+        <members>ProductAttribute.Color__c</members>
         <members>ProductAttribute.Decaffeinated__c</members>
         <members>ProductAttribute.Intensity__c</members>
         <members>ProductAttribute.Origin__c</members>
+        <members>ProductAttribute.Size__c</members>
         <members>ProductAttribute.Type__c</members>
+        <members>ProductAttribute.Wearing_Style__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -53,7 +52,7 @@
         <members>BuyerGroupPricebook</members>
         <members>Case</members>
         <members>Checkout_Intermediate_Notification__e</members>
-		<members>CommerceDiagnosticCustomObject__c</members>
+        <members>CommerceDiagnosticCustomObject__c</members>
         <members>CommerceEntitlementPolicy</members>
         <members>Menu__c</members>
         <members>Menu_Item__c</members>
@@ -61,6 +60,7 @@
         <members>Order</members>
         <members>OrderDeliveryMethod</members>
         <members>OrderSummary</members>
+        <members>PaymentGatewaySetting__c</members>
         <members>Pricebook2</members>
         <members>Product2</members>
         <members>ProductCatalog</members>
@@ -71,10 +71,11 @@
     </types>
     <types>
         <members>CommerceDiagnosticCustomObject__c</members>
+        <members>PaymentGatewaySetting__c</members>
         <name>CustomTab</name>
     </types>
     <types>
-		<members>Account_Record_Page</members>
+        <members>Account_Record_Page</members>
         <members>Order_Record_Page</members>
         <name>FlexiPage</name>
     </types>
@@ -94,13 +95,14 @@
         <name>GlobalValueSet</name>
     </types>
     <types>
-		<members>Account-Account Layout</members>
-		<members>CommerceDiagnosticCustomObject__c-Commerce Diagnostic Custom Object Layout</members>
+        <members>Account-Account Layout</members>
         <members>BuyerAccount-Buyer Account Layout</members>
+        <members>CommerceDiagnosticCustomObject__c-Commerce Diagnostic Custom Object Layout</members>
         <members>Menu__c-Menu Layout</members>
         <members>Menu_Item__c-Menu Item Layout</members>
         <members>Order-Order Layout</members>
         <members>OrderSummary-Order Summary Layout</members>
+        <members>PaymentGatewaySetting__c-Payment Gateway Setting Layout</members>
         <members>Product2-Product Layout</members>
         <members>ProductAttribute-B2B Product Attribute</members>
         <name>Layout</name>
@@ -110,25 +112,27 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>CommerceDiagnosticCustomObject__c.CommerceDiagnosticEventFields</members>
         <members>Order.All</members>
         <members>OrderSummary.My_order_Summaries</members>
-        <members>CommerceDiagnosticCustomObject__c.CommerceDiagnosticEventFields</members>
+        <members>PaymentGatewaySetting__c.All</members>
         <name>ListView</name>
     </types>
     <types>
         <members>Account_Switcher_User</members>
+        <members>PaymentGatewaySettingViewer</members>
         <name>PermissionSet</name>
     </types>
     <types>
-		<members>Admin</members>
+        <members>Admin</members>
         <members>Buyer Profile</members>
         <members>Commerce Business User Profile</members>
         <name>Profile</name>
     </types>
-	<types>
-		<members>OrderSummary.Cancel_Order</members>
-		<name>QuickAction</name>
-	</types>
+    <types>
+        <members>OrderSummary.Cancel_Order</members>
+        <name>QuickAction</name>
+    </types>
     <types>
         <members>Account.Business_Account</members>
         <members>Account.Business_Account</members>
@@ -154,5 +158,5 @@
         <members>menusManager</members>
         <name>StaticResource</name>
     </types>
-    <version>56.0</version>
+    <version>57.0</version>
 </Package>
