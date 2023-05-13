@@ -12,7 +12,8 @@ Please, take a look on the **video demos** we have in the channel (better in pla
 Probably you may think: **from where they got those ideas?**
 
 So simple:
-1. [B2B Commerce on Lightning Experience Set Up Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf)  a free official salesforce material;
+1. [B2B Commerce on Lightning Experience Set Up Guide](https://resources.docs.salesforce.com/latest/latest/en-us/sfdc/pdf/b2b_standalone_setup.pdf) a free official salesforce material;
+1. [Github Lightning Web Runtime Sample Application](https://github.com/trailheadapps/az-insurance), more free official salesforce material;
 1. [Github b2b-commerce-on-lightning-quickstart](https://github.com/forcedotcom/b2b-commerce-on-lightning-quickstart), another oficial free material provided by salesforce;
 1. [Github MultiLevelNavigationMenus](https://github.com/SalesforceLabs/MultiLevelNavigationMenus), guess what? More free salesforce material;
 1. [Use the CMS App to Create Content](https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content)
