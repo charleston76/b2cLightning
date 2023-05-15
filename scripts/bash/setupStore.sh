@@ -308,10 +308,10 @@ echo "7. Add Contact Point Addresses to the Buyer Account."
 existingCPAForBuyerAccount=`sfdx force:data:soql:query --query \ "SELECT Id FROM ContactPointAddress WHERE ParentId='${accountID}' LIMIT 1" -r csv |tail -n +2`
 if [ -z "$existingCPAForBuyerAccount" ]
 then
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='true' Name='Default Shipping' PostalCode='V6B 5A7' State='California' Street='333 Seymour Street (Shipping)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='true' Name='Default Billing' PostalCode='V6B 5A7' State='California' Street='333 Seymour Street (Billing)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Shipping' PostalCode='94105' State='California' Street='415 Mission Street (Shipping)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='United States' IsDefault='false' Name='Non-Default Billing' PostalCode='94105' State='California' Street='415 Mission Street (Billing)'"
+	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Shipping' PostalCode='V6B 5A7' State='California' Street='333 Seymour Street (Shipping)'"
+	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Billing' PostalCode='V6B 5A7' State='California' Street='333 Seymour Street (Billing)'"
+	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Shipping' PostalCode='94105' State='California' Street='415 Mission Street (Shipping)'"
+	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Billing' PostalCode='94105' State='California' Street='415 Mission Street (Billing)'"
 else
 	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerAccountName}"
 fi

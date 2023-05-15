@@ -13,6 +13,7 @@ Integer pageNumber = 0;
 String workspaceName = communityName + ' Workspace';
 String productDetailImage = 'productDetailImage';
 String productListImage = 'productListImage';
+String categoryTileImage = 'tileImage';
 List<String> managedContentIds = new List<String>();
 List<String> topicNames = new List<String>();
 Map<String,String> mpaMediaGroupId = new Map<String,String>();
@@ -26,7 +27,7 @@ Integer countMatchesFound = 0;
 
 for (ElectronicMediaGroup rowGroup : [
     SELECT Id , DeveloperName FROM ElectronicMediaGroup
-    WHERE DeveloperName IN : new List<String>{productDetailImage,productListImage}
+    WHERE DeveloperName IN : new List<String>{productDetailImage,productListImage,categoryTileImage}
     ORDER BY DeveloperName]){
     mpaMediaGroupId.put(rowGroup.DeveloperName, rowGroup.Id);
 }
@@ -54,20 +55,20 @@ for (CommerceEntitlementBuyerGroup rowEntitlement : [
 
 // System.debug('entitlementPolicyIds ' + entitlementPolicyIds);
 
-String workspaceId = String.valueOf([
-    SELECT Id, Name FROM ManagedContentSpace
-    WHERE Name =:workspaceName 
-]?.Id);
+// String workspaceId = String.valueOf([
+//     SELECT Id, Name FROM ManagedContentSpace
+//     WHERE Name =:workspaceName 
+// ]?.Id);
 
-// System.debug('workspace ' + workspaceName + ' - ' + workspaceId);
+// // System.debug('workspace ' + workspaceName + ' - ' + workspaceId);
 
-for (ManagedContent rowContent : [
-    SELECT Id
-    FROM ManagedContent WHERE AuthoredManagedContentSpaceId =:workspaceId
-    LIMIT :pageSize
-]){
-    managedContentIds.add(rowContent.Id);
-}
+// for (ManagedContent rowContent : [
+//     SELECT Id
+//     FROM ManagedContent WHERE AuthoredManagedContentSpaceId =:workspaceId
+//     LIMIT :pageSize
+// ]){
+//     managedContentIds.add(rowContent.Id);
+// }
 
 // System.debug('managedContentIds.size() ' + managedContentIds.size() );
 
@@ -142,3 +143,32 @@ for (String stockKeepingUnit : mapProduct.keySet()){
 // System.debug('countMatchesFound ' + countMatchesFound );
 System.debug('newProductMedia.size() ' + newProductMedia.size() );
 if (newProductMedia.size() > 0) insert newProductMedia;
+
+Map<String,ProductCategory> mapCategory = new Map<String,ProductCategory>();
+List<ProductCategoryMedia> newProductCategoryMedia = new List<ProductCategoryMedia>();
+
+// Create a map to related the images by the category names
+for (ProductCategory rowCat : [
+    SELECT Id, Name FROM ProductCategory 
+    WHERE ParentCategoryId = NULL 
+    AND   IsNavigational = TRUE ]){
+    mapCategory.put(rowCat.Name, rowCat);
+}
+
+// Verify the categorues and try to findout the images in the map
+for (String categoryName : mapCategory.keySet()){
+    if (mapContentItem.containsKey(categoryName)){
+        newProductCategoryMedia.add(
+            new ProductCategoryMedia(
+                ProductCategoryId = mapCategory.get(categoryName).Id,
+                ElectronicMediaId = mapContentItem.get(categoryName),
+                ElectronicMediaGroupId = mpaMediaGroupId.get(categoryTileImage)
+            )
+        );
+    }
+}
+
+System.debug('newProductCategoryMedia.size() ' + newProductCategoryMedia.size() );
+if (newProductCategoryMedia.size() > 0) insert newProductCategoryMedia;
+
+// SELECT Id, Name, ElectronicMediaId, ProductCategoryId, ElectronicMediaGroupId FROM ProductCategoryMedia
