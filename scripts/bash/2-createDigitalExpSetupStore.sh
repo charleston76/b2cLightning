@@ -104,4 +104,4 @@ echo_attention "Finishing the digital experience creation at $(date)"
 echo ""
 echo ""
 
-./scripts/bash/setupStore.sh $scratchOrgName $storename || error_and_exit "Store setup failed."
+./scripts/bash/3-setupStore.sh $scratchOrgName $storename || error_and_exit "Store setup failed."

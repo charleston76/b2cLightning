@@ -2,6 +2,7 @@
 # This script will:
 # - amend files needed to fill out Product data
 # - import Products and related data to make store functional
+# ./scripts/bash/6-importProductMedia.sh storeFront 
 function exit_error_message() {
   local red_color='\033[0;31m'
   local no_color='\033[0m'

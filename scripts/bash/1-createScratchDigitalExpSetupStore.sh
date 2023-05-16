@@ -45,4 +45,4 @@ echo_attention "Finishing the scratch org creation at $(date)"
 echo ""
 echo ""
 
-./scripts/bash/createDigitalExpSetupStore.sh $scratchOrgName $storename
+./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename

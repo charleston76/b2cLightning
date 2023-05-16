@@ -69,10 +69,10 @@ You use the things here in the following ways:
 
 If you already are working with scratch orgs and have all configured and defined in your main org (develop, production, etc), you just need to run the command below:
 
-* ./scripts/bash/createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
+* ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/createScratchDigitalExpSetupStore.sh tmpB2C storeFront
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2C storeFront
     ```
     
 That will do all the configuration needed to achieve:
@@ -121,10 +121,10 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
         ![CMS done](images/b2bCMSImport4.png)
 
 1. With the images and the products there, you'll run the script bellow, to put the things together:
-    * ./scripts/bash/importProductMedia.sh [YOUR_SHOP_NAME_HERE]
+    * ./scripts/bash/6-importProductMedia.sh [YOUR_SHOP_NAME_HERE]
     * Example:
         ```
-        ./scripts/bash/importProductMedia.sh storeFront
+        ./scripts/bash/6-importProductMedia.sh storeFront
         ```
 
         ![CMS relating products](images/b2bCMSImport5.png)
@@ -175,10 +175,10 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
         sfdx force:config:set defaultusername=tmpB2C
         ```
 1. Deploy the things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
-    * ./scripts/bash/createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
+    * ./scripts/bash/2-createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/createDigitalExpSetupStore.sh tmpB2C storeFront
+    ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2C storeFront
     ```
 
 ## Other org types
@@ -211,7 +211,7 @@ Coming soon new updates, stay tuned
         * If you do not want to set that org as your default to the project, just suppress the parameter "-s"
 
 * #### Deploying the additional settings
-    * This configuration is automatically applied through the **"createDigitalExpSetupStore.sh"** script file
+    * This configuration is automatically applied through the **"2-createDigitalExpSetupStore.sh"** script file
     * Some things like Currency, Order, Order management, etc,  needs to be enable with metadata changes, to do that, we have created the [manifest/package-01additionalSettings.xml](manifest/package-01additionalSettings.xml) file.
 
         Please, feel free to uncomment the necessary setting you may need in your deployment.

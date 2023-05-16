@@ -212,7 +212,7 @@ mv -f $tmpfile $networkMetaFile
 # Import Products and related data
 # Get new Buyer Group Name
 echo "4. Importing products and the other things"
-buyergroupName=$(bash ./scripts/bash/importProductSample.sh $storename | tail -n 1)
+buyergroupName=$(bash ./scripts/bash/5-importProductSample.sh $storename | tail -n 1)
 echo_attention "Buyer group name $buyergroupName"
 
 # If notnot working with scratch orgs, comment the code below
@@ -323,7 +323,7 @@ echo "Store Type is $storeType"
 # # Update Guest Profile with required CRUD and FLS
 # if [ "$storeType" = "B2C" ]
 # then
-	sh ./scripts/bash/b2bGuestBrowsing.sh "$communityNetworkName" "$buyergroupName"
+	sh ./scripts/bash/4-b2bGuestBrowsing.sh "$communityNetworkName" "$buyergroupName"
 # fi	
 #############################
 #   Deploy Updated Store    #
@@ -354,6 +354,7 @@ read -p "Wait a little and, press <Enter> to resume... Just to avoind the UNABLE
 
 echo "Deploy the new zip including the flow, ignoring warnings, then clean-up."
 sfdx force:mdapi:deploy -g -f experience-bundle-package/"$communityExperienceBundleName"ToDeploy.zip --wait -1 --verbose --singlepackage
+# sfdx force:mdapi:deploy -g -f experience-bundle-package/storeFront1ToDeploy.zip --wait -1 --verbose --singlepackage
 
 echo "Removing the package xml files used for retrieving and deploying metadata at this step."
 rm package-retrieve.xml
