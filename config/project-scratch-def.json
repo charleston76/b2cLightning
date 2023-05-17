@@ -3,6 +3,7 @@
     "edition": "Developer",
     "country": "US",  
     "features": [ 
+        "PersonAccounts",
         "MultiCurrency",
         "Communities", 
         "B2BCommerce", 

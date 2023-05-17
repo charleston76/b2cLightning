@@ -72,7 +72,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2C storeFront
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2C storeFront
     ```
     
 That will do all the configuration needed to achieve:
