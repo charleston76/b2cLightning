@@ -374,7 +374,7 @@ sfdx force:mdapi:deploy -d Deploy/ -w 10
 
 # # Clean the path after running
 rm -rf Deploy
-
+rm -rf experience-bundle-package
 
 
 echo ""

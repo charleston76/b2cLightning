@@ -87,7 +87,7 @@ In this current version, we are creating the B2B Commerce in a scratch organizat
 Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
 
 1. Configure the CMS tabs (Setup > Profile > System Administrator)
-    * Set as default on CMS Channels, CMS Workspaces and Commerce Setup
+    * Set as default on CMS Channels, CMS Workspaces, Commerce Setup and Digital Experience
 
         ![CMS Profile](images/b2bCMSProfile.png)
     * If it is not showing as above, probably you'll need deactivate the "Enhanced Profile User Interface" in the "User Management Settings"

@@ -486,13 +486,13 @@
 				},
 				{
 					"type": "cms_image",
-					"urlName": "customerlogo",
+					"urlName": "customer-coffee-logo",
 					"status":"Published",
 					"body": {
-						"title": "Customer Logo",
-						"altText": "Customer Logo",
+						"title": "Customer Coffee Logo",
+						"altText": "Customer Coffee Logo",
 						"source": {
-							"ref": "customerLogo.png"
+							"ref": "customerCoffeeLogo.png"
 						}
 					}
 				},
