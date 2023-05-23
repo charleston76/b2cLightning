@@ -25,10 +25,10 @@ echo_attention "Creating guest user to $buyergroupName"
 # Enable Guest Browsing for WebStore and create Guest Buyer Profile. 
 # Assign to Buyer Group of choice.
 sfdx force:data:record:update -s WebStore -w "Name='$communityNetworkName'" -v "OptionsGuestBrowsingEnabled='true'" 
-guestBuyerProfileId=`sfdx force:data:soql:query --query \ "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'" -r csv |tail -n +2`
+guestBuyerProfileId=`sf data query --query \ "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'" -r csv |tail -n +2`
 echo_attention "Guest Buyer Profile Id $guestBuyerProfileId"
 
-buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$buyergroupName'" -r csv |tail -n +2`
+buyergroupID=`sf data query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$buyergroupName'" -r csv |tail -n +2`
 echo_attention "Buyer Group ID $buyergroupID"
 
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerId='$guestBuyerProfileId' BuyerGroupId='$buyergroupID'"

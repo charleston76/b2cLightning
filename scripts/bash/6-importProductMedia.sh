@@ -23,7 +23,7 @@ fi
 
 storename=$1
 echo_attention "Checking if the store $storename already exists"
-storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+storeId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 
 if [ -z "$storeId" ]
 then
@@ -34,7 +34,7 @@ fi
 echo_attention "Store front id: $storeId found to $storename"
 
 echo_attention "Checking if community $storename already exists"
-communityId=`sfdx force:data:soql:query -q "SELECT Id from Network WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+communityId=`sf data query -q "SELECT Id from Network WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 
 if [ -z "$communityId" ]
 then

@@ -46,7 +46,9 @@ scratchOrgName=$1
 storename=$2
 
 # Check if the store nam already exist, to no try create with error
-checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+# checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+
 
 if [ ! -z "$checkExistinStoreId" ]
 then
@@ -68,7 +70,7 @@ storeId=""
 while [ -z "${storeId}" ];
 do
     echo_attention "Store not yet created, waiting 10 seconds..."
-    storeId=$(sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
+    storeId=$(sf data query -q "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
     
     sleep 10
 done

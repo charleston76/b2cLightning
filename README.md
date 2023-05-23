@@ -163,12 +163,12 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
 1. [Enable Dev Hub Features in Your Org](https://help.salesforce.com/s/articleView?id=sf.sfdx_setup_enable_devhub.htm&type=5) (it could be trail, develop or even a productive one).
 1. Authorize that Devhub org (please, see the **All Organizations** under "[Authorize the organization](#authorize-the-organization) - Example to authorize set a devhubuser" section);
 1. Create your scratch org based on the project file
-    * sfdx force:org:create -f config/project-scratch-def.json -a [YOUR_ALIAS_HERE] -d 1
+    * sf org create scratch -f config/project-scratch-def.json -a $scratchOrgName -y $scratchOrgDuration
     * That will create the scratch org with a lot of features enable, please take a look on [that project file](config/project-scratch-def.json) to get familiar
     * The "-d" parameter, tells the amount of days that you want your scratch organization last
     * Example:
         ```
-        sfdx force:org:create -f config/project-scratch-def.json -a tmpB2C -d 1
+        sf org create scratch -f config/project-scratch-def.json -a tmpB2C -y 1
         ```
     * Set that as you default organization:
         ```

@@ -13,12 +13,12 @@ else
     sed -e "s/\"WebStoreId\": \"PutWebStoreIdHere\"/\"WebStoreId\": \"${storeId}\"/g" scripts/json/WebStoreBuyerGroups-template.json > scripts/json/WebStoreBuyerGroups.json
 
     # Get Standard Pricebooks for Store and replace in json files
-	pricebook1=`sfdx force:data:soql:query -q "SELECT Id FROM Pricebook2 WHERE Name='Standard Price Book' AND IsStandard=true LIMIT 1" -r csv |tail -n +2`
+	pricebook1=`sf data query -q "SELECT Id FROM Pricebook2 WHERE Name='Standard Price Book' AND IsStandard=true LIMIT 1" -r csv |tail -n +2`
 	
 	sed -e "s/\"Pricebook2Id\": \"PutStandardPricebookHere\"/\"Pricebook2Id\": \"${pricebook1}\"/g" scripts/json/PricebookEntrys-template.json > scripts/json/PricebookEntrys.json
 	
 	# Buyer Group
-	numberofbuyergroups=`sfdx force:data:soql:query -q "SELECT COUNT(Id) FROM BuyerGroup" -r csv  |tail -n +2`
+	numberofbuyergroups=`sf data query -q "SELECT COUNT(Id) FROM BuyerGroup" -r csv  |tail -n +2`
 	# newnumber=$(($numberofbuyergroups + 1))
 	# newbuyergroupname="BUYERGROUP_FROM_QUICKSTART_${newnumber}"
 	newnumber=$(($numberofbuyergroups + 1))
@@ -31,7 +31,7 @@ else
 	fi	
 
 	echo "Checking if exists a buyer group created"
-	checkExistingBuyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$newbuyergroupname'" -r csv |tail -n +2`
+	checkExistingBuyergroupID=`sf data query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$newbuyergroupname'" -r csv |tail -n +2`
 	echo $checkExistingBuyergroupID
 	
 	sed -e "s/\"Name\": \"PutBuyerGroupHere\"/\"Name\": \"${newbuyergroupname}\"/g;s/\"Description\": \"PutStoreNameHere\"/\"Description\": \"${1}\"/g" scripts/json/BuyerGroups-template.json > scripts/json/BuyerGroups.json
@@ -41,12 +41,12 @@ else
 	# For now, if there is atleast 1 match, skip inserting products. 
 	# Down the line, explore Bulk Upsert if people delete Products.
 	# Workaround, use throwaway community to delete all products to trigger re-insert.
-	productq=`sfdx force:data:soql:query -q "SELECT COUNT(Id) FROM Product2 WHERE StockKeepingUnit In ('B-C-COFMAC-001', 'DRW-1', 'SS-DR-BB', 'ESP-001', 'TM-COFMAC-001', 'ESP-IOT-1', 'ID-PEM', 'TR-COFMAC-001', 'LRW-1', 'MRC-1', 'CP-2', 'GDG-1', 'E-ESP-001', 'ID-CAP-II', 'PS-DB', 'Q85YQ2', 'CCG-1', 'CERCG-1', 'CF-1', 'E-MR-B', 'ID-CAP-III', 'PS-EL', 'EM-ESP-001', 'CP-3', 'CL-DR-BB', 'CR-DEC', 'CREV-DR-BLEND', 'CM-MSB-300', 'COF-FIL', 'CP-1')" -r csv |tail -n +2`
+	productq=`sf data query -q "SELECT COUNT(Id) FROM Product2 WHERE StockKeepingUnit In ('B-C-COFMAC-001', 'DRW-1', 'SS-DR-BB', 'ESP-001', 'TM-COFMAC-001', 'ESP-IOT-1', 'ID-PEM', 'TR-COFMAC-001', 'LRW-1', 'MRC-1', 'CP-2', 'GDG-1', 'E-ESP-001', 'ID-CAP-II', 'PS-DB', 'Q85YQ2', 'CCG-1', 'CERCG-1', 'CF-1', 'E-MR-B', 'ID-CAP-III', 'PS-EL', 'EM-ESP-001', 'CP-3', 'CL-DR-BB', 'CR-DEC', 'CREV-DR-BLEND', 'CM-MSB-300', 'COF-FIL', 'CP-1')" -r csv |tail -n +2`
 
 	if [ "$productq" -gt 0 ]
 	then 
 		# Grab Product IDs to create Product Entitlements
-		sfdx force:data:soql:query -q "SELECT Id FROM Product2 WHERE StockKeepingUnit In ('B-C-COFMAC-001', 'DRW-1', 'SS-DR-BB', 'ESP-001', 'TM-COFMAC-001', 'ESP-IOT-1', 'ID-PEM', 'TR-COFMAC-001', 'LRW-1', 'MRC-1', 'CP-2', 'GDG-1', 'E-ESP-001', 'ID-CAP-II', 'PS-DB', 'Q85YQ2', 'CCG-1', 'CERCG-1', 'CF-1', 'E-MR-B', 'ID-CAP-III', 'PS-EL', 'EM-ESP-001', 'CP-3', 'CL-DR-BB', 'CR-DEC', 'CREV-DR-BLEND', 'CM-MSB-300', 'COF-FIL', 'CP-1')" -r csv > productfile.csv
+		sf data query -q "SELECT Id FROM Product2 WHERE StockKeepingUnit In ('B-C-COFMAC-001', 'DRW-1', 'SS-DR-BB', 'ESP-001', 'TM-COFMAC-001', 'ESP-IOT-1', 'ID-PEM', 'TR-COFMAC-001', 'LRW-1', 'MRC-1', 'CP-2', 'GDG-1', 'E-ESP-001', 'ID-CAP-II', 'PS-DB', 'Q85YQ2', 'CCG-1', 'CERCG-1', 'CF-1', 'E-MR-B', 'ID-CAP-III', 'PS-EL', 'EM-ESP-001', 'CP-3', 'CL-DR-BB', 'CR-DEC', 'CREV-DR-BLEND', 'CM-MSB-300', 'COF-FIL', 'CP-1')" -r csv > productfile.csv
 		INPUT="productfile.csv"
 		array=()
 		# Load Product IDs into array 	
@@ -61,7 +61,7 @@ else
 		# Import Productless data
 		sfdx force:data:tree:import -p scripts/json/Productless-Plan-1.json
 		# Get newly created Entitlement Policy ID
-		policyID=`sfdx force:data:soql:query -q "SELECT Id FROM CommerceEntitlementPolicy ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+		policyID=`sf data query -q "SELECT Id FROM CommerceEntitlementPolicy ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 		# Create new Product Entitlement records
 		for i in "${array[@]}"
 		do
@@ -73,15 +73,15 @@ else
 		storeId=`sfdx  force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 		
 		# Add Store Catalog mapping
-		catalogId=`sfdx force:data:soql:query -q "SELECT Id FROM ProductCatalog WHERE Name='CATALOG_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1" -r csv | tail -n +2`
+		catalogId=`sf data query -q "SELECT Id FROM ProductCatalog WHERE Name='CATALOG_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1" -r csv | tail -n +2`
 		sfdx force:data:record:create -s WebStoreCatalog -v "ProductCatalogId='${catalogId}' SalesStoreId='${storeId}'"
 
 		# Add Store Pricebook mapping
-		pricebook2Id=`sfdx force:data:soql:query -q "SELECT Id FROM Pricebook2 WHERE Name='BASIC_PRICEBOOK_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1" -r csv | tail -n +2`
+		pricebook2Id=`sf data query -q "SELECT Id FROM Pricebook2 WHERE Name='BASIC_PRICEBOOK_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1" -r csv | tail -n +2`
 		sfdx force:data:record:create -s WebStorePricebook -v "IsActive=true Pricebook2Id='${pricebook2Id}' WebStoreId='${storeId}'"
 		
 		# Add Buyer Group Pricebook mapping
-		buyergroupId=`sfdx force:data:soql:query -q "SELECT Id FROM BuyerGroup WHERE Name='${newbuyergroupname}'  LIMIT 1" -r csv | tail -n +2`
+		buyergroupId=`sf data query -q "SELECT Id FROM BuyerGroup WHERE Name='${newbuyergroupname}'  LIMIT 1" -r csv | tail -n +2`
 		sfdx force:data:record:create -s BuyerGroupPricebook -v "Pricebook2Id='${pricebook2Id}' BuyerGroupId='${buyergroupId}'"
 
 		# Cleanup

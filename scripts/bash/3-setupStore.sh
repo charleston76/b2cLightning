@@ -73,7 +73,7 @@ unzip -d experience-bundle-package experience-bundle-package/unpackaged.zip
 #       Update Store        #
 #############################
 
-storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+storeId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
 
 # Register Apex classes needed for checkout integrations and map them to the store
 echo "1. Setting up your integrations."
@@ -87,7 +87,7 @@ function register_and_map_integration() {
 	echo "Registering Apex class $1 ($2) for $3 integration."
 
 	# Get the Id of the Apex class
-	local apexClassId=`sfdx force:data:soql:query -q "SELECT Id FROM ApexClass WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
+	local apexClassId=`sf data query -q "SELECT Id FROM ApexClass WHERE Name='$1' LIMIT 1" -r csv |tail -n +2`
 	if [ -z "$apexClassId" ]
 	then
 		echo "There was a problem getting the ID of the Apex class $1 for checkout integrations."
@@ -98,11 +98,11 @@ function register_and_map_integration() {
 		sfdx force:data:record:create -s RegisteredExternalService -v "DeveloperName=$2 ExternalServiceProviderId=$apexClassId ExternalServiceProviderType=$3 MasterLabel=$2"
 
 		# Map the Apex class to the store if no other mapping exists for the same Service Provider Type
-		local storeIntegratedServiceId=`sfdx force:data:soql:query -q "SELECT Id FROM StoreIntegratedService WHERE ServiceProviderType='$3' AND StoreId='$storeId' LIMIT 1" -r csv |tail -n +2`
+		local storeIntegratedServiceId=`sf data query -q "SELECT Id FROM StoreIntegratedService WHERE ServiceProviderType='$3' AND StoreId='$storeId' LIMIT 1" -r csv |tail -n +2`
 		if [ -z "$storeIntegratedServiceId" ]
 		then
 			# No mapping exists, so we will create one
-			local registeredExternalServiceId=`sfdx force:data:soql:query -q "SELECT Id FROM RegisteredExternalService WHERE ExternalServiceProviderId='$apexClassId' LIMIT 1" -r csv |tail -n +2`
+			local registeredExternalServiceId=`sf data query -q "SELECT Id FROM RegisteredExternalService WHERE ExternalServiceProviderId='$apexClassId' LIMIT 1" -r csv |tail -n +2`
 			sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$registeredExternalServiceId StoreId=$storeId ServiceProviderType=$3"
 		else
 			echo "There is already a mapping in this store for $3 ServiceProviderType: $storeIntegratedServiceId"
@@ -117,7 +117,7 @@ function map_standard_integration {
 
 	echo "Mapping internal ($integrationName) for $serviceProviderType integration."
 
-	local integrationId=`sfdx force:data:soql:query -q "SELECT Id FROM StoreIntegratedService WHERE ServiceProviderType='$serviceProviderType' AND StoreId='$storeId' LIMIT 1" -r csv |tail -n +2`
+	local integrationId=`sf data query -q "SELECT Id FROM StoreIntegratedService WHERE ServiceProviderType='$serviceProviderType' AND StoreId='$storeId' LIMIT 1" -r csv |tail -n +2`
 	if [ -z "$integrationId" ]
 	then
 		sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$integrationName StoreId=$storeId ServiceProviderType=$serviceProviderType"
@@ -139,25 +139,21 @@ function register_and_map_credit_card_payment_integration {
 	echo "Registering credit card payment integration."
 
 	# Creating Payment Gateway Provider
-	# apexClassId=`sfdx force:data:soql:query -q "SELECT Id FROM ApexClass WHERE Name='SalesforceAdapter' LIMIT 1" -r csv |tail -n +2`
-	apexClassId=`sfdx force:data:soql:query -q "SELECT Id FROM ApexClass WHERE Name='AuthorizeNetAdapter' LIMIT 1" -r csv |tail -n +2`
+	apexClassId=`sf data query -q "SELECT Id FROM ApexClass WHERE Name='AuthorizeNetAdapter' LIMIT 1" -r csv |tail -n +2`
 	echo "Creating PaymentGatewayProvider record using ApexAdapterId=$apexClassId."
 	# sfdx force:data:record:create -s PaymentGatewayProvider -v "DeveloperName=SalesforcePGP ApexAdapterId=$apexClassId MasterLabel=SalesforcePGP IdempotencySupported=Yes Comments=Comments"
 	sfdx force:data:record:create -s PaymentGatewayProvider -v "DeveloperName=AuthorizeNetPGProvider ApexAdapterId=$apexClassId MasterLabel=AuthorizeNetPGProvider IdempotencySupported=Yes Comments=Comments"
 
 	# Creating Payment Gateway
-	# paymentGatewayProviderId=`sfdx force:data:soql:query -q "SELECT Id FROM PaymentGatewayProvider WHERE DeveloperName='SalesforcePGP' LIMIT 1" -r csv | tail -n +2`
-	paymentGatewayProviderId=`sfdx force:data:soql:query -q "SELECT Id FROM PaymentGatewayProvider WHERE DeveloperName='AuthorizeNetPGProvider' LIMIT 1" -r csv | tail -n +2`
-	# namedCredentialId=`sfdx force:data:soql:query -q "SELECT Id FROM NamedCredential WHERE MasterLabel='Salesforce' LIMIT 1" -r csv | tail -n +2`
-	namedCredentialId=`sfdx force:data:soql:query -q "SELECT Id FROM NamedCredential WHERE MasterLabel='Authorize.Net' LIMIT 1" -r csv | tail -n +2`
+	paymentGatewayProviderId=`sf data query -q "SELECT Id FROM PaymentGatewayProvider WHERE DeveloperName='AuthorizeNetPGProvider' LIMIT 1" -r csv | tail -n +2`
+	namedCredentialId=`sf data query -q "SELECT Id FROM NamedCredential WHERE MasterLabel='Authorize.Net' LIMIT 1" -r csv | tail -n +2`
 	echo "Creating PaymentGateway record using MerchantCredentialId=$namedCredentialId, PaymentGatewayProviderId=$paymentGatewayProviderId."
 	# sfdx force:data:record:create -s PaymentGateway -v "MerchantCredentialId=$namedCredentialId PaymentGatewayName=SalesforcePG PaymentGatewayProviderId=$paymentGatewayProviderId Status=Active"
 	sfdx force:data:record:create -s PaymentGateway -v "MerchantCredentialId=$namedCredentialId PaymentGatewayName=AuthorizeNetPGateway PaymentGatewayProviderId=$paymentGatewayProviderId Status=ACTIVE Comments='This is the payment gateway related with Authorize.Net'"
 
 	# Creating Store Integrated Service
-	storeId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$communityNetworkName' LIMIT 1" -r csv | tail -n +2`
-	# paymentGatewayId=`sfdx force:data:soql:query -q "SELECT Id FROM PaymentGateway WHERE PaymentGatewayName='SalesforcePG' LIMIT 1" -r csv | tail -n +2`
-	paymentGatewayId=`sfdx force:data:soql:query -q "SELECT Id FROM PaymentGateway WHERE PaymentGatewayName='AuthorizeNetPGateway' LIMIT 1" -r csv | tail -n +2`
+	storeId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$communityNetworkName' LIMIT 1" -r csv | tail -n +2`
+	paymentGatewayId=`sf data query -q "SELECT Id FROM PaymentGateway WHERE PaymentGatewayName='AuthorizeNetPGateway' LIMIT 1" -r csv | tail -n +2`
 
 	echo "Creating StoreIntegratedService using the $communityNetworkName store and Integration=$paymentGatewayId (PaymentGatewayId)"
 	sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$paymentGatewayId StoreId=$storeId ServiceProviderType=Payment"
@@ -219,14 +215,14 @@ echo_attention "Buyer group name $buyergroupName"
 # Assign a role to the admin user, else update user will error out
 echo "5. Mapping Admin User to Role."
 # First of all, checks if that is not already created there...
-newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
+newRoleID=`sf data query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 
 if [ -z "$newRoleID" ]
 then
-	ceoID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
+	ceoID=`sf data query --query \ "SELECT Id FROM UserRole WHERE Name = 'CEO'" -r csv |tail -n +2`
 	sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
 	# after creating, just wait a little to get the id back
-	newRoleID=`sfdx force:data:soql:query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
+	newRoleID=`sf data query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 	echo_attention "Admin user roleID ID created now $newRoleID"
 else
 	echo "Admin user roleID ID alreadt created $newRoleID"
@@ -237,7 +233,7 @@ fi
 userName=`sfdx force:user:display | grep "Username" | sed 's/Username//g;s/^[[:space:]]*//g'`
 trimName=`echo $userName | sed 's/ *$//g'`
 userName=$trimName
-userId=`sfdx force:data:soql:query --query \ "SELECT Id FROM User WHERE username = '$userName'" -r csv |tail -n +2`
+userId=`sf data query --query \ "SELECT Id FROM User WHERE username = '$userName'" -r csv |tail -n +2`
 
 echo_attention "Logged in username $userName ID $userId"
 # after creating, just wait a little to get the id back
@@ -273,7 +269,7 @@ sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userNam
 sfdx force:data:record:update -s User -w "Username='$createdUsername'" -v "FirstName='User ${scratchOrgName}'" 
 
 echo "Getting the contactId"
-contactId=`sfdx force:data:soql:query --query \ "SELECT ContactId FROM User WHERE Username = '${createdUsername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+contactId=`sf data query --query \ "SELECT ContactId FROM User WHERE Username = '${createdUsername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 
 echo_attention "Updating the contact information to the createdUsername $createdUsername ContactId $contactId"
 
@@ -281,7 +277,7 @@ echo_attention "Updating the contact information to the createdUsername $created
 sfdx force:data:record:update -s Contact -w "Id='$contactId'" -v "FirstName='Contact $scratchOrgName' LastName='$storename' Title='Mr.'" 
 
 echo "Selecting Account ID."
-accountID=`sfdx force:data:soql:query --query \ "SELECT AccountId FROM Contact WHERE Id='$contactId' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
+accountID=`sf data query --query \ "SELECT AccountId FROM Contact WHERE Id='$contactId' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 
 echo_attention "ContactId $contactId related with AccountId $accountID "
 
@@ -297,7 +293,7 @@ sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$bu
 
 # Assign Account to Buyer Group
 echo "Assigning Buyer Account to Buyer Group."
-buyergroupID=`sfdx force:data:soql:query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
+buyergroupID=`sf data query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'" -r csv |tail -n +2`
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
 rm -rf setupB2b
 
@@ -305,7 +301,7 @@ rm -rf setupB2b
 # The account will have 2 Shipping and 2 billing addresses associated to it.
 # To view the addresses in the UI you need to add Contact Point Addresses to the related lists for Account
 echo "7. Add Contact Point Addresses to the Buyer Account."
-existingCPAForBuyerAccount=`sfdx force:data:soql:query --query \ "SELECT Id FROM ContactPointAddress WHERE ParentId='${accountID}' LIMIT 1" -r csv |tail -n +2`
+existingCPAForBuyerAccount=`sf data query --query \ "SELECT Id FROM ContactPointAddress WHERE ParentId='${accountID}' LIMIT 1" -r csv |tail -n +2`
 if [ -z "$existingCPAForBuyerAccount" ]
 then
 	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Shipping' PostalCode='V6B 5A7' State='California' Street='333 Seymour Street (Shipping)'"
@@ -317,7 +313,7 @@ else
 fi
 
 echo "Setup Guest Browsing."
-storeType=`sfdx force:data:soql:query --query \ "SELECT Type FROM WebStore WHERE Name = '${communityNetworkName}'" -r csv |tail -n +2`
+storeType=`sf data query --query \ "SELECT Type FROM WebStore WHERE Name = '${communityNetworkName}'" -r csv |tail -n +2`
 echo "Store Type is $storeType"
 # Originally it just was doing to b2c... but...
 # # Update Guest Profile with required CRUD and FLS
@@ -333,7 +329,6 @@ echo "Creating the package to deploy, including the new flow."
 cd experience-bundle-package/unpackaged/
 # Before creating the package to deploy, let deactivate some options that are not going fine
 # # This option update the field, but even comming with false, the error persis
-# networkId=$(sfdx force:data:soql:query -q "SELECT Id FROM Network WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
 # echo_attention "Deactivating some Network object options for storeId $networkId"
 # sfdx force:data:record:update -s Network -w "Id='$networkId' " -v "OptionsApexCDNCachingEnabled=false" 
 
