@@ -54,6 +54,7 @@
         <members>Checkout_Intermediate_Notification__e</members>
         <members>CommerceDiagnosticCustomObject__c</members>
         <members>CommerceEntitlementPolicy</members>
+        <members>ElectronicMediaGroup</members>
         <members>Menu__c</members>
         <members>Menu_Item__c</members>
         <members>Opportunity</members>

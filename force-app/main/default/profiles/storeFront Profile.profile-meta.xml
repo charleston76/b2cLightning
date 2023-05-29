@@ -318,6 +318,24 @@
 		<object>ProductCategory</object>
 		<viewAllRecords>false</viewAllRecords>
 	</objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>ProductCategoryProduct</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>    
+        <allowCreate>false</allowCreate>    
+        <allowDelete>false</allowDelete>    
+        <allowEdit>false</allowEdit>    
+        <allowRead>true</allowRead> 
+        <modifyAllRecords>false</modifyAllRecords>  
+        <object>ProductMedia</object>   
+        <viewAllRecords>false</viewAllRecords>  
+    </objectPermissions>
 	<objectPermissions>
 		<allowCreate>false</allowCreate>
 		<allowDelete>false</allowDelete>
@@ -327,6 +345,24 @@
 		<object>WebStore</object>
 		<viewAllRecords>false</viewAllRecords>
 	</objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>WebStoreCatalog</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>WebStorePricebook</object>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
 	<userLicense>Guest User License</userLicense>
 	<userPermissions>
 		<enabled>true</enabled>

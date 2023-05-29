@@ -82,7 +82,9 @@ That will do all the configuration needed to achieve:
 
 ## Manual steps
 
-In this current version, we are creating the B2B Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
+### CMS configuration
+
+In this current version, we are creating the B2B2C Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
 
 Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
 
@@ -136,6 +138,24 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
 1. Rebuild your search index and check the things working!
 
     ![Rebuild Index](images/b2bCMSImport7.png)
+
+### Guest user access
+
+With our scripst we will let you "almost there", to have the Guest navigation enabled!
+
+And as  matter of fact, we could to do that all with the scripts, but we didn't for the following reasons:
+1. Not all B2B customer will get that enabled;
+1. While you are creating and changing things, you don't wanna the guests looking around, not yet;
+1. This is just a guidance, not the final word!
+
+With that said, you'll need to apply manually the final touches:
+* All Sites > Digital Experiences > Workspaces > Administration > Preferences > Enable the "Allow guest users to access public APIs" option and save it:
+![Guest Public API](images/AllowGuestPublicAPI.png)
+
+* All Sites > Digital Experiences > Workspaces > Administration > Builder > Settings > Enable the "Guest users can see and interact with the site without logging in" option and save it:
+![Guest User Interaction](images/AllowGuestUserInteraction.png)
+
+* In the real world, you also will need to the adjustments in the guest user profile name, to match with your digital experience name!
 
 ## Out of the Box CSV Importing Products and CMS images
 

@@ -52,8 +52,12 @@ mkdir setupB2b
 sed -E "s/YOUR_COMMUNITY_NAME_HERE/$storename/g;s/YOUR_COMMUNITY_ID_HERE/$communityId/g;s/YOUR_WEBSTORE_ID_HERE/$storeId/g" scripts/apex/managedContentCreation.apex > setupB2b/managedContentCreation.apex
 
 echo_attention "Executing the apex script file"
-# sfdx force:apex:execute -f setupB2b/managedContentCreation.apex
-returned=`sfdx force:apex:execute -f setupB2b/managedContentCreation.apex`
+# returned=`sfdx force:apex:execute -f setupB2b/managedContentCreation.apex`
+returned=`sf apex run -f setupB2b/managedContentCreation.apex`
+
+echo "Rebuilding the  search index."
+sfdx 1commerce:search:start -n "$storename"
+
 
 echo_attention "Removing the setupB2b folder"
 rm -rf setupB2b
