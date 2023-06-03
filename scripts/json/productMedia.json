@@ -543,6 +543,18 @@
 							"ref": "coffee-grinders.jpeg"
 						}
 					}
+				},
+				{
+					"type": "cms_image",
+					"urlName": "santos-force",
+					"status":"Published",
+					"body": {
+						"title": "SantosForce",
+						"altText": "SantosForce",
+						"source": {
+							"ref": "santos-force.png"
+						}
+					}
 				}
 			]
  }
