@@ -9,7 +9,9 @@
         -->
 		<members>Currency</members>
 		<members>Order</members>
+		<!-- This order management thing if causing issues on scratch org deployment
 		<members>OrderManagement</members>
+		-->
 		<members>Security</members>
 		<name>Settings</name>
 	</types>

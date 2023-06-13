@@ -4,7 +4,6 @@
     "country": "US",  
     "features": [ 
         "PersonAccounts",
-        "MultiCurrency",
         "Communities", 
         "B2BCommerce", 
         "OrderManagement", 
