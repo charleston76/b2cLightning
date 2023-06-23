@@ -39,7 +39,6 @@ echo_attention "That can take few seconds to a couple minutes, please, be patien
 sf org create scratch -f config/project-scratch-def.json -a $scratchOrgName -y $scratchOrgDuration
 
 echo_attention "Setting the $scratchOrgName as default"
-# sfdx force:config:set defaultusername=$scratchOrgName
 sf config set target-org $scratchOrgName
 
 echo ""

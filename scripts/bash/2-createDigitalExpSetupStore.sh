@@ -28,6 +28,40 @@ function error_and_exit() {
   exit 1
 }
 
+function readValue(){
+  local  definedValue=""
+
+  while [ "$definedValue" = "" ]
+  do
+    read -p "Enter the $1 value to continue: " definedValue
+  done
+
+  echo "$definedValue"
+
+}
+
+function readParameterValue(){
+  if [ -z "$1" ]
+  then
+      error_and_exit "You need to define which parameter will be read"
+  fi
+
+  local parameterToRead=$1
+  echo_attention "$parameterToRead parameter value definition $2"
+
+  local parameterValue=""
+  parameterValue=$(readValue $parameterToRead)
+  # echo_attention "Parameter to read $parameterToRead with value $parameterValue"
+
+  case $parameterToRead in
+    checkExistinStoreContinue)
+      checkExistinStoreAnswer=$parameterValue
+      ;;
+  esac
+
+}
+
+
 if [ -z "$1" ]
 then
 	error_and_exit "You need to specify the scratch org name to create it."
@@ -44,26 +78,35 @@ echo ""
 
 scratchOrgName=$1
 storename=$2
+checkExistinStoreContinue=""
+checkExistinStoreAnswer=""
 
 # Check if the store nam already exist, to no try create with error
 # checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
 checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
 
 
-if [ ! -z "$checkExistinStoreId" ]
-then
-    echo_attention "Already exists an web store with this name, please define another."
-    error_and_exit "The setup will stop."
-fi
-
 echo_attention "Doing the first settings definition (being scratch organization or not)"
 rm -rf Deploy
 sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
 sfdx force:mdapi:deploy -d Deploy/ -w -1 
 
+if [ ! -z "$checkExistinStoreId" ]
+then
+    echo_attention "Already exists an web store with this name, do you want to continue loading the data to there?"
+    readParameterValue "checkExistinStoreContinue" "(Y or N) anything different of Y will be considered N"
 
-sfdx force:community:create --name "$storename" --templatename "$templateName" --urlpathprefix "$storename" --description "Store $storename created by the script."
-echo ""
+    if [[ "$checkExistinStoreAnswer" != "Y" && "$checkExistinStoreAnswer" != "y" ]]
+    then
+      # copyBuyerGroupsAnswer="N"
+      error_and_exit "The process will stop!"
+    else
+      echo "Yes, let's continue loading the things!"
+    fi
+else
+  sfdx force:community:create --name "$storename" --templatename "$templateName" --urlpathprefix "$storename" --description "Store $storename created by the script."
+  echo ""
+fi
 
 storeId=""
 

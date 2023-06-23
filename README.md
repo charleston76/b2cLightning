@@ -72,7 +72,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2C storeFront
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh melB2b webStore
     ```
     
 That will do all the configuration needed to achieve:
@@ -192,7 +192,7 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
         ```
     * Set that as you default organization:
         ```
-        sfdx force:config:set defaultusername=tmpB2C
+        sf config set target-org=tmpB2C
         ```
 1. Deploy the things with the script (please see the [Scripting deploying](#All-org-script-deploy) under "Deploying the additional settings" section);
     * ./scripts/bash/2-createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
