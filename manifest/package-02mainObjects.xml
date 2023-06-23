@@ -4,12 +4,17 @@
         <members>*</members>
         <name>ApexClass</name>
     </types>
-    <types>
+    <!-- types>
+        <members>cdn1</members>
+        <members>cdn2</members>
         <members>imagelocation1</members>
         <members>Images</members>
         <members>imgBox</members>
+        <members>payments</members>
+        <members>stripe</members>
+        <members>uipcanary</members>
         <name>CspTrustedSite</name>
-    </types>
+    </types -->
     <types>
         <members>CommerceDiagnosticCustomObject__c.B2B_Edition__c</members>
         <members>CommerceDiagnosticCustomObject__c.B2B_Version__c</members>
@@ -153,6 +158,12 @@
     <types>
         <members>sfdc_b2bCommerce_c_Order</members>
         <name>ReportType</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <members>Product2</members>
+        <members>ProductCatalog</members>
+        <name>SharingRules</name>
     </types>
     <types>
         <members>EmployeePhotos</members>

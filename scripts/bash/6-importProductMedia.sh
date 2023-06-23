@@ -51,6 +51,12 @@ mkdir setupB2b
 # Replace the names of the components that will be retrieved.
 sed -E "s/YOUR_COMMUNITY_NAME_HERE/$storename/g;s/YOUR_COMMUNITY_ID_HERE/$communityId/g;s/YOUR_WEBSTORE_ID_HERE/$storeId/g" scripts/apex/managedContentCreation.apex > setupB2b/managedContentCreation.apex
 
+# Delete the product Media before starting
+deletedProductMedia=`sf apex run --file scripts/apex/deleteProducMedia.apex`
+
+echo_attention 'Deleted ProductMedia return'
+echo $deletedProductMedia
+
 echo_attention "Executing the apex script file"
 # returned=`sfdx force:apex:execute -f setupB2b/managedContentCreation.apex`
 returned=`sf apex run -f setupB2b/managedContentCreation.apex`

@@ -236,13 +236,9 @@ Coming soon new updates, stay tuned
 
         Please, feel free to uncomment the necessary setting you may need in your deployment.
     * With the things do you need, you can deploy into you environment with the following commands:
-        1. rm -rf Deploy (To clean the deployment folder);
-        1. sfdx force:source:convert -r force-app/ -d Deploy -x MANIFEST_FILE.xml (To convert the source in metadata);
-        1. sfdx force:mdapi:deploy -d Deploy/ -w -1 (To deploy the things there);
+        1. sf project deploy start --manifest manifest/MANIFEST_FILE.xml;
         1. Example
             ```
-            rm -rf Deploy
-            sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
-            sfdx force:mdapi:deploy -d Deploy/ -w -1 
+            sf project deploy start --manifest manifest/package-01additionalSettings.xml
             ```        
 

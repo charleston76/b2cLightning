@@ -87,9 +87,8 @@ checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$stor
 
 
 echo_attention "Doing the first settings definition (being scratch organization or not)"
-rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-01additionalSettings.xml
-sfdx force:mdapi:deploy -d Deploy/ -w -1 
+# rm -rf Deploy
+sf project deploy start --manifest manifest/package-01additionalSettings.xml
 
 if [ ! -z "$checkExistinStoreId" ]
 then
@@ -104,7 +103,7 @@ then
       echo "Yes, let's continue loading the things!"
     fi
 else
-  sfdx force:community:create --name "$storename" --templatename "$templateName" --urlpathprefix "$storename" --description "Store $storename created by the script."
+  sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "Store $storename created by the script."
   echo ""
 fi
 
@@ -125,13 +124,9 @@ echo ""
 
 # But we need it in an sandbox or productive orgs
 echo_attention "Doing the second deployment"
-rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-02mainObjects.xml
-
 # These test classes will be added as soon as possible
-# sfdx force:mdapi:deploy -d ..\..\Deploy/ -w 10 -l RunSpecifiedTests -r B2BAuthorizeTokenizedPaymentTest,B2BCheckInventorySampleTest,B2BDeliverySampleTest,B2BPaymentControllerTest,B2BPricingSampleTest,B2BSyncCheckInventoryTest,B2BSyncDeliveryTest,B2BSyncPricingTest,B2BSyncTaxTest,B2BTaxSampleTest,QuickStartIntegrationTest
 # But for now, we'll just deploy it
-sfdx force:mdapi:deploy -d Deploy/ -w 10 
+sf project deploy start --manifest manifest/package-02mainObjects.xml
 
 # # Clean the path after runnin
 rm -rf Deploy

@@ -363,9 +363,7 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 
 echo_attention "Doing the layouts update"
-rm -rf Deploy
-sfdx force:source:convert -r force-app/ -d Deploy -x manifest/package-03layouts.xml
-sfdx force:mdapi:deploy -d Deploy/ -w 10 
+sf project deploy start --manifest manifest/package-03layouts.xml
 
 # # Clean the path after running
 rm -rf Deploy
