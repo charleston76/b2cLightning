@@ -421,11 +421,11 @@
         <field>Order.OpportunityId</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Order.OrderManagementReferenceIdentifier</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>true</editable>
         <field>Order.OrderReferenceNumber</field>
@@ -911,11 +911,11 @@
         <field>Product2.StockKeepingUnit</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    <!-- <fieldPermissions>
         <editable>true</editable>
         <field>Product2.TransferRecordMode</field>
         <readable>true</readable>
-    </fieldPermissions>
+    </fieldPermissions> -->
     <fieldPermissions>
         <editable>true</editable>
         <field>Promotion.AreQualItemsExclFromDiscounts</field>
@@ -1297,10 +1297,6 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>UseOrderManagementAPIs</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>UseShipment</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>

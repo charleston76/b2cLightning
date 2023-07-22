@@ -437,14 +437,14 @@
         <fields>GrandTotalAmount</fields>
         <relatedList>OrderSummaries</relatedList>
     </relatedLists>
-    <relatedLists>
+    <!-- <relatedLists>
         <fields>Name</fields>
         <fields>DestinationLocation</fields>
         <fields>SourceLocation</fields>
         <fields>Status</fields>
         <fields>CreatedBy</fields>
         <relatedList>ReturnOrders</relatedList>
-    </relatedLists>
+    </relatedLists> -->
     <relatedLists>
         <fields>ACCOUNT.NAME</fields>
         <fields>OPPORTUNITY.NAME</fields>

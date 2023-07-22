@@ -72,7 +72,7 @@ If you already are working with scratch orgs and have all configured and defined
 * ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
 * Example:
     ```
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh melB2b webStore
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpTest d2cStore
     ```
     
 That will do all the configuration needed to achieve:
@@ -126,7 +126,7 @@ Nevertheless, that upload doesn't put some pretty images there... for now, to ac
     * ./scripts/bash/6-importProductMedia.sh [YOUR_SHOP_NAME_HERE]
     * Example:
         ```
-        ./scripts/bash/6-importProductMedia.sh storeFront
+        ./scripts/bash/6-importProductMedia.sh d2cStore
         ```
 
         ![CMS relating products](images/b2bCMSImport5.png)
@@ -198,7 +198,7 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
     * ./scripts/bash/2-createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2C storeFront
+    ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2C d2cStore
     ```
 
 ## Other org types

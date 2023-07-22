@@ -37,7 +37,7 @@ then
 	exit_error_message "You need to specify the the store name to create it."
 fi
 
-echo_attention "Starting the storefront set up and  buyer user creation at $(date)"
+echo_attention "Starting the d2cStore set up and  buyer user creation at $(date)"
 echo ""
 echo ""
 
@@ -372,4 +372,4 @@ rm -rf experience-bundle-package
 
 echo ""
 echo ""
-echo_attention "Finishing the storefront set up and  buyer user creation at $(date)"
+echo_attention "Finishing the d2cStore set up and  buyer user creation at $(date)"

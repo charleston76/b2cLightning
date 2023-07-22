@@ -6,7 +6,7 @@
         <description>Provide the reading access to an account</description>
         <label>Account Guest Access</label>
         <sharedTo>
-            <guestUser>storeFront</guestUser>
+            <guestUser>d2cStore</guestUser>
         </sharedTo>
         <criteriaItems>
             <field>Name</field>
