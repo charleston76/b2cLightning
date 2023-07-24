@@ -4,7 +4,7 @@
         <members>*</members>
         <name>ApexClass</name>
     </types>
-    <!-- types>
+    <types>
         <members>cdn1</members>
         <members>cdn2</members>
         <members>imagelocation1</members>
@@ -14,7 +14,7 @@
         <members>stripe</members>
         <members>uipcanary</members>
         <name>CspTrustedSite</name>
-    </types -->
+    </types>
     <types>
         <members>CommerceDiagnosticCustomObject__c.B2B_Edition__c</members>
         <members>CommerceDiagnosticCustomObject__c.B2B_Version__c</members>
@@ -52,7 +52,17 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>D2CSelfRegistration.GENERAL_BUYER_GROUP</members>
+        <members>D2CSelfRegistration.GENERAL_CASE_CREATION</members>
+        <members>D2CSelfRegistration.GENERAL_CASE_DESCRIPTION</members>
+        <members>D2CSelfRegistration.GENERAL_CASE_SUBJECT</members>
+        <members>D2CSelfRegistration.GENERAL_GUEST_ACCOUNT</members>
+        <members>D2CSelfRegistration.GENERAL_PROFILE</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
         <members>Account</members>
+        <members>D2CSelfRegistration__mdt</members>
         <members>BuyerGroup</members>
         <members>BuyerGroupPricebook</members>
         <members>Case</members>
@@ -102,6 +112,7 @@
     </types>
     <types>
         <members>Account-Account Layout</members>
+        <members>D2CSelfRegistration__mdt-B2B Self Registration Layout</members>
         <members>BuyerAccount-Buyer Account Layout</members>
         <members>CommerceDiagnosticCustomObject__c-Commerce Diagnostic Custom Object Layout</members>
         <members>Menu__c-Menu Layout</members>
@@ -118,6 +129,7 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>D2CSelfRegistration__mdt.Detailed</members>
         <members>CommerceDiagnosticCustomObject__c.CommerceDiagnosticEventFields</members>
         <members>Order.All</members>
         <members>OrderSummary.My_order_Summaries</members>
@@ -133,6 +145,7 @@
         <members>Admin</members>
         <members>Buyer Profile</members>
         <members>Commerce Business User Profile</members>
+        <members>d2cStore Profile</members>
         <name>Profile</name>
     </types>
     <types>

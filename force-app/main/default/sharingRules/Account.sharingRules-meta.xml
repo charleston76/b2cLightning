@@ -11,7 +11,7 @@
         <criteriaItems>
             <field>Name</field>
             <operation>equals</operation>
-            <value>Guest Account</value>
+            <value>B2B Guest Account</value>
         </criteriaItems>
         <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
     </sharingGuestRules>

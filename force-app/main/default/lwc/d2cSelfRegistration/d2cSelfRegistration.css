@@ -1,0 +1,18 @@
+.custom-self-register-container {
+    margin: 0px auto;
+    min-width: 18rem;
+    max-width: 25rem;
+    color: var(--lwc-colorTextDefault, var(--dxp-g-root-contrast-1));
+    background-color: var(--lwc-cardBackgroundColor, --dxp-g-root-1);
+}
+
+.custom-self-register-label {
+    min-width: 23rem;
+    max-width: 25rem;
+    margin-left: 0.8rem;
+}
+
+.custom-register-success{
+    min-width: 18rem;
+    max-width: 28rem;
+}

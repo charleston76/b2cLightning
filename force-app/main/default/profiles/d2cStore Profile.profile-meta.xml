@@ -138,6 +138,19 @@
 		<apexClass>menusManagerControllerTest</apexClass>
 		<enabled>false</enabled>
 	</classAccesses>
+    <classAccesses>
+        <apexClass>UtilApplicationException</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UtilDatabase</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>UtilDatabaseHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+
 	<custom>true</custom>
 	<fieldPermissions>
 		<editable>false</editable>

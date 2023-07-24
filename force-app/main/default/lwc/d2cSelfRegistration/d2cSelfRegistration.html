@@ -1,0 +1,75 @@
+<template>
+    <div class="custom-self-register-container comm-self-register__container slds-card slds-card_inner slds-col slds-grow slds-p-around_medium">
+        <lightning-spinner if:true={isLoading}></lightning-spinner>
+
+        <div class="contact-info slds-grid slds-wrap slds-gutters">
+            <lightning-input type="text" label={firstNameLabel} onchange={handleFirstNameChange} required
+                             class="slds-col slds-medium-size_1-of-1 slds-size_1-of-1" 
+                             placeholder={firstNamePlaceholder}
+                             value={firstName}
+            ></lightning-input>
+            <lightning-input type="text" label={lastNameLabel} onchange={handleLastNameChange} required
+                             class="slds-col slds-medium-size_1-of-1 slds-size_1-of-1" 
+                             placeholder={lastNamePlaceholder}
+                             value={lastName}
+            ></lightning-input>
+            <lightning-input type="email" label={emailLabel} onchange={handleUserEmailChange} required
+                             class="slds-col slds-size_1-of-1" 
+                             placeholder={emailPlaceholder}
+                             value={email}
+            ></lightning-input>
+            <template if:true={isUserExists}>
+                <div class="slds-col slds-size_1-of-1 slds-has-error">
+                    <div class="slds-form-element__help">Email exists in the system and is active.  Please visit the <a onclick={goToForgotPassword}>forgot password</a> page to reset your password.</div>
+                </div>
+            </template>
+            <template if:true={isUserExistsInactive}>
+                <div class="slds-col slds-size_1-of-1 slds-has-error">
+                    <div class="slds-form-element__help">Email exists in the system and is currently inactive.  Please contact <a onclick={goToForgotPassword}>customer service</a> for assistance.</div>
+                </div>
+            </template>
+            <template if:true={hasError}>
+                <div class="slds-col slds-size_1-of-1 slds-has-error">
+                    <div class="slds-form-element__help">An error has occurred, please contact the site administrator.</div>
+                    <div if:true={errorMessage} class="slds-form-element__help">{errorMessage}</div>
+                    <div class="custom-self-register-label slds-col slds-size_1-of-1 slds-form-element__control comm-self-register__submit-button">
+                        <button onclick={goToLoginPage} class="slds-button slds-button_brand slds-button_stretch" >
+                            <label>Ok</label>
+                        </button>        
+                    </div>    
+                </div>
+            </template>
+            <template if:false={isHiddenButtonContinue}>
+                <div class="custom-self-register-label slds-form-element__control comm-self-register__submit-button" >
+                    <button onclick={handleRegIsEmailExists} class="slds-button slds-button_brand slds-button_stretch" disabled={isContinueButtonDisabled}>
+                        <label>Sign Up</label>
+                    </button>
+                </div>
+            </template>
+        </div>
+
+        <template if:true={showRegisterSuccessModal}>
+            <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open">
+                <div class="custom-register-success slds-modal__container">
+                    <div class="slds-modal__content border-radius-4">
+                        <div class="border-radius-4 slds-var-p-around_medium">
+                            <div class="icon-check-circle feather color-success font-20"></div>
+                            <div class="width-100 slds-p-horizontal_small">
+                                <p class="goldplay-semibold">Congratulations your account has been created!</p>
+                                <p>You will receive a confirmation email, thanks!</p>
+                            </div>
+                            <div class="custom-self-register-label slds-form-element__control comm-self-register__submit-button">
+                                <button onclick={goToHomePage} class="slds-button slds-button_brand slds-button_stretch" >
+                                    <label>Ok</label>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </template>
+    
+    </div>
+
+</template>
