@@ -88,7 +88,7 @@ checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$stor
 
 echo_attention "Doing the first settings definition (being scratch organization or not)"
 # rm -rf Deploy
-sf project deploy start --manifest manifest/package-01additionalSettings.xml
+sf project deploy start --ignore-conflicts --manifest manifest/package-01additionalSettings.xml
 
 if [ ! -z "$checkExistinStoreId" ]
 then
@@ -126,7 +126,7 @@ echo ""
 echo_attention "Doing the second deployment"
 # These test classes will be added as soon as possible
 # But for now, we'll just deploy it
-sf project deploy start --manifest manifest/package-02mainObjects.xml
+sf project deploy start --ignore-conflicts --manifest manifest/package-02mainObjects.xml
 
 # # Clean the path after runnin
 rm -rf Deploy

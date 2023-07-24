@@ -3,7 +3,7 @@
     <context>All</context>
     <endpointUrl>*.staticflickr.com</endpointUrl>
     <isActive>true</isActive>
-    <isApplicableToConnectSrc>false</isApplicableToConnectSrc>
+    <isApplicableToConnectSrc>true</isApplicableToConnectSrc>
     <isApplicableToFontSrc>false</isApplicableToFontSrc>
     <isApplicableToFrameSrc>false</isApplicableToFrameSrc>
     <isApplicableToImgSrc>true</isApplicableToImgSrc>

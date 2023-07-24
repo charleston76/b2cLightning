@@ -1,0 +1,787 @@
+// ###########################################################################################
+// # This is a working in progress, since salesforce have not updated the information yet
+// # to let us doing that
+// ###########################################################################################
+{
+    "content": [
+                   {
+                       "type" : "sfdc_cms__image",
+                       "title" : "B-C-COFMAC-001",
+                       "urlName" : "urlname",
+                       "status" : "Published",
+                       "contentBody": {
+                            "altText" : "",
+                            "sfdc_cms:media" : {
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816090811_622af115a8.jpg"
+                                },
+                                "url": "https://live.staticflickr.com/65535/49816090811_622af115a8.jpg"
+                            }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ID-CAP-II",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                            "altText" : "",
+                            "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815556148_6fe38ee8b8.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815556148_6fe38ee8b8.jpg"
+                                }
+                            }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ID-CAP-III",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                            "altText" : "",
+                            "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816094206_6a69b39ca0.jpg",
+                                "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816094206_6a69b39ca0.jpg"
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "type":"sfdc_cms__image",
+                        "title" : "CERCG-1",
+                        "urlName":"urlname",
+                        "status":"Published",
+                        "contentBody": {
+                            "altText" : "",
+                            "sfdc_cms:media" : {
+                                    "url":"https://live.staticflickr.com/65535/49815557368_88575109ac.jpg",
+                                    "source" : {
+                                        "type" : "url",
+                                        "mimeType" : null,
+                                        "url": "https://live.staticflickr.com/65535/49815557368_88575109ac.jpg"
+                                    } 
+                            }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CERCG-1-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815557368_88575109ac.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815557368_88575109ac.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CREV-DR-BLEND",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815597698_3162f252dd.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815597698_3162f252dd.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ID-PEM",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816402087_b59c2874a9.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816402087_b59c2874a9.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ID-PEM1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816402057_55ef0791fe.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816402057_55ef0791fe.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CM-MSB-300",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815608848_167ffa7a7c.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815608848_167ffa7a7c.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CL-DR-BB",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815611213_be16eccb4a.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815611213_be16eccb4a.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "DRW-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815620728_7f044d531b.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815620728_7f044d531b.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "EM-ESP-001",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816167746_3f05bc3589.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816167746_3f05bc3589.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CF-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815590053_5f1407d0df.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815590053_5f1407d0df.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "E-ESP-001",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815637818_d892f8127d.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815637818_d892f8127d.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ESP-001",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815637818_d892f8127d.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815637818_d892f8127d.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "ESP-IOT-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815642433_5c7f044b1a.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815642433_5c7f044b1a.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "GDG-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816492262_13ae5d8987.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816492262_13ae5d8987.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-3",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815648313_65c5f997f9.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815648313_65c5f997f9.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CCG-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816190331_69abb45c7a.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816190331_69abb45c7a.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CR-DEC",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816192491_7df5da0050.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816192491_7df5da0050.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "MRC-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816505042_01bdffb0f7.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816505042_01bdffb0f7.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "COF-FIL",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816196506_1fe8c7a8e9.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816196506_1fe8c7a8e9.jpg"
+                                }
+                            }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-2",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815687543_fdce955409.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815687543_fdce955409.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-2-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815687558_0a60c68465.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815687558_0a60c68465.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-2-2",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://b2blightga11.my.salesforce.com/file-asset-public/coppercoffee3?oid=00DB0000000U1fw",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://b2blightga11.my.salesforce.com/file-asset-public/coppercoffee3?oid=00DB0000000U1fw"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-2-3",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815687578_f70109ee09.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815687578_f70109ee09.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-2-4",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816223071_f6c677919a.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816223071_f6c677919a.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "LRW-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816508582_2d12a2d472.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816508582_2d12a2d472.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "E-MR-B",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816510377_8af46c5a37.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816510377_8af46c5a37.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "TR-COFMAC-001",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815666003_4973d84842.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815666003_4973d84842.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "PS-DB",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816513162_29ed8b43f6.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816513162_29ed8b43f6.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "Q85YQ2",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816204906_3a3d9a084d.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816204906_3a3d9a084d.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "SS-DR-BB",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816518222_0ca4162755.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816518222_0ca4162755.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816218696_1bce317ed1.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816218696_1bce317ed1.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-1-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815683218_ee5ac7f68e.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815683218_ee5ac7f68e.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "CP-1-2",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816218716_17018288cf.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816218716_17018288cf.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "SSTC-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49816211076_e925877f3c.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49816211076_e925877f3c.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "TM-COFMAC-001",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                                "url":"https://live.staticflickr.com/65535/49815681258_60a9657b7f.jpg",
+                                "source" : {
+                                    "type" : "url",
+                                    "mimeType" : null,
+                                    "url": "https://live.staticflickr.com/65535/49815681258_60a9657b7f.jpg"
+                                }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "PS-EL",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49816523122_818e27042c.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49816523122_818e27042c.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                       "type":"sfdc_cms__image",
+                       "title" : "PS-EL-1",
+                       "urlName":"urlname",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText" : "",
+                           "sfdc_cms:media" : {
+                            "url":"https://live.staticflickr.com/65535/49815677693_faba5422c4.jpg",
+                            "source" : {
+                                 "type" : "url",
+                                 "mimeType" : null,
+                                 "url": "https://live.staticflickr.com/65535/49815677693_faba5422c4.jpg"
+                             }
+                           }
+                        }
+                    },
+                   {
+                        "type": "sfdc_cms__image",
+                        "title": "Customer Coffee Logo",
+                       "urlName": "customer-coffee-logo",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "Customer Coffee Logo",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "customerCoffeeLogo.png"
+                                } 
+                           }
+                       }
+                   },
+                   {
+                       "type": "sfdc_cms__image",
+                       "title": "Machines",
+                       "urlName": "coffee-machines",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "Coffee Machines",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "coffee-machines.jpg"
+                                }                                
+                            }
+
+                       }
+                   },
+                   {
+                       "type": "sfdc_cms__image",
+                       "title": "Beans",
+                       "urlName": "coffee-beans",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "Coffe Beans",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "coffee-beans.jpeg"
+                                }
+
+                            }
+                       }
+                   },
+                   {
+                       "type": "sfdc_cms__image",
+                       "title": "Coffee Accessories",
+                       "urlName": "coffee-accessories",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "Coffee Accessories",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "coffee-accessories.jpg"
+                                }
+                           }
+                       }
+                   },
+                   {
+                       "type": "sfdc_cms__image",
+                       "title": "Grinders",
+                       "urlName": "coffee-grinders",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "Coffee Grinders",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "coffee-grinders.jpeg"
+                                }
+                           }
+                       }
+                   },
+                   {
+                       "type": "sfdc_cms__image",
+                       "title": "SantosForce",
+                       "urlName": "santos-force",
+                       "status":"Published",
+                       "contentBody": {
+                           "altText": "SantosForce",
+                           "sfdc_cms:media" : {
+                                "source": {
+                                    "type" : "file",
+                                    "mimeType" : "image/png",
+                                    "ref": "santos-force.png"
+                                }
+                           }
+                       }
+                   }
+               ]
+    }
+   

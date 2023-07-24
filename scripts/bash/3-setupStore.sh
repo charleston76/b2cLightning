@@ -363,7 +363,7 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 
 
 echo_attention "Doing the layouts update"
-sf project deploy start --manifest manifest/package-03layouts.xml
+sf project deploy start --ignore-conflicts --manifest manifest/package-03layouts.xml
 
 # # Clean the path after running
 rm -rf Deploy
