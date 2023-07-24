@@ -10,6 +10,9 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
     @api lastNamePlaceholder;
     @api emailLabel;
     @api emailPlaceholder;
+    // I'm just registering the B2C guys, since the B2B needs an account behind that
+    // The structure is already created but I'll show how to to that in the future
+    DEFAULT_B2C_USER_TYPE = 'B2C';
     hasError = false;
     errorMessage='';
     isLoading;
@@ -81,7 +84,12 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
             // If user exists, but not active, that means their account was shut down?  Contact Customer Service?
             // If contact exists, but no user account.  Keep track of contacts that could be enabled as users.
             this.contactHasUserActivated(this.contactList);
-        })
+        }).catch((error) => {
+            console.error(error);
+            this.hasError = true;
+            this.errorMessage = error.body.message;
+            this.isLoading = false;
+        });
     }
 
 
@@ -102,7 +110,8 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
 
         createUserContact({
             strAccount: accountObj,
-            strContact: JSON.stringify(newContactUser)
+            strContact: JSON.stringify(newContactUser),
+            strUserType: this.DEFAULT_B2C_USER_TYPE
         }).then(result => {
             this.isLoading = false;
             if (result) {

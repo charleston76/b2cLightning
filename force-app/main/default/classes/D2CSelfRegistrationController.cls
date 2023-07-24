@@ -3,7 +3,9 @@
  */
 public without sharing class D2CSelfRegistrationController {
     private static Map<String,String> mapConfig = new  Map<String,String>();
+    private static final String CLASS_NAME = 'D2CSelfRegistrationController';
     private static final String GENERAL_CASE_CREATION_NAME = 'GENERAL_CASE_CREATION';
+    private static final String DEFAULT_B2B_USER_TYPE = 'B2B';
     /**
      * @description Instantiate the class and get the configuration 
      */
@@ -42,8 +44,7 @@ public without sharing class D2CSelfRegistrationController {
    */
     public static String isEmailContactExist(String email){
         List<Contact> contactList = [
-                SELECT AccountId, Account.Name, Account.BillingAddress, Account.BillingStreet, Account.BillingState,
-                        Account.IsBuyer, Account.BillingPostalCode, FirstName, LastName, Email,
+                SELECT AccountId, Account.Name, Account.BillingAddress, Account.IsBuyer, FirstName, LastName, Email,
                         (SELECT Id, IsActive FROM Users)
                 FROM Contact WHERE Email =:email
                 WITH SECURITY_ENFORCED
@@ -178,9 +179,76 @@ public without sharing class D2CSelfRegistrationController {
    * @param strContact the contact parameter to create
    * @return return true or false
    */
-    public static Boolean createUserContact(String strAccount, String strContact) {
+    public static Boolean createUserContact(String strAccount, String strContact, String strUserType) {
+        String METHOD_NAME = 'createUserContact';
+        Boolean blnReturn = false;
+
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strAccount ' + strAccount);
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strUserType ' + strUserType);
+
+        /*
+         * I'll adjust this method to work with B2B and B2C configurations
+         * since we need define an account to create an user in B2B definition
+         * for now, I'll do just the B2C creation, but the B2B is already defined
+         * when you get getSelfRegistrationConfigurations 
+         */
+        try {
+            if (strUserType == DEFAULT_B2B_USER_TYPE) {
+                blnReturn = createB2bUserContact(strAccount, strContact);
+            } else {
+                blnReturn = createPersonAccount(strContact);
+            }
+        } catch (Exception objEx) {
+            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
+        }
+
+        return blnReturn;
+    }
+
+
+    private static Boolean createPersonAccount(String strContact) {
+        String METHOD_NAME = 'createPersonAccount';
+        Boolean blnReturn = false;
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
+        try {
+
+            Contact objContact = (Contact)JSON.deserialize(strContact, Contact.class);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+            // Get the recordType to create the person account
+            // Id recordTypeId =  Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Person_Account').getRecordTypeId();
+            Id recordTypeId = [SELECT Id FROM RecordType WHERE IsPersonType = TRUE AND SObjectType='Account' LIMIT 1].Id;
+
+
+            Account personAccount = new Account(RecordTypeId = recordTypeId);
+            
+            // for person accounts we can not update the Name field instead we have to update the    FirstName and LastName individually
+            personAccount.FirstName = objContact.FirstName;
+            personAccount.LastName = objContact.LastName;
+            UtilDatabase.insertRecords(personAccount, true);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' personAccount ' + personAccount);
+
+            objContact.AccountId = personAccount.Id;
+            objContact.Id = personAccount.PersonContactId;
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+            blnReturn = registerUser(objContact);
+
+        } catch (Exception objEx) {
+            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
+        }
+
+        return blnReturn;
+    }    
+
+    private static Boolean createB2bUserContact(String strAccount, String strContact) {
+        String METHOD_NAME = 'createB2bUserContact';
         Account account;
         Contact contact;
+        Boolean blnReturn = false;
         try {
             getSelfRegistrationConfigurations();
             contact = (Contact)JSON.deserialize(strContact, Contact.class);
@@ -196,8 +264,13 @@ public without sharing class D2CSelfRegistrationController {
             }
             contact.AccountId = account.Id;
             UtilDatabase.insertRecords(contact, true);
-        } catch(DmlException e) {return false;}
+            blnReturn = registerUser(contact);
+        } catch (Exception objEx) {
+            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
+        }
 
-        return registerUser(contact);
-    }
+        return blnReturn ;
+    }    
 }
