@@ -58,7 +58,9 @@ public without sharing class D2CSelfRegistrationController {
    * @param contact the contact record
    * @return return true or false
    */
-    public static Boolean registerUser(Contact contact) {
+    public static Boolean registerUser(Contact contact, String strUserType) {
+        String METHOD_NAME = 'registerUser';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contact ' + contact);
         Boolean userRegistered = false;
         try {
             // We could check for communityNickname, if exists, add numbers.
@@ -66,9 +68,12 @@ public without sharing class D2CSelfRegistrationController {
             if (communityNickname.length() > 4) {
                 communityNickname = communityNickname.substring(0, 4);
             }
-            
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNickname ' + communityNickname);
+
             List<User> lstUser = getUser( communityNickname);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstUser ' + lstUser);
             Set<String> communityNicknameSet = getCommunityNicknameSet(lstUser);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNicknameSet ' + communityNicknameSet);
 
             String uniqueCommunityNickName;
             if(communityNicknameSet.isEmpty()) {
@@ -79,19 +84,23 @@ public without sharing class D2CSelfRegistrationController {
                     if (!communityNicknameSet.contains(uniqueCommunityNickName)) {break;}
                 }
             }
-
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
             if (Test.isRunningTest() ) { 
                 getSelfRegistrationConfigurations();
             }
 
             // Create the external user with the contact information
             createExternalUser(contact, uniqueCommunityNickName);
-            // Create a case if this configuration is enabled
-            if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION'))) { createCase(contact); }
+            // Create a case if this configuration is enabled, and if it is B2B type
+            if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION')) && strUserType == DEFAULT_B2B_USER_TYPE) { createCase(contact); }
 
             userRegistered = true;
-        } catch (Exception e) {throw new UtilApplicationException(e.getMessage());
+        } catch (Exception objEx) {
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
         }
+
 
         return userRegistered;
     }
@@ -114,7 +123,11 @@ public without sharing class D2CSelfRegistrationController {
    * @return community profile
    */
     private static ID getCommunityProfileId(){
-        return [SELECT Id FROM Profile WHERE Name =: mapConfig.get('GENERAL_PROFILE')]?.Id;
+        String METHOD_NAME = 'getCommunityProfileId';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_PROFILE ' + mapConfig.get('GENERAL_PROFILE'));
+        Id profileId = [SELECT Id FROM Profile WHERE Name =: mapConfig.get('GENERAL_PROFILE')]?.Id;
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' profileId ' + profileId);
+        return profileId;
     }
 
   /**
@@ -136,6 +149,8 @@ public without sharing class D2CSelfRegistrationController {
    * @param uniqueCommunityNickName the unique name defined
    */
     private static void createExternalUser(Contact contact, String uniqueCommunityNickName){
+        String METHOD_NAME = 'createExternalUser';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
         User user = new User();
         user.FirstName = contact.FirstName;
         user.LastName = contact.LastName;
@@ -147,6 +162,8 @@ public without sharing class D2CSelfRegistrationController {
         Id profileId = getCommunityProfileId();
 
         user.ProfileId = profileId;
+        
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' user ' + user);
 
         Site.createExternalUser(user, contact.AccountId);
     }
@@ -157,7 +174,10 @@ public without sharing class D2CSelfRegistrationController {
    * @return return true or false
    */
     public static Boolean createCase(Contact objContact) {
-
+        String METHOD_NAME = 'createCase';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_SUBJECT ' + mapConfig.get('GENERAL_CASE_SUBJECT'));
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_DESCRIPTION ' + mapConfig.get('GENERAL_CASE_DESCRIPTION'));
         try {
             Case objCase = new Case(
                 ContactId = objContact.Id,
@@ -167,7 +187,11 @@ public without sharing class D2CSelfRegistrationController {
     
             UtilDatabase.insertRecords( objCase,true); 
                 
-        } catch (Exception objEx) {throw new UtilApplicationException(objEx.getMessage());}
+        } catch (Exception objEx) {
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
+        }
 
         return true;
     }
@@ -194,14 +218,16 @@ public without sharing class D2CSelfRegistrationController {
          * when you get getSelfRegistrationConfigurations 
          */
         try {
+            getSelfRegistrationConfigurations();
+
             if (strUserType == DEFAULT_B2B_USER_TYPE) {
-                blnReturn = createB2bUserContact(strAccount, strContact);
+                blnReturn = createB2bUserContact(strAccount, strContact, strUserType);
             } else {
-                blnReturn = createPersonAccount(strContact);
+                blnReturn = createPersonAccount(strContact, strUserType);
             }
         } catch (Exception objEx) {
-            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
 
@@ -209,7 +235,7 @@ public without sharing class D2CSelfRegistrationController {
     }
 
 
-    private static Boolean createPersonAccount(String strContact) {
+    private static Boolean createPersonAccount(String strContact, String strUserType) {
         String METHOD_NAME = 'createPersonAccount';
         Boolean blnReturn = false;
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
@@ -231,26 +257,30 @@ public without sharing class D2CSelfRegistrationController {
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' personAccount ' + personAccount);
 
             objContact.AccountId = personAccount.Id;
-            objContact.Id = personAccount.PersonContactId;
+            // Get the person contact ID created to this person account
+            objContact.Id = String.valueOf([
+                SELECT Id, PersonContactId FROM Account
+                WHERE Id =: personAccount.Id
+            ]?.PersonContactId);
+
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
-            blnReturn = registerUser(objContact);
+            blnReturn = registerUser(objContact, strUserType);
 
         } catch (Exception objEx) {
-            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
 
         return blnReturn;
     }    
 
-    private static Boolean createB2bUserContact(String strAccount, String strContact) {
+    private static Boolean createB2bUserContact(String strAccount, String strContact, String strUserType) {
         String METHOD_NAME = 'createB2bUserContact';
         Account account;
         Contact contact;
         Boolean blnReturn = false;
         try {
-            getSelfRegistrationConfigurations();
             contact = (Contact)JSON.deserialize(strContact, Contact.class);
             if (String.isNotBlank(strAccount)) {
                 account = (Account) JSON.deserialize(strAccount, Account.class);
@@ -264,10 +294,10 @@ public without sharing class D2CSelfRegistrationController {
             }
             contact.AccountId = account.Id;
             UtilDatabase.insertRecords(contact, true);
-            blnReturn = registerUser(contact);
+            blnReturn = registerUser(contact, strUserType);
         } catch (Exception objEx) {
-            String strErrorMessage = 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strErrorMessage ' + strErrorMessage);
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
 

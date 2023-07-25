@@ -155,6 +155,10 @@
         <enabled>true</enabled>
     </classAccesses>
 	<custom>true</custom>
+    <customMetadataTypeAccesses>
+        <enabled>true</enabled>
+        <name>D2CSelfRegistration__mdt</name>
+    </customMetadataTypeAccesses>
 	<fieldPermissions>
 		<editable>false</editable>
 		<field>Menu_Item__c.External_Id__c</field>
