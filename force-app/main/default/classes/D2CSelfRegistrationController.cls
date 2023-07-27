@@ -23,8 +23,8 @@ public without sharing class D2CSelfRegistrationController {
             // Create the data
             mapConfig = new Map<string,string>{
                 'GENERAL_GUEST_ACCOUNT' => 'B2B Guest Account', 
-                'GENERAL_BUYER_GROUP' => 'Web Store',
-                'GENERAL_PROFILE' => 'Customer Community Plus Login User',
+                'GENERAL_BUYER_GROUP' => 'd2cStore Buyer Group',
+                'GENERAL_PROFILE' => 'Buyer Profile',
                 'GENERAL_CASE_CREATION'  => 'true',
                 'GENERAL_CASE_DESCRIPTION'  => 'New User in storefront requires approval.',
                 'GENERAL_CASE_SUBJECT'  => 'New User Approval'
@@ -96,7 +96,7 @@ public without sharing class D2CSelfRegistrationController {
 
             userRegistered = true;
         } catch (Exception objEx) {
-            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
@@ -188,7 +188,7 @@ public without sharing class D2CSelfRegistrationController {
             UtilDatabase.insertRecords( objCase,true); 
                 
         } catch (Exception objEx) {
-            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
@@ -226,7 +226,7 @@ public without sharing class D2CSelfRegistrationController {
                 blnReturn = createPersonAccount(strContact, strUserType);
             }
         } catch (Exception objEx) {
-            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
@@ -256,6 +256,35 @@ public without sharing class D2CSelfRegistrationController {
             UtilDatabase.insertRecords(personAccount, true);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' personAccount ' + personAccount);
 
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_PROFILE ' + mapConfig.get('GENERAL_BUYER_GROUP'));
+            // This account needs to be included in the Buyer group
+            String buyerGoupId = String.valueOf([
+                SELECT Id FROM BuyerGroup
+                WHERE Name = :mapConfig.get('GENERAL_BUYER_GROUP')
+            ]?.Id);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
+
+            // Activate as buyer
+            //  SELECT Id, Name, BuyerId, BuyerStatus, IsActive, CreditLimit, CurrentBalance, AvailableCredit, SendToId, PayerId, CommerceType FROM BuyerAccount
+            BuyerAccount newBuyerAccount = new BuyerAccount(
+                Name = objContact.FirstName + ' ' + personAccount.LastName,
+                BuyerId = personAccount.Id,
+                BuyerStatus = 'Active',
+                IsActive = true,
+                CommerceType = 'Buyer'
+            );
+            UtilDatabase.insertRecords(newBuyerAccount, true);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' newBuyerAccount ' + newBuyerAccount);
+
+            // Add that to the buyer group member
+            //             SELECT Id, Name, BuyerGroupId, BuyerId, Buyer.Name FROM BuyerGroupMember
+            BuyerGroupMember newMember = new BuyerGroupMember(
+                BuyerGroupId =  buyerGoupId,
+                BuyerId = personAccount.Id
+            );
+            UtilDatabase.insertRecords(newMember, true);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' newMember ' + newMember);
+
             objContact.AccountId = personAccount.Id;
             // Get the person contact ID created to this person account
             objContact.Id = String.valueOf([
@@ -267,7 +296,7 @@ public without sharing class D2CSelfRegistrationController {
             blnReturn = registerUser(objContact, strUserType);
 
         } catch (Exception objEx) {
-            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
@@ -296,7 +325,7 @@ public without sharing class D2CSelfRegistrationController {
             UtilDatabase.insertRecords(contact, true);
             blnReturn = registerUser(contact, strUserType);
         } catch (Exception objEx) {
-            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + 'LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }

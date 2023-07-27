@@ -121,7 +121,7 @@ public class D2CSelfRegistrationControllerTest {
         Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
 
         Test.startTest();
-        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact);
+        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
         System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
         Test.stopTest();
     }
@@ -131,7 +131,7 @@ public class D2CSelfRegistrationControllerTest {
         Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
 
         Test.startTest();
-        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact);
+        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
         System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
         Test.stopTest();
     }
@@ -152,7 +152,7 @@ public class D2CSelfRegistrationControllerTest {
         conTest.Phone = '1238887549';
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(null, JSON.serialize(conTest));
+        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(null, JSON.serialize(conTest),'B2B');
         System.assert(isCreatedUserCon == true, 'Error on user and account creation');
         Test.stopTest();
     }
@@ -166,7 +166,7 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact));
+        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
         System.assert(isCreatedUserCon == true, 'Error on user and account creation');
         Test.stopTest();
     }
@@ -180,7 +180,7 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact));
+        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
         System.assert(isCreatedUserCon == true, 'Error on user and account creation');
         Test.stopTest();
     }
@@ -195,7 +195,7 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact));
+        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
         System.assert(isCreatedUserCon == true, 'Error on user and account creation');
         Test.stopTest();
     }
@@ -221,7 +221,7 @@ public class D2CSelfRegistrationControllerTest {
     public static void setUserRole(){
         // Set the user role
         String userRoleId = String.valueOf([
-            SELECT Id, DeveloperName FROM UserRole WHERE DeveloperName = 'CEO' LIMIT 1
+            SELECT Id, DeveloperName FROM UserRole WHERE DeveloperName = 'AdminRoleScriptCreation' LIMIT 1
         ]?.Id);
         USER testUser = [SELECT Id, UserRoleId FROM User WHERE Id =: UserInfo.getUserId() LIMIT 1];
         testUser.UserRoleId = userRoleId;

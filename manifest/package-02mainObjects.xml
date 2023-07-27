@@ -138,7 +138,6 @@
     </types>
     <types>
         <members>Account_Switcher_User</members>
-        <members>PaymentGatewaySettingViewer</members>
         <name>PermissionSet</name>
     </types>
     <types>
