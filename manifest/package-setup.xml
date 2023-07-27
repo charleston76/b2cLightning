@@ -16,10 +16,6 @@
         <members>PaymentGatewaySetting__c.All</members>
         <name>ListView</name>
     </types>
-    <types>
-        <members>PaymentGatewaySettingViewer</members>
-        <name>PermissionSet</name>
-    </types>
     <!-- types>
         <members>b2cManual</members>
         <name>CustomSite</name>
