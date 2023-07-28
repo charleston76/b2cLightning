@@ -1,6 +1,7 @@
 import { LightningElement,api } from 'lwc';
 import isEmailContactExist from '@salesforce/apex/D2CSelfRegistrationController.isEmailContactExist';
 import createUserContact from '@salesforce/apex/D2CSelfRegistrationController.createUserContact';
+import createBuyerInformation from '@salesforce/apex/D2CSelfRegistrationController.createBuyerInformation';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class d2cSelfRegistration extends NavigationMixin(LightningElement) {
@@ -113,11 +114,31 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
             strContact: JSON.stringify(newContactUser),
             strUserType: this.DEFAULT_B2C_USER_TYPE
         }).then(result => {
+            console.log('d2cSelfRegistration handleNewUserCreation createUserContact ' + result);
+            let parseReturn = JSON.parse(result);
+            if (parseReturn.isSuccess) {
+                return parseReturn;
+            } else {
+                this.isLoading = false;
+                this.hasError = true;
+                this.errorMessage = parseReturn.errorMessage;
+                this.isLoading = false;
+            }
+        }).then(result => {
             this.isLoading = false;
-            if (result) {
+            console.log('d2cSelfRegistration handleNewUserCreation createUserContact ' + result);
+I NEED TO CALL THE OTHER METHOD HERE 
+createBuyerInformation
+
+            if (parseReturn.isSuccess) {
+                
+                return parseReturn;
                 this.showRegisterSuccessModal = true;
             } else {
+                this.isLoading = false;
                 this.hasError = true;
+                this.errorMessage = parseReturn.errorMessage;
+                this.isLoading = false;
             }
         }).catch((error) => {
             console.error(error);
