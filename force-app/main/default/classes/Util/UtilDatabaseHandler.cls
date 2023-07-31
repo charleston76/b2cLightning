@@ -2,6 +2,7 @@
  * @description Handler class for DatabaseUtil
  */
 public with sharing virtual class UtilDatabaseHandler {
+  private static final String CLASS_NAME = 'UtilDatabaseHandler';
   /**
    * @description Creates log based on failed save result and adds to logs list
    * @param result Save result
@@ -95,8 +96,10 @@ public with sharing virtual class UtilDatabaseHandler {
    * @param errors Errors
    */
   private static void createDatabaseErrorsAsLogs(Database.Error[] errors) {
+    String METHOD_NAME = 'createDatabaseErrorsAsLogs';
     for (Database.Error error : errors) {
       // UtilLog.createErrorLog(String.valueOf(error.getStatusCode()), error.getMessage());
+      system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' StatusCode: ' + error.getStatusCode() + ' Message: ' + error.getMessage());
     }
   }
 }

@@ -1,4 +1,4 @@
-public class D2CSelfRegistrationHelper {
+public without sharing class D2CSelfRegistrationHelper {
     private static Map<String,String> mapConfig = new  Map<String,String>();
     private static final String CLASS_NAME = 'D2CSelfRegistrationController';
     private static final String GENERAL_CASE_CREATION_NAME = 'GENERAL_CASE_CREATION';
@@ -53,22 +53,22 @@ public class D2CSelfRegistrationHelper {
    * @param contact the contact record
    * @return return true or false
    */
-    public static String registerUser(Contact contact, String strUserType) {
+    private static D2CSelfRegistrationHelper.SelfRegistrationReturn registerUser(Contact contact, String strUserType) {
         String METHOD_NAME = 'registerUser';
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contact ' + contact);
-        String userRegistered = '';
+        D2CSelfRegistrationHelper.SelfRegistrationReturn userRegistered ;
         try {
             // We could check for communityNickname, if exists, add numbers.
             String communityNickname = contact.FirstName + contact.LastName;
             if (communityNickname.length() > 4) {
                 communityNickname = communityNickname.substring(0, 4);
             }
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNickname ' + communityNickname);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNickname ' + communityNickname);
 
             List<User> lstUser = getUser( communityNickname);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstUser ' + lstUser);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstUser ' + lstUser);
             Set<String> communityNicknameSet = getCommunityNicknameSet(lstUser);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNicknameSet ' + communityNicknameSet);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' communityNicknameSet ' + communityNicknameSet);
 
             String uniqueCommunityNickName;
             if(communityNicknameSet.isEmpty()) {
@@ -79,20 +79,21 @@ public class D2CSelfRegistrationHelper {
                     if (!communityNicknameSet.contains(uniqueCommunityNickName)) {break;}
                 }
             }
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
             if (Test.isRunningTest() ) { 
                 getSelfRegistrationConfigurations();
             }
 
             // Create the external user with the contact information
-            createExternalUser(contact, uniqueCommunityNickName);
+            String userId = createExternalUser(contact, uniqueCommunityNickName);
+
             // Create a case if this configuration is enabled, and if it is B2B type
             if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION')) && strUserType == DEFAULT_B2B_USER_TYPE) { createCase(contact); }
 
-            userRegistered = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(true, contact.accountId, contact.Id, ''));
+            userRegistered = new D2CSelfRegistrationHelper.SelfRegistrationReturn(true, contact.accountId, contact.Id, '', userId);
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
-            userRegistered = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(false, '', '', strErrorMessage));
+            userRegistered = new D2CSelfRegistrationHelper.SelfRegistrationReturn(false, '', '', strErrorMessage,'');
             system.debug(' strErrorMessage ' + strErrorMessage);
             system.debug(' userRegistered ' + userRegistered);
             throw new UtilApplicationException(strErrorMessage);
@@ -124,9 +125,9 @@ public class D2CSelfRegistrationHelper {
    */
     private static ID getCommunityProfileId(){
         String METHOD_NAME = 'getCommunityProfileId';
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_PROFILE ' + mapConfig.get('GENERAL_PROFILE'));
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_PROFILE ' + mapConfig.get('GENERAL_PROFILE'));
         Id profileId = [SELECT Id FROM Profile WHERE Name =: mapConfig.get('GENERAL_PROFILE')]?.Id;
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' profileId ' + profileId);
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' profileId ' + profileId);
         return profileId;
     }
 
@@ -148,24 +149,36 @@ public class D2CSelfRegistrationHelper {
    * @param contact the contact that will be an user
    * @param uniqueCommunityNickName the unique name defined
    */
-    private static void createExternalUser(Contact contact, String uniqueCommunityNickName){
+    private static String createExternalUser(Contact contact, String uniqueCommunityNickName){
         String METHOD_NAME = 'createExternalUser';
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
-        User user = new User();
-        user.FirstName = contact.FirstName;
-        user.LastName = contact.LastName;
-        user.Username = contact.Email;
-        user.Email = contact.Email;
-        user.CommunityNickname = uniqueCommunityNickName;
-        user.ContactId = contact.Id;
+        String strUserId = '';
 
-        Id profileId = getCommunityProfileId();
+        try {
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' uniqueCommunityNickName ' + uniqueCommunityNickName);
+            User user = new User();
+            user.FirstName = contact.FirstName;
+            user.LastName = contact.LastName;
+            user.Username = contact.Email;
+            user.Email = contact.Email;
+            user.CommunityNickname = uniqueCommunityNickName;
+            user.ContactId = contact.Id;
+    
+            Id profileId = getCommunityProfileId();
+    
+            user.ProfileId = profileId;
+            
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contact ' + contact);
+            Site.createExternalUser(user, contact.AccountId);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' user ' + user);
 
-        user.ProfileId = profileId;
-        
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' user ' + user);
+            strUserId = String.valueOf(user.Id);
+        } catch (Exception objEx) {
+            String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
+            system.debug(' strErrorMessage ' + strErrorMessage);
+            throw new UtilApplicationException(strErrorMessage);
+        }
 
-        Site.createExternalUser(user, contact.AccountId);
+        return strUserId ;
     }
     
   /**
@@ -206,9 +219,9 @@ public class D2CSelfRegistrationHelper {
         String METHOD_NAME = 'createUserContact';
         String strReturn = '';
 
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strAccount ' + strAccount);
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strUserType ' + strUserType);
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strAccount ' + strAccount);
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strUserType ' + strUserType);
 
         /*
          * I'll adjust this method to work with B2B and B2C configurations
@@ -237,11 +250,11 @@ public class D2CSelfRegistrationHelper {
     private static String createPersonAccount(String strContact, String strUserType) {
         String METHOD_NAME = 'createPersonAccount';
         String strReturn = '';
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
+        // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' strContact ' + strContact);
         try {
 
             Contact objContact = (Contact)JSON.deserialize(strContact, Contact.class);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
             // Get the recordType to create the person account
             // Id recordTypeId =  Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get('Person_Account').getRecordTypeId();
             Id recordTypeId = [SELECT Id FROM RecordType WHERE IsPersonType = TRUE AND SObjectType='Account' LIMIT 1].Id;
@@ -252,7 +265,7 @@ public class D2CSelfRegistrationHelper {
             personAccount.FirstName = objContact.FirstName;
             personAccount.LastName = objContact.LastName;
             UtilDatabase.insertRecords(personAccount, true);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' personAccount ' + personAccount);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' personAccount ' + personAccount);
 
             objContact.AccountId = personAccount.Id;
             // Get the person contact ID created to this person account
@@ -261,8 +274,10 @@ public class D2CSelfRegistrationHelper {
                 WHERE Id =: personAccount.Id
             ]?.PersonContactId);
 
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
-            strReturn = registerUser(objContact, strUserType);
+            // system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+            D2CSelfRegistrationHelper.SelfRegistrationReturn objConvert = registerUser(objContact, strUserType);
+            createBuyerInformation(String.valueOf(personAccount.Id), objConvert.userId);
+            strReturn = jsonConversion(objConvert);            
 
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
@@ -273,11 +288,21 @@ public class D2CSelfRegistrationHelper {
         return strReturn;
     }
 
-    public static string createBuyerInformation(String accountId){
+    // @future
+    public static String createBuyerInformation(String accountId, String userId){
         string METHOD_NAME = 'createBuyerInformation';
         string strReturn = '';
 
         try {
+            // // Add the permission set to the user
+            // PermissionSet permission = [SELECT Id, Name FROM PermissionSet WHERE Name = 'B2BBuyer' LIMIT 1];
+            // PermissionSetAssignment psa = new PermissionSetAssignment();
+            // psa.AssigneeId = userId;
+            // psa.PermissionSetId = permission.Id;
+            // UtilDatabase.insertRecords(psa, true);
+            
+            // getSelfRegistrationConfigurations();
+
             Account objAccount = [
                 SELECT Id, FirstName, LastName FROM Account
                 WHERE Id =: accountId
@@ -288,8 +313,10 @@ public class D2CSelfRegistrationHelper {
             String buyerGoupId = String.valueOf([
                 SELECT Id FROM BuyerGroup
                 WHERE Name = :mapConfig.get('GENERAL_BUYER_GROUP')
+                LIMIT 1
             ]?.Id);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objAccount.Id ' + objAccount.Id);
     
             // Activate as buyer
             //  SELECT Id, Name, BuyerId, BuyerStatus, IsActive, CreditLimit, CurrentBalance, AvailableCredit, SendToId, PayerId, CommerceType FROM BuyerAccount
@@ -312,11 +339,12 @@ public class D2CSelfRegistrationHelper {
             UtilDatabase.insertRecords(newMember, true);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' newMember ' + newMember);
 
-            strReturn = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(true, objAccount.Id, '', ''));
+            strReturn = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(true, objAccount.Id, '', '', userId));
+
                 
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
-            strReturn = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(false, '', '', strErrorMessage));
+            strReturn = jsonConversion(new D2CSelfRegistrationHelper.SelfRegistrationReturn(false, '', '', strErrorMessage,''));
             system.debug(' strErrorMessage ' + strErrorMessage);
             system.debug(' strReturn ' + strReturn);
             throw new UtilApplicationException(strErrorMessage);
@@ -344,7 +372,7 @@ public class D2CSelfRegistrationHelper {
             }
             contact.AccountId = account.Id;
             UtilDatabase.insertRecords(contact, true);
-            strReturn = registerUser(contact, strUserType);
+            strReturn = jsonConversion(registerUser(contact, strUserType));
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
@@ -360,12 +388,14 @@ public class D2CSelfRegistrationHelper {
         public String accountId = '';
         public String contactId = '';
         public String errorMessage = '';
+        public String userId = '';
 
-        public SelfRegistrationReturn(Boolean isSuccess, String accountId , String contactId , String errorMessage){
+        public SelfRegistrationReturn(Boolean isSuccess, String accountId , String contactId , String errorMessage, String userId){
             this.isSuccess = isSuccess;
             this.accountId = accountId;
             this.contactId = contactId;
             this.errorMessage = errorMessage;
+            this.userId = userId;
         }
 
     }

@@ -117,35 +117,38 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
             console.log('d2cSelfRegistration handleNewUserCreation createUserContact ' + result);
             let parseReturn = JSON.parse(result);
             if (parseReturn.isSuccess) {
-                return parseReturn;
+                // return parseReturn;
+                this.showRegisterSuccessModal = true
+                this.hasError = false;
+                this.errorMessage = '';
+                this.isLoading = false;
             } else {
-                this.isLoading = false;
-                this.hasError = true;
-                this.errorMessage = parseReturn.errorMessage;
-                this.isLoading = false;
+                this.setProcessError(parseReturn.errorMessage)
             }
-        }).then(result => {
-            this.isLoading = false;
-            console.log('d2cSelfRegistration handleNewUserCreation createUserContact ' + result);
-I NEED TO CALL THE OTHER METHOD HERE 
-createBuyerInformation
-
-            if (parseReturn.isSuccess) {
-                
-                return parseReturn;
-                this.showRegisterSuccessModal = true;
-            } else {
-                this.isLoading = false;
-                this.hasError = true;
-                this.errorMessage = parseReturn.errorMessage;
-                this.isLoading = false;
-            }
+        // }).then(result => {
+        //     console.log('d2cSelfRegistration handleNewUserCreation createUserContact JSON.stringify(result) ' + JSON.stringify(result) );
+        //     this.showRegisterSuccessModal = true
+        //     this.hasError = false;
+        //     this.errorMessage = '';
+        //     this.isLoading = false;
+// // createBuyerInformation
+//             return createBuyerInformation({accountId : result.accountId})
+//         }).then(result => {
+//             this.showRegisterSuccessModal = true
+//             this.hasError = false;
+//             this.errorMessage = '';
+//             this.isLoading = false;
         }).catch((error) => {
             console.error(error);
-            this.hasError = true;
-            this.errorMessage = error.body.message;
-            this.isLoading = false;
+            this.setProcessError(error.body.message)
         });    
+    }
+
+    setProcessError(errorMessage){
+        this.isLoading = false;
+        this.hasError = true;
+        this.errorMessage = errorMessage;
+        this.isLoading = false;
     }
 
 

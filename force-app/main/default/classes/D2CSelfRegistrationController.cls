@@ -13,8 +13,8 @@ public without sharing class D2CSelfRegistrationController {
     }
 
     @AuraEnabled
-    public static String createBuyerInformation(String accountId) {
-        return D2CSelfRegistrationHelper.createBuyerInformation(accountId);
+    public static void createBuyerInformation(String accountId, String userId) {
+        D2CSelfRegistrationHelper.createBuyerInformation(accountId, userId);
     }
     
 }
