@@ -69,10 +69,11 @@ You use the things here in the following ways:
 
 If you already are working with scratch orgs and have all configured and defined in your main org (develop, production, etc), you just need to run the command below:
 
-* ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
-* Example:
+* ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE] [TEMPLATE_TYPE]
+* Examples:
     ```
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpTest d2cStore
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2c d2cStore B2B
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2c d2cStore B2C
     ```
     
 That will do all the configuration needed to achieve:

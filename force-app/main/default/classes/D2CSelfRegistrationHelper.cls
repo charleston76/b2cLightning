@@ -208,12 +208,9 @@ public without sharing class D2CSelfRegistrationHelper {
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_DESCRIPTION ' + mapConfig.get('GENERAL_CASE_DESCRIPTION'));
 
         try {
-            Id recordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByDeveloperName().get('D2C_New_User_Approval').getRecordTypeId();
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' recordTypeId ' + recordTypeId);
     
             Case objCase = new Case();
             objCase.AccountId = objContact.AccountId;
-            objCase.RecordTypeId = recordTypeId;
             if (strUserType == DEFAULT_B2B_USER_TYPE ) objCase.ContactId = objContact.Id;
 
             objCase.Subject = mapConfig.get('GENERAL_CASE_SUBJECT');

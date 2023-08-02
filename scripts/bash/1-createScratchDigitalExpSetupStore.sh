@@ -24,6 +24,12 @@ then
 	exit_error_message "You need to specify the the store name to create it."
 fi
 
+if [ -z "$3" ]
+then
+	exit_error_message "You need to specify the template type (B2B or B2C) to create it."
+fi
+
+
 echo_attention "Starting the scratch org creation at $(date)"
 echo ""
 echo ""
@@ -31,11 +37,17 @@ echo ""
 scratchOrgDuration=30
 scratchOrgName=$1
 storename=$2
+templateType=$3
+
+
+if [[ "$templateType" != "B2B" && "$templateType" != "B2C" ]]
+then
+  exit_error_message "You need to specify the template type as B2B or B2C to create it."
+fi
 
 echo_attention "Creating the $scratchOrgName scratch org with $scratchOrgDuration days of duration."
+echo_attention "That will be created following the $templateType template"
 echo_attention "That can take few seconds to a couple minutes, please, be patient."
-# sfdx force:org:create -f config/project-scratch-def.json -a $scratchOrgName -d $scratchOrgDuration
-# sf org create scratch --target-dev-hub MyHub --definition-file config/project-scratch-def.json --set-default --duration-days 3
 sf org create scratch -f config/project-scratch-def.json -a $scratchOrgName -y $scratchOrgDuration
 
 echo_attention "Setting the $scratchOrgName as default"
@@ -47,4 +59,4 @@ echo_attention "Finishing the scratch org creation at $(date)"
 echo ""
 echo ""
 
-./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename
+./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename $templateType

@@ -8,7 +8,7 @@
 export SF_NPM_REGISTRY="http://platform-cli-registry.eng.sfdc.net:4880/"
 export SF_S3_HOST="http://platform-cli-s3.eng.sfdc.net:9000/sfdx/media/salesforce-cli"
 # 
-templateName="B2B Commerce (LWR)"
+# templateName="B2B Commerce (LWR)"
 # 
 function echo_attention() {
   local green='\033[0;32m'
@@ -72,14 +72,35 @@ then
 	error_and_exit "You need to specify the the store name to create it."
 fi
 
+if [ -z "$3" ]
+then
+	error_and_exit "You need to specify the template type (B2B or B2C) to create it."
+fi
+
+
 echo_attention "Starting the digital experience creation at $(date)"
 echo ""
 echo ""
 
 scratchOrgName=$1
 storename=$2
+templateType=$3
+
 checkExistinStoreContinue=""
 checkExistinStoreAnswer=""
+
+if [[ "$templateType" != "B2B" && "$templateType" != "B2C" ]]
+then
+  error_and_exit "You need to specify the template type as B2B or B2C to create it."
+fi
+
+
+if [[ "$templateType" == "B2B" ]]
+then
+  templateName="B2B Commerce (LWR)"
+else
+  templateName="B2C Commerce (LWR)"
+fi
 
 # Check if the store nam already exist, to no try create with error
 # checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`

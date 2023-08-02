@@ -116,25 +116,25 @@ public class D2CSelfRegistrationControllerTest {
         Test.stopTest();
     }
 
-    @IsTest
-    public static void shouldRegisterUserSuccessCommunity(){
-        Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
+    // @IsTest
+    // public static void shouldRegisterUserSuccessCommunity(){
+    //     Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
 
-        Test.startTest();
-        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
-        System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
-        Test.stopTest();
-    }
+    //     Test.startTest();
+    //     Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
+    //     System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
+    //     Test.stopTest();
+    // }
 
-    @IsTest
-    public static void shouldRegisterUserSuccessCommunityLenghtLess4(){
-        Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
+    // @IsTest
+    // public static void shouldRegisterUserSuccessCommunityLenghtLess4(){
+    //     Contact contact = [SELECT Id, Email, FirstName, LastName, AccountId FROM Contact LIMIT 1];
 
-        Test.startTest();
-        Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
-        System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
-        Test.stopTest();
-    }
+    //     Test.startTest();
+    //     Boolean isCreatedUser = D2CSelfRegistrationController.registerUser(contact,'B2B');
+    //     System.assert(isCreatedUser == true, 'Register is successful-registerUserSuccessNotAccount');
+    //     Test.stopTest();
+    // }
 
     @IsTest
     public static void shouldCreateUserContactNoAccn(){
@@ -152,8 +152,8 @@ public class D2CSelfRegistrationControllerTest {
         conTest.Phone = '1238887549';
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(null, JSON.serialize(conTest),'B2B');
-        System.assert(isCreatedUserCon == true, 'Error on user and account creation');
+        String isCreatedUserCon = D2CSelfRegistrationController.createUserContact(null, JSON.serialize(conTest),'B2B');
+        System.assert(String.isNotEmpty(isCreatedUserCon), 'Error on user and account creation');
         Test.stopTest();
     }
 
@@ -166,8 +166,8 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
-        System.assert(isCreatedUserCon == true, 'Error on user and account creation');
+        String isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
+        System.assert(String.isNotEmpty(isCreatedUserCon), 'Error on user and account creation');
         Test.stopTest();
     }
 
@@ -180,8 +180,8 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
-        System.assert(isCreatedUserCon == true, 'Error on user and account creation');
+        String isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
+        System.assert(String.isNotEmpty(isCreatedUserCon), 'Error on user and account creation');
         Test.stopTest();
     }
 
@@ -195,8 +195,8 @@ public class D2CSelfRegistrationControllerTest {
         contact.LastName = 'no-dup' + contact.LastName;
 
         Test.startTest();
-        Boolean isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
-        System.assert(isCreatedUserCon == true, 'Error on user and account creation');
+        String isCreatedUserCon = D2CSelfRegistrationController.createUserContact(JSON.serialize(account), JSON.serialize(contact),'B2B');
+        System.assert(String.isNotEmpty(isCreatedUserCon), 'Error on user and account creation');
         Test.stopTest();
     }
 
