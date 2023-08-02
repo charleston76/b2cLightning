@@ -142,10 +142,15 @@
         <name>PermissionSet</name>
     </types>
     <types>
+        <members>Shopper_PSG</members>
+        <name>PermissionSetGroup</name>
+    </types>
+    <types>
         <members>Admin</members>
         <members>Buyer Profile</members>
         <members>Commerce Business User Profile</members>
         <members>d2cStore Profile</members>
+        <members>Shopper Profile</members>
         <name>Profile</name>
     </types>
     <types>
