@@ -10,11 +10,5 @@ public without sharing class D2CSelfRegistrationController {
     @AuraEnabled
     public static String createUserContact(String strAccount, String strContact, String strUserType) {
         return D2CSelfRegistrationHelper.createUserContact(strAccount, strContact, strUserType);
-    }
-
-    @AuraEnabled
-    public static void createBuyerInformation(String accountId, String userId) {
-        D2CSelfRegistrationHelper.createBuyerInformation(accountId, userId);
-    }
-    
+    }    
 }

@@ -1,7 +1,6 @@
 import { LightningElement,api } from 'lwc';
 import isEmailContactExist from '@salesforce/apex/D2CSelfRegistrationController.isEmailContactExist';
 import createUserContact from '@salesforce/apex/D2CSelfRegistrationController.createUserContact';
-import createBuyerInformation from '@salesforce/apex/D2CSelfRegistrationController.createBuyerInformation';
 import { NavigationMixin } from 'lightning/navigation';
 
 export default class d2cSelfRegistration extends NavigationMixin(LightningElement) {
@@ -125,19 +124,6 @@ export default class d2cSelfRegistration extends NavigationMixin(LightningElemen
             } else {
                 this.setProcessError(parseReturn.errorMessage)
             }
-        // }).then(result => {
-        //     console.log('d2cSelfRegistration handleNewUserCreation createUserContact JSON.stringify(result) ' + JSON.stringify(result) );
-        //     this.showRegisterSuccessModal = true
-        //     this.hasError = false;
-        //     this.errorMessage = '';
-        //     this.isLoading = false;
-// // createBuyerInformation
-//             return createBuyerInformation({accountId : result.accountId})
-//         }).then(result => {
-//             this.showRegisterSuccessModal = true
-//             this.hasError = false;
-//             this.errorMessage = '';
-//             this.isLoading = false;
         }).catch((error) => {
             console.error(error);
             this.setProcessError(error.body.message)
