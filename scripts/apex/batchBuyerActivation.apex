@@ -8,7 +8,7 @@ System.schedule( 'D2CScheduleBuyerActivation ' + sysTime, chronExpression, new D
 /******************************************
  * 
  * To cancell the schedules
- *
+ ******************************************
 // 
 for(CronTrigger ct : [
     SELECT Id, CronJobDetail.Name, CronJobDetail.JobType 
@@ -33,4 +33,22 @@ for(AsyncApexJob ct : [
     }
     catch (exception e) {}
 }
-*/
+******************************************/
+
+/******************************************
+ * Testing the working thing
+ ******************************************
+
+Map<String,Contact> mapContacts = new Map<String,Contact>();
+List<Contact> scope = [
+    SELECT Id, Account.Id, Account.Name, Account.IsPersonAccount
+	FROM Contact 
+	WHERE  Account.isBuyerEnabled__c = false 
+];
+
+for (Contact rowContact : scope) {
+    mapContacts.put(rowContact.Id, rowContact);
+}
+if (mapContacts.size() > 0) {D2CSelfRegistrationHelper.createBuyerInformation(mapContacts);}
+
+******************************************/

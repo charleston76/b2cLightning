@@ -206,14 +206,17 @@ public without sharing class D2CSelfRegistrationHelper {
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_DESCRIPTION ' + mapConfig.get('GENERAL_CASE_DESCRIPTION'));
 
         try {
+
+            string storeName = getBuyerGoupStoreName();
+
             for (String contactId : mapContacts.keySet()){
                 system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contactId ' + contactId);
         
                 Case objCase = new Case();
                 objCase.AccountId = mapContacts.get(contactId).Account.Id;
                 objCase.ContactId = contactId;
-                objCase.Subject = mapConfig.get('GENERAL_CASE_SUBJECT');
-                objCase.Description = mapConfig.get('GENERAL_CASE_DESCRIPTION');
+                objCase.Subject = mapConfig.get('GENERAL_CASE_SUBJECT') + ' in ' + storeName;
+                objCase.Description = mapConfig.get('GENERAL_CASE_DESCRIPTION') + ' in ' + storeName;
 
                 lstCase.add(objCase);
             }            
@@ -345,26 +348,22 @@ public without sharing class D2CSelfRegistrationHelper {
         string METHOD_NAME = 'createBuyerInformation';
         List<Account> lstAccount = new List<Account>();
         List<BuyerAccount> lstBuyerAccount = new List<BuyerAccount>();
-        List<BuyerGroupMember> lstMember = new List<BuyerGroupMember>();
+        List<String> memberId = new List<String>();
 
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' mapContacts ' + mapContacts);
 
         try {
-            getSelfRegistrationConfigurations();
             // This account needs to be included in the Buyer group
-            String buyerGoupId = String.valueOf([
-                SELECT Id FROM BuyerGroup
-                WHERE Name = :mapConfig.get('GENERAL_BUYER_GROUP')
-                LIMIT 1
-            ]?.Id);
+            String buyerGoupId = getBuyerGoupId();
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
 
             for (String contactId : mapContacts.keySet()){
                 system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contactId ' + contactId);
-               
                 //  SELECT Id, Name, BuyerId, BuyerStatus, IsActive, CreditLimit, CurrentBalance, AvailableCredit, SendToId, PayerId, CommerceType FROM BuyerAccount
                 BuyerAccount objBuyerAccount = new BuyerAccount();
                 String accountId = mapContacts.get(contactId).Account.Id ;
+                system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' accountId ' + accountId);
+                system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' Account.Name ' + mapContacts.get(contactId).Account.Name);
                 objBuyerAccount.Name = mapContacts.get(contactId).Account.Name;
                 objBuyerAccount.BuyerId = accountId;
                 objBuyerAccount.IsActive = true;
@@ -372,13 +371,8 @@ public without sharing class D2CSelfRegistrationHelper {
                 objBuyerAccount.BuyerStatus = 'Active';
     
                 lstBuyerAccount.add(objBuyerAccount);
-                // Add that to the buyer group member
-                //             SELECT Id, Name, BuyerGroupId, BuyerId, Buyer.Name FROM BuyerGroupMember
-                BuyerGroupMember objMember = new BuyerGroupMember(
-                    BuyerGroupId =  buyerGoupId,
-                    BuyerId = accountId
-                );
 
+                memberId.add(accountId);
 
                 Account objAccount = new Account(
                     Id = accountId,
@@ -386,19 +380,18 @@ public without sharing class D2CSelfRegistrationHelper {
                 );
 
                 lstAccount.add(objAccount);
-
-                lstMember.add(objMember);
             }
 
             if (lstBuyerAccount.size()>0) {UtilDatabase.insertRecords(lstBuyerAccount, true);}
             
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstBuyerAccount ' + lstBuyerAccount);
-    
-            if (lstMember.size()>0) UtilDatabase.insertRecords(lstMember, true);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstMember ' + lstMember);
 
-            if (lstAccount.size()>0) UtilDatabase.insertRecords(lstAccount, true);
+            if (lstAccount.size()>0) UtilDatabase.updateRecords(lstAccount, true);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstAccount ' + lstAccount);
+
+            // Since is necessary to add the members in another transaction
+            // That will be done in a queueable process
+            if (memberId.size()>0) System.enqueueJob(new D2CBuyerMemberQueueable(memberId));
 
             // Create a case if this configuration is enabled
             if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION')) && lstBuyerAccount.size()>0 ) { createCase(mapContacts); }
@@ -408,6 +401,58 @@ public without sharing class D2CSelfRegistrationHelper {
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
+    }
+
+    private static string getBuyerGoupStoreName(){
+        String METHOD_NAME = 'getBuyerGoupStoreName';
+
+        String buyerGoupId = getBuyerGoupId();
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
+        String storeName = String.valueOf([
+            SELECT Id, WebStoreId, WebStore.Name  
+            FROM WebStoreBuyerGroup
+            WHERE BuyerGroupId =: buyerGoupId
+        ]?.WebStore.Name);
+        
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' storeName ' + storeName);
+
+        return storeName;
+    }
+
+    private static String getBuyerGoupId(){
+        String METHOD_NAME = 'getBuyerGoupId';
+        getSelfRegistrationConfigurations();
+        // This account needs to be included in the Buyer group
+        String buyerGoupId = String.valueOf([
+            SELECT Id FROM BuyerGroup
+            WHERE Name = :mapConfig.get('GENERAL_BUYER_GROUP')
+            LIMIT 1
+        ]?.Id);
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
+
+        return buyerGoupId;
+    }
+
+    public static void insertBuyerMember(List<String> memberId){
+        String METHOD_NAME = 'insertBuyerMember';
+        List<BuyerGroupMember> lstMember = new List<BuyerGroupMember>();
+
+        // This account needs to be included in the Buyer group
+        String buyerGoupId = getBuyerGoupId();
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
+
+        for (String accountId : memberId){
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' accountId ' + accountId);
+            BuyerGroupMember objMember = new BuyerGroupMember(
+                BuyerGroupId =  buyerGoupId,
+                BuyerId = accountId
+            );
+    
+            lstMember.add(objMember);    
+        }
+
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstMember ' + lstMember);
+         UtilDatabase.insertRecords(lstMember, true);
     }
 
     private static string createB2bUserContact(String strAccount, String strContact, String strUserType) {
