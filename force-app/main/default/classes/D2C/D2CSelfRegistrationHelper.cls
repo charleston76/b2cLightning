@@ -92,9 +92,6 @@ public without sharing class D2CSelfRegistrationHelper {
             // Create the external user with the contact information
             String userId = createExternalUser(contact, uniqueCommunityNickName, strUserType);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' userId ' + userId);
-            // Create a case if this configuration is enabled, and if it is B2B type
-            // if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION')) && strUserType == DEFAULT_B2B_USER_TYPE) { createCase(contact); }
-            // if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION'))) { createCase(contact, strUserType); }
 
             userRegistered = new D2CSelfRegistrationHelper.SelfRegistrationReturn(true, contact.accountId, contact.Id, '', userId);
         } catch (Exception objEx) {
@@ -201,31 +198,33 @@ public without sharing class D2CSelfRegistrationHelper {
    * @param objContact the contact record
    * @return return true or false
    */
-    public static Boolean createCase(Contact objContact, String strUserType) {
+    private static void createCase(Map<String,Contact> mapContacts) {
         String METHOD_NAME = 'createCase';
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objContact ' + objContact);
+        List<Case> lstCase = new List<Case>();
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' mapContacts ' + mapContacts);
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_SUBJECT ' + mapConfig.get('GENERAL_CASE_SUBJECT'));
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' GENERAL_CASE_DESCRIPTION ' + mapConfig.get('GENERAL_CASE_DESCRIPTION'));
 
         try {
-    
-            Case objCase = new Case();
-            objCase.AccountId = objContact.AccountId;
-            if (strUserType == DEFAULT_B2B_USER_TYPE ) objCase.ContactId = objContact.Id;
+            for (String contactId : mapContacts.keySet()){
+                system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contactId ' + contactId);
+        
+                Case objCase = new Case();
+                objCase.AccountId = mapContacts.get(contactId).Account.Id;
+                objCase.ContactId = contactId;
+                objCase.Subject = mapConfig.get('GENERAL_CASE_SUBJECT');
+                objCase.Description = mapConfig.get('GENERAL_CASE_DESCRIPTION');
 
-            objCase.Subject = mapConfig.get('GENERAL_CASE_SUBJECT');
-            objCase.Description = mapConfig.get('GENERAL_CASE_DESCRIPTION');
-            
+                lstCase.add(objCase);
+            }            
     
-            UtilDatabase.insertRecords( objCase,true); 
+            if (lstCase.size() > 0) UtilDatabase.insertRecords( lstCase,true); 
                 
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();
             system.debug(' strErrorMessage ' + strErrorMessage);
             throw new UtilApplicationException(strErrorMessage);
         }
-
-        return true;
     }
    
   /**
@@ -342,13 +341,16 @@ public without sharing class D2CSelfRegistrationHelper {
         }
     }
 
-    public static void createBuyerInformation(String accountId, String userId){
+    public static void createBuyerInformation(Map<String,Contact> mapContacts){
         string METHOD_NAME = 'createBuyerInformation';
+        List<Account> lstAccount = new List<Account>();
+        List<BuyerAccount> lstBuyerAccount = new List<BuyerAccount>();
+        List<BuyerGroupMember> lstMember = new List<BuyerGroupMember>();
 
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' accountId ' + accountId);
-        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' userId ' + userId);
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' mapContacts ' + mapContacts);
 
         try {
+            getSelfRegistrationConfigurations();
             // This account needs to be included in the Buyer group
             String buyerGoupId = String.valueOf([
                 SELECT Id FROM BuyerGroup
@@ -357,33 +359,49 @@ public without sharing class D2CSelfRegistrationHelper {
             ]?.Id);
             system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' buyerGoupId ' + buyerGoupId);
 
-            Account objAccount = [
-                SELECT Id, Name, IsPersonAccount FROM Account
-                WHERE Id =: accountId
-            ];
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objAccount ' + objAccount);
-            //  SELECT Id, Name, BuyerId, BuyerStatus, IsActive, CreditLimit, CurrentBalance, AvailableCredit, SendToId, PayerId, CommerceType FROM BuyerAccount
-            BuyerAccount objBuyerAccount = new BuyerAccount();
-            
-            objBuyerAccount.Name = objAccount.Name ;
-            objBuyerAccount.BuyerId = accountId;
-            objBuyerAccount.IsActive = true;
-            objBuyerAccount.CommerceType = 'Buyer';
-            objBuyerAccount.BuyerStatus = 'Active';
-
-            // Add that to the buyer group member
-            //             SELECT Id, Name, BuyerGroupId, BuyerId, Buyer.Name FROM BuyerGroupMember
-            BuyerGroupMember objMember = new BuyerGroupMember(
-                BuyerGroupId =  buyerGoupId,
-                BuyerId = accountId
-            );
-
-            UtilDatabase.insertRecords(objBuyerAccount, true);
-            
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objBuyerAccount ' + objBuyerAccount);
+            for (String contactId : mapContacts.keySet()){
+                system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' contactId ' + contactId);
+               
+                //  SELECT Id, Name, BuyerId, BuyerStatus, IsActive, CreditLimit, CurrentBalance, AvailableCredit, SendToId, PayerId, CommerceType FROM BuyerAccount
+                BuyerAccount objBuyerAccount = new BuyerAccount();
+                String accountId = mapContacts.get(contactId).Account.Id ;
+                objBuyerAccount.Name = mapContacts.get(contactId).Account.Name;
+                objBuyerAccount.BuyerId = accountId;
+                objBuyerAccount.IsActive = true;
+                objBuyerAccount.CommerceType = 'Buyer';
+                objBuyerAccount.BuyerStatus = 'Active';
     
-            UtilDatabase.insertRecords(objMember, true);
-            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' objMember ' + objMember);
+                lstBuyerAccount.add(objBuyerAccount);
+                // Add that to the buyer group member
+                //             SELECT Id, Name, BuyerGroupId, BuyerId, Buyer.Name FROM BuyerGroupMember
+                BuyerGroupMember objMember = new BuyerGroupMember(
+                    BuyerGroupId =  buyerGoupId,
+                    BuyerId = accountId
+                );
+
+
+                Account objAccount = new Account(
+                    Id = accountId,
+                    isBuyerEnabled__c = true
+                );
+
+                lstAccount.add(objAccount);
+
+                lstMember.add(objMember);
+            }
+
+            if (lstBuyerAccount.size()>0) {UtilDatabase.insertRecords(lstBuyerAccount, true);}
+            
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstBuyerAccount ' + lstBuyerAccount);
+    
+            if (lstMember.size()>0) UtilDatabase.insertRecords(lstMember, true);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstMember ' + lstMember);
+
+            if (lstAccount.size()>0) UtilDatabase.insertRecords(lstAccount, true);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' lstAccount ' + lstAccount);
+
+            // Create a case if this configuration is enabled
+            if (Boolean.valueOf(mapConfig.get('GENERAL_CASE_CREATION')) && lstBuyerAccount.size()>0 ) { createCase(mapContacts); }
                
         } catch (Exception objEx) {
             String strErrorMessage = CLASS_NAME + ' ' + METHOD_NAME + ' LineNumber ' + objEx.getLineNumber() + ' Message: ' + objEx.getMessage();

@@ -282,7 +282,7 @@ accountID=`sf data query --query \ "SELECT AccountId FROM Contact WHERE Id='$con
 echo_attention "ContactId $contactId related with AccountId $accountID "
 
 # Update the account information to something more friendly
-sfdx force:data:record:update -s Account -w "Id='$accountID'" -v "Name='Account ${scratchOrgName} ${storename}'" 
+sfdx force:data:record:update -s Account -w "Id='$accountID'" -v "Name='Account ${scratchOrgName} ${storename}' isBuyerEnabled__c=true" 
 
 
 buyerAccountName="$storename Buyer Account"
