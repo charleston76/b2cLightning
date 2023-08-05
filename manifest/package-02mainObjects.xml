@@ -16,6 +16,7 @@
         <name>CspTrustedSite</name>
     </types>
     <types>
+        <members>Account.isBuyerEnabled__c</members>
         <members>CommerceDiagnosticCustomObject__c.B2B_Edition__c</members>
         <members>CommerceDiagnosticCustomObject__c.B2B_Version__c</members>
         <members>CommerceDiagnosticCustomObject__c.Browser_Device_Type__c</members>
@@ -130,6 +131,7 @@
         <name>LightningComponentBundle</name>
     </types>
     <types>
+        <members>Account.All</members>
         <members>CommerceDiagnosticCustomObject__c.CommerceDiagnosticEventFields</members>
         <members>D2CSelfRegistration__mdt.Detailed</members>
         <members>Order.All</members>

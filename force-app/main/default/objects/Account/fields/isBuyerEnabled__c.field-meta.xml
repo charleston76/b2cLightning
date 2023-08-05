@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>isBuyerEnabled__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Demonstrate if the person account already was enabled as buyer</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Demonstrate if the person account already was enabled as buyer</inlineHelpText>
+    <label>Buyer Enabled</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>
