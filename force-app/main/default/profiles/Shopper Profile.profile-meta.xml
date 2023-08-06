@@ -7,15 +7,15 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>AuthorizeNetAdapter</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BAuthorizeNetRequest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BAuthorizeNetResponse</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BAuthorizeTokenizedPayment</apexClass>
@@ -23,7 +23,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>B2BAuthorizeTokenizedPaymentTest</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>B2BCartControllerSample</apexClass>
@@ -503,9 +503,6 @@
         <layout>OrderSummary-Order Summary Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>PaymentGatewaySetting__c-Payment Gateway Setting Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
         <layout>PersonAccount-Person Account Layout</layout>
         <recordType>PersonAccount.PersonAccount</recordType>
     </layoutAssignments>
@@ -616,10 +613,6 @@
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>CommerceDiagnosticCustomObject__c</tab>
-        <visibility>Hidden</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
-        <tab>PaymentGatewaySetting__c</tab>
         <visibility>Hidden</visibility>
     </tabVisibilities>
     <userLicense>External Apps Login</userLicense>

@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <types>
-        <members>PaymentGatewaySetting__c</members>
-        <name>CustomObject</name>
-    </types>
-    <types>
-        <members>PaymentGatewaySetting__c</members>
-        <name>CustomTab</name>
-    </types>
-    <types>
-        <members>PaymentGatewaySetting__c-Payment Gateway Setting Layout</members>
-        <name>Layout</name>
-    </types>
-    <types>
-        <members>PaymentGatewaySetting__c.All</members>
-        <name>ListView</name>
-    </types>
     <!-- types>
         <members>b2cManual</members>
         <name>CustomSite</name>

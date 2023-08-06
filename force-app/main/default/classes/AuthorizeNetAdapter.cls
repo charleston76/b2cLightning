@@ -1,8 +1,12 @@
 public with sharing class AuthorizeNetAdapter implements commercepayments.PaymentGatewayAdapter {
+    private static final String CLASS_NAME = 'AuthorizeNetAdapter';
     
     public commercepayments.GatewayResponse processRequest(commercepayments.paymentGatewayContext gatewayContext) {
+        String METHOD_NAME = 'processRequest';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' gatewayContext ' + gatewayContext);
         commercepayments.RequestType requestType = gatewayContext.getPaymentRequestType();
         commercepayments.GatewayResponse response;
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' requestType ' + requestType);
         try {
             if(String.valueOf(requestType) == 'Authorize') {  // AUTH ONLY
                 commercepayments.AuthorizationRequest authRequest = (commercepayments.AuthorizationRequest) gatewayContext.getPaymentRequest();
@@ -16,6 +20,8 @@ public with sharing class AuthorizeNetAdapter implements commercepayments.Paymen
     }
 
     public commercepayments.GatewayResponse createAuthResponse(commercepayments.AuthorizationRequest authRequest) {
+        String METHOD_NAME = 'createAuthResponse';
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' authRequest ' + authRequest);
 		// Setup Authorize.Net
         B2BAuthorizeNetRequest authNetRequest = new B2BAuthorizeNetRequest();
         HttpResponse authNetRequestResponse = authNetRequest.createAuthTransaction(authRequest);

@@ -10,14 +10,26 @@
 		<default>false</default>
 		<visible>false</visible>
 	</applicationVisibilities>
-	<classAccesses>
-		<apexClass>B2BAuthorizeTokenizedPayment</apexClass>
-		<enabled>false</enabled>
-	</classAccesses>
-	<classAccesses>
-		<apexClass>B2BAuthorizeTokenizedPaymentTest</apexClass>
-		<enabled>false</enabled>
-	</classAccesses>
+    <classAccesses>
+        <apexClass>AuthorizeNetAdapter</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>B2BAuthorizeNetRequest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>B2BAuthorizeNetResponse</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>B2BAuthorizeTokenizedPayment</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>B2BAuthorizeTokenizedPaymentTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
 	<classAccesses>
 		<apexClass>B2BCartControllerSample</apexClass>
 		<enabled>false</enabled>

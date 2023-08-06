@@ -158,6 +158,9 @@ With that said, you'll need to apply manually the final touches:
 
 * In the real world, you also will need to the adjustments in the guest user profile name, to match with your digital experience name!
 
+### Card Payment manual adjustments
+
+
 ## Out of the Box CSV Importing Products and CMS images
 
 I think that this part, is really, cool!

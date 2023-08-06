@@ -1,29 +1,39 @@
+// List to create the profiles that would have access to the permission set
+// when the user is created
+List<PaymentGatewaySetting__c> lstSettings = new List<PaymentGatewaySetting__c>();
+List<String> lstParameters = new List<String>{
+    'PAYMENT_GATEWAY_SETTING',
+    'PAYMENT_GATEWAY_API_LOGIN',
+    'PAYMENT_GATEWAY_TRANSACTION_KEY'
+};
+
 Map<string,string> objMap = new Map<string,string>();
-List<PaymentGatewaySetting__c> objInsert = new List<PaymentGatewaySetting__c>();
 // Adding the values in the map
 objMap.put('PAYMENT_GATEWAY_SETTING' , 'AUTHORIZE.NET');
 objMap.put('PAYMENT_GATEWAY_API_LOGIN' , 'YOUR_API_LOGIN_HERE');
 objMap.put('PAYMENT_GATEWAY_TRANSACTION_KEY' , 'YOUR_TRANSACTION_KEY_HERE');
 // sandbox      = 'https://apitest.authorize.net/xml/v1/request.api';
 // production   = 'https://api.authorize.net/xml/v1/request.api';
-objMap.put('PAYMENT_GATEWAY_ENVIRONMENT' , 'https://apitest.authorize.net/xml/v1/request.api');
 
-// Select the existing information
-List<PaymentGatewaySetting__c> lstPayGatSet = [
-    SELECT Id, Name
-    FROM PaymentGatewaySetting__c
-    WHERE NAME =: objMap.get('PAYMENT_GATEWAY_SETTING')
-];
+// Configure the profiles that needs to be checked in the trigger
+for(String strSetting : lstParameters){
+    PaymentGatewaySetting__c objSettings = PaymentGatewaySetting__c.getInstance();
+    // Get the setting
+    objSettings = PaymentGatewaySetting__c.getInstance(strSetting);
 
-If (lstPayGatSet.size() == 0){
-    PaymentGatewaySetting__c newRow = new PaymentGatewaySetting__c(
-        Name = objMap.get('PAYMENT_GATEWAY_SETTING'),
-        APILogin__c = objMap.get('PAYMENT_GATEWAY_API_LOGIN'),
-        APITransactionKey__c = objMap.get('PAYMENT_GATEWAY_TRANSACTION_KEY'),
-        Environment__c = objMap.get('PAYMENT_GATEWAY_ENVIRONMENT')
-    );
-    objInsert.add(newRow);
+    // Check if need to create
+    if (objSettings==null){
+        PaymentGatewaySetting__c objNew = new PaymentGatewaySetting__c();
+        objNew.Name = strSetting;
+        if (! objMap.containsKey(strSetting)){
+            objNew.Value__c = strSetting;
+        } else {
+            objNew.Value__c = objMap.get(strSetting);
+        }
+        lstSettings.add(objNew);
+    }
 }
 
-system.debug('objInsert '  + objInsert);
-if (objInsert.size()>0 ) insert objInsert;
+system.debug('PaymentGatewaySetting__c lstSettings.size() ' + lstSettings.size());
+
+if (lstSettings.size() >0) insert lstSettings;
