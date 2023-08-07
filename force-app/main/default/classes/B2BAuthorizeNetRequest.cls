@@ -50,7 +50,7 @@ public with sharing class B2BAuthorizeNetRequest {
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest ' + cardRequest);
         // Build our JSON
         JSONGenerator gen = JSON.createGenerator(true);
-
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 01 ');
         try {
             CredentialCheck objCredent = getCredentialCheck();
 
@@ -58,6 +58,7 @@ public with sharing class B2BAuthorizeNetRequest {
             // Add CreateTransactionRequest
             gen.writeFieldName('createTransactionRequest');
             gen.writeStartObject();
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 02 ');
             
             // Add MerchantAuthentication
             gen.writeFieldName('merchantAuthentication');
@@ -148,9 +149,10 @@ public with sharing class B2BAuthorizeNetRequest {
             // End initial Object
             gen.writeEndObject();            
         } catch (Exception objEx) {
-            // System.debug(CLASS_NAME + ' ' + METHOD_NAME + ' Error Line Number: ' + objEx.getLineNumber() + ' Message ' + objEx.getMessage());
+            System.debug(CLASS_NAME + ' ' + METHOD_NAME + ' Error Line Number: ' + objEx.getLineNumber() + ' Message ' + objEx.getMessage());
             throw objEx;
         }
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' gen ' + gen);
         // Send the Request
         return this.sendRequest(gen.getAsString());
     }
