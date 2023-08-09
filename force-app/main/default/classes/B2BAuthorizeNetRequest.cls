@@ -1,4 +1,10 @@
 /*
+ * ####################################################################################
+ * # I'M STILL WORKING IN THIS TRANSACTIONS!
+ * # PLEASE BE PATIENT THAT AS SOON AS POSSIBLE I'LL RELEASE THE FINAL WORKING VERSION
+ * ####################################################################################
+ * 
+ * 
  * This class file acts as a controller to fetch and return the required JSON
  * for Authorize.Net Transactions.
  * 
@@ -43,7 +49,9 @@ public with sharing class B2BAuthorizeNetRequest {
         String METHOD_NAME = 'createAuthTransaction';
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' authRequest ' + authRequest);
         commercepayments.AuthApiPaymentMethodRequest paymentMethod  = authRequest.paymentMethod;        
+        system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' paymentMethod ' + paymentMethod);
         commercepayments.AddressRequest addressRequest  = paymentMethod.address;        
+        
         commercepayments.CardPaymentMethodRequest cardRequest = paymentMethod.cardPaymentMethod;
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' paymentMethod ' + paymentMethod);
         system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' addressRequest ' + addressRequest);
@@ -67,24 +75,31 @@ public with sharing class B2BAuthorizeNetRequest {
             gen.writeStringField('transactionKey',objCredent.transKey);
             gen.writeEndObject();
             // End MerchantAuthentication
-
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 03 ');
             gen.writeStringField('refId','');
-            
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 04 ');
             // Add TransactionRequest
             gen.writeFieldName('transactionRequest');
             gen.writeStartObject();
             gen.writeStringField('transactionType', 'authOnlyTransaction'); // Authorize ONLY
             gen.writeStringField('amount',String.valueOf(authRequest.amount));
             gen.writeStringField('currencyCode',authRequest.currencyIsoCode); // Pull context
-            
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 05 ');
             // Add Payment
             gen.writeFieldName('payment');
             gen.writeStartObject();
             gen.writeFieldName('creditCard');
             gen.writeStartObject();
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 06 ');
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest ' + cardRequest);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest.cardNumber ' + cardRequest.cardNumber);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest.expiryYear ' + cardRequest.expiryYear);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest.expiryMonth ' + cardRequest.expiryMonth);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' cardRequest.cvv ' + cardRequest.cvv);
             gen.writeStringField('cardNumber', cardRequest.cardNumber);
             gen.writeStringField('expirationDate',cardRequest.expiryYear+'-'+cardRequest.expiryMonth); //2025-12
             gen.writeStringField('cardCode',cardRequest.cvv);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 07 ');
             gen.writeEndObject();
             gen.writeEndObject();
             // End Payment
@@ -105,11 +120,13 @@ public with sharing class B2BAuthorizeNetRequest {
             //gen.writeStringField('firstName', cardRequest.cardHolderName);
             //gen.writeStringField('lastName', cardRequest.cardHolderName);
             //gen.writeStringField('company',addressRequest.companyName);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 08 ');
             gen.writeStringField('address',addressRequest.street);
             gen.writeStringField('city',addressRequest.city);
             gen.writeStringField('state',addressRequest.state);
             gen.writeStringField('zip',addressRequest.postalCode);
             gen.writeStringField('country',addressRequest.country);
+            system.debug(CLASS_NAME + ' ' + METHOD_NAME + ' 09 ');
             gen.writeEndObject();
             // End BillTo
 

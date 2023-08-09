@@ -160,6 +160,17 @@ With that said, you'll need to apply manually the final touches:
 
 ### Card Payment manual adjustments
 
+To have the "Card Payment" working, you need to update [this script file](./scripts/apex/PaymentGatewaySettingCreation.apex) changing the **YOUR_API_LOGIN_HERE** and **YOUR_TRANSACTION_KEY_HERE** with the real information you'll use.
+
+![Custom Settings](images/AuthNetConfig0_CustomSettings.png)
+
+And after that, you just need to execute that in the developer console, or through the VSCode, and also, apply this changes in the Named Credentials:
+
+![Named Credential](images/AuthNetConfig1.png)
+
+![Named Credential Update](images/AuthNetConfig2.png)
+
+
 
 ## Out of the Box CSV Importing Products and CMS images
 
