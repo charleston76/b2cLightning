@@ -1,0 +1,72 @@
+{
+  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "componentName" : "community_layout:sldsFlexibleLayout",
+  "dataProviders" : [ ],
+  "id" : "09ad90ab-56ef-4690-a2cf-b2b71697ab5f",
+  "label" : "Address Form",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"4e6f42c4-702e-4ff9-aaea-709ed26706a8\",\"columns\":[{\"UUID\":\"e209bb3f-27e0-4a20-a9a0-ca88f3c121eb\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "4e6f42c4-702e-4ff9-aaea-709ed26706a8",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "componentHeaderEditAddressLabel" : "Edit Address",
+            "componentHeaderNewAddressLabel" : "New Address",
+            "formWidth" : 50,
+            "makeDefaultAddressLabel" : "Make this my default address",
+            "showComponentHeader" : true,
+            "showDifferentAddressTypes" : true
+          },
+          "componentName" : "commerce_my_account:myAccountInputAddress",
+          "id" : "b12befd2-4034-4f0b-b78c-47ee59c402b2",
+          "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "buttonSpacing" : "medium",
+                "firstActionButtonText" : "Cancel",
+                "firstActionButtonTextDecoration" : "{}",
+                "firstButtonVariant" : "secondary",
+                "secondActionButtonText" : "Save",
+                "secondActionButtonTextDecoration" : "{}",
+                "secondButtonVariant" : "primary",
+                "size" : "standard"
+              },
+              "componentName" : "commerce_builder:actionButtons",
+              "id" : "915a79c5-a255-4ab4-b892-0ebb3106690a",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "dcab191f-b8f9-4b3b-bd58-7c40b0f9acba",
+            "regionName" : "actionButtons",
+            "type" : "region"
+          } ],
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "e209bb3f-27e0-4a20-a9a0-ca88f3c121eb",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    } ],
+    "id" : "c7f72763-60e0-47ad-be2d-b299c1d4ed65",
+    "regionName" : "content",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "address-form"
+}

@@ -1,0 +1,243 @@
+{
+  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "componentName" : "community_layout:sldsFlexibleLayout",
+  "dataProviders" : [ ],
+  "id" : "70eea91f-7325-4103-858a-86f727eec446",
+  "label" : "Home",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"a52ac2bb-2511-4958-a58d-65d009e87599\",\"columns\":[{\"UUID\":\"926153a4-d175-4623-8c06-989049043e46\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "a52ac2bb-2511-4958-a58d-65d009e87599",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "backgroundColor" : "",
+            "bannerAlignment" : "center",
+            "bannerLinkAssistiveText" : "",
+            "borderColor" : "",
+            "borderRadius" : 0,
+            "borderWidth" : 0,
+            "buttonDirection" : "horizontal",
+            "buttonGroupAlignment" : "center",
+            "buttonGroupHeight" : 50,
+            "buttonGroupSpacingHorizontal" : "space-evenly",
+            "buttonGroupSpacingVertical" : "space-evenly",
+            "buttonGroupWidth" : 50,
+            "contentPadding" : "none",
+            "contentPosition" : "center center",
+            "contentWidth" : 50,
+            "height" : 360,
+            "imageFit" : "cover",
+            "imageInfo" : "{\"imageInfoV1\":{\"url\":\"assets/images/home-sustainable.jpg\",\"altText\":\"Pods Banner\",\"contentKey\":\"\"}}",
+            "imagePosition" : "top center",
+            "isBannerLink" : false,
+            "overlayColor" : "",
+            "showButtons" : false,
+            "showSecondaryButton" : false,
+            "singleButtonAlignment" : "center",
+            "width" : 100
+          },
+          "componentName" : "dxp_content_layout:banner",
+          "id" : "eaed6c36-25b4-4a2a-89ca-e2d6352cc057",
+          "regions" : [ {
+            "components" : [ {
+              "componentAttributes" : {
+                "backgroundColor" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Organic bars, gels, and drinks",
+                "textAlign" : "center",
+                "textColor" : "rgb(255, 255, 255)",
+                "textDecoration" : "{\"bold\": true}",
+                "textDisplayInfo" : "{\"headingTag\": \"h1\", \"textStyle\": \"heading-large\"}"
+              },
+              "componentName" : "dxp_base:textBlock",
+              "id" : "f88ac74a-fd17-43c2-8789-555b37fad26c",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            }, {
+              "componentAttributes" : {
+                "backgroundColor" : "",
+                "paddingHorizontal" : "none",
+                "paddingVertical" : "none",
+                "text" : "Expertly crafted with the finest ingredients",
+                "textAlign" : "center",
+                "textColor" : "rgb(255, 255, 255)",
+                "textDecoration" : "{}",
+                "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
+              },
+              "componentName" : "dxp_base:textBlock",
+              "id" : "7f4e3197-1cc9-48e0-a550-bda351e5f093",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "df5e1eb4-a5ae-4be4-9ff6-11be5aac8cee",
+            "regionName" : "contentRegion",
+            "type" : "region"
+          }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "alignment" : "center",
+                "size" : "standard",
+                "stretch" : "standard",
+                "text" : "Shop Now",
+                "type" : "primary",
+                "url" : "javascript:void(0)"
+              },
+              "componentName" : "dxp_base:button",
+              "id" : "f610ed9a-ee5d-4ed8-b873-a164a3f5bbe9",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "4fe39067-408d-4579-a313-a4b62b577b6b",
+            "regionName" : "bannerPrimaryButton",
+            "type" : "region"
+          }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "alignment" : "center",
+                "size" : "standard",
+                "stretch" : "standard",
+                "text" : "Contact Us",
+                "type" : "secondary"
+              },
+              "componentName" : "dxp_base:button",
+              "id" : "661e5b00-577c-4e6f-8771-53d3476a887a",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "b10345b5-8dcf-4ad8-a6ae-184b0dd4ea7c",
+            "regionName" : "bannerSecondaryButton",
+            "type" : "region"
+          }, {
+            "components" : [ {
+              "componentAttributes" : { },
+              "componentName" : "dxp_page_layout:placeHolder",
+              "id" : "2e37df9f-0473-48c4-a0ca-b2005623353f",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "16f3d191-c671-491b-8e07-9ab6456fb38a",
+            "regionName" : "placeholder",
+            "type" : "region"
+          } ],
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "926153a4-d175-4623-8c06-989049043e46",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"548c45bd-8451-4e60-9b31-bc954506a7c8\",\"columns\":[{\"UUID\":\"9f7bf99f-d927-4fdf-9356-637f7a33924a\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "548c45bd-8451-4e60-9b31-bc954506a7c8",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "browseStep" : 3,
+            "categoryId" : "0ZGxx00000004WfGAI",
+            "headerText" : "Recommended For You",
+            "pageSize" : 6
+          },
+          "componentName" : "b2c_lite_commerce:topSellers",
+          "id" : "4ad04f91-4eb1-4b50-95d6-1279400ea27c",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "9f7bf99f-d927-4fdf-9356-637f7a33924a",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"07e67a03-0cdb-4855-8794-d8cc36fe7b74\",\"columns\":[{\"UUID\":\"f999ac37-3e3c-4344-88df-46da0c58492e\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "07e67a03-0cdb-4855-8794-d8cc36fe7b74",
+      "regions" : [ {
+        "id" : "f999ac37-3e3c-4344-88df-46da0c58492e",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    }, {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"92ae052f-a521-4715-aa4a-63305259896d\",\"columns\":[{\"UUID\":\"b1a139df-de83-4de6-90cb-ee8b8fee4030\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "92ae052f-a521-4715-aa4a-63305259896d",
+      "regions" : [ {
+        "id" : "b1a139df-de83-4de6-90cb-ee8b8fee4030",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    } ],
+    "id" : "66fa8811-c48c-49df-a784-b889ed3e0757",
+    "regionName" : "content",
+    "type" : "region"
+  }, {
+    "components" : [ {
+      "componentAttributes" : {
+        "customHeadTags" : "",
+        "description" : "",
+        "pageTitle" : "Home",
+        "recordId" : "{!recordId}"
+      },
+      "componentName" : "community_builder:seoAssistant",
+      "id" : "1aa15eea-bac9-487a-8b26-bdf42a420331",
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "type" : "component"
+    } ],
+    "id" : "06c901e3-2b15-4aa1-a99e-0c616c1e8035",
+    "regionName" : "sfdcHiddenRegion",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "home"
+}

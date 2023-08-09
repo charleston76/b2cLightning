@@ -1,0 +1,48 @@
+{
+  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "componentName" : "community_layout:sldsFlexibleLayout",
+  "dataProviders" : [ ],
+  "id" : "4afda37c-6cab-463b-9f26-447186907de8",
+  "label" : "Order",
+  "regions" : [ {
+    "components" : [ {
+      "componentAttributes" : {
+        "backgroundImageConfig" : "",
+        "backgroundImageOverlay" : "rgba(0,0,0,0)",
+        "sectionConfig" : "{\"UUID\":\"c0180e8d-8f60-4eec-9273-8737609b0d32\",\"columns\":[{\"UUID\":\"5412b82b-f1a1-483d-83c1-c396c880db83\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+      },
+      "componentName" : "community_layout:section",
+      "id" : "c0180e8d-8f60-4eec-9273-8737609b0d32",
+      "regions" : [ {
+        "components" : [ {
+          "componentAttributes" : {
+            "bodyText" : "We will send an email with your confirmation number and receipt shortly.",
+            "buttonText" : "Continue Shopping",
+            "confirmationNumberText" : "Confirmation Number",
+            "headerText" : "Thank you for your order!"
+          },
+          "componentName" : "commerce_unified_checkout:orderConfirmation",
+          "id" : "c695d5ed-f382-4fb7-abfd-d4f784c21239",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        } ],
+        "id" : "5412b82b-f1a1-483d-83c1-c396c880db83",
+        "regionLabel" : "Column 1",
+        "regionName" : "col1",
+        "renditionMap" : { },
+        "type" : "region"
+      } ],
+      "renderPriority" : "NEUTRAL",
+      "renditionMap" : { },
+      "scopedBrandingSetId" : null,
+      "type" : "component"
+    } ],
+    "id" : "46328079-13e4-463f-91af-4af8ca16d0b1",
+    "regionName" : "content",
+    "type" : "region"
+  } ],
+  "themeLayoutType" : "Inner",
+  "type" : "view",
+  "viewType" : "order"
+}

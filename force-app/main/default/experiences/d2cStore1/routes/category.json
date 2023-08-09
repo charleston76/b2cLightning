@@ -1,0 +1,10 @@
+{
+  "activeViewId" : "14f863c4-b0ca-41dc-898c-9decc25bb20a",
+  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "configurationTags" : [ ],
+  "id" : "0e2e5ce1-2ed5-468f-aedb-631c911b5076",
+  "label" : "Category",
+  "routeType" : "detail-0ZG",
+  "type" : "route",
+  "urlPrefix" : "category"
+}
