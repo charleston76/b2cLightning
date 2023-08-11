@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "dc790e6e-c2ca-449d-abac-559d2e2f8be0",
+  "id" : "25b9f112-86b9-43ba-8613-681d9b3e717c",
   "label" : "Address List",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"e25a66e4-b601-4654-be3f-7bfb64a60a20\",\"columns\":[{\"UUID\":\"5e573f5f-005a-4cd3-9a0d-0e7a21700a7c\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"10\",\"seedComponents\":null},{\"UUID\":\"437efa37-734d-40e8-9d48-490d72bf7d1d\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"2\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"cd9bf571-3743-4bb3-bc15-ad7b437ba9ee\",\"columns\":[{\"UUID\":\"ff5c3a72-2087-4531-846f-a65ac332cf97\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"10\",\"seedComponents\":null},{\"UUID\":\"a396a98a-9784-414e-965e-159d6f066427\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"2\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "e25a66e4-b601-4654-be3f-7bfb64a60a20",
+      "id" : "cd9bf571-3743-4bb3-bc15-ad7b437ba9ee",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -25,12 +25,12 @@
             "textDisplayInfo" : "{\"textStyle\": \"heading-medium\", \"headingTag\": \"h2\"}"
           },
           "componentName" : "dxp_base:textBlock",
-          "id" : "45847369-d73d-4f0a-a10f-49669ed2aec7",
+          "id" : "cfff5a41-89a6-4137-948a-bd1e47f5aa11",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "5e573f5f-005a-4cd3-9a0d-0e7a21700a7c",
+        "id" : "ff5c3a72-2087-4531-846f-a65ac332cf97",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -45,12 +45,12 @@
             "width" : "standard"
           },
           "componentName" : "commerce_my_account:myAccountAddAddressButton",
-          "id" : "3438bc8a-0d88-4c36-8e13-642a5af9c8c5",
+          "id" : "3f46ecd4-13ca-4bbe-a6cc-311ce5c1e866",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "437efa37-734d-40e8-9d48-490d72bf7d1d",
+        "id" : "a396a98a-9784-414e-965e-159d6f066427",
         "regionLabel" : "Column 2",
         "regionName" : "col2",
         "renditionMap" : { },
@@ -64,10 +64,10 @@
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"c1d433a1-7772-4d2a-9381-7cdfee4123aa\",\"columns\":[{\"UUID\":\"11680c4e-93b2-4cd9-b96c-3cd81e663b62\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"977ddc01-59c4-4e95-bf11-9bc9584de411\",\"columns\":[{\"UUID\":\"af983d74-d0cb-42b7-a9d4-7d0fe3ffe052\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "c1d433a1-7772-4d2a-9381-7cdfee4123aa",
+      "id" : "977ddc01-59c4-4e95-bf11-9bc9584de411",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -90,12 +90,12 @@
             "showMoreButtonWidth" : "standard"
           },
           "componentName" : "commerce_my_account:myAccountAddressGridContainer",
-          "id" : "61cceafe-9a05-4464-8be9-26e81dc8e484",
+          "id" : "20d18634-906f-444d-bff5-dad795467f8c",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "11680c4e-93b2-4cd9-b96c-3cd81e663b62",
+        "id" : "af983d74-d0cb-42b7-a9d4-7d0fe3ffe052",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -106,7 +106,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "16c04d01-e434-4019-bc3c-ab09c6325b8a",
+    "id" : "7b3e7167-6064-4645-9151-8ea6f56487a2",
     "regionName" : "content",
     "type" : "region"
   } ],

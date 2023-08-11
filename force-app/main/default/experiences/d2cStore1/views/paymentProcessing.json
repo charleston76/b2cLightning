@@ -1,20 +1,20 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "6343bd47-4a62-4cf6-b850-089aec20ccbf",
+  "id" : "a0e50c74-3247-45c0-99d3-62cf4f09bf3a",
   "label" : "Payment Processing",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"986ac7b7-d419-41fb-8f93-af039f671af9\",\"columns\":[{\"UUID\":\"6794ca1e-5523-46da-bf20-41a991ca55b2\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"0228af1e-b42d-4fa2-bac0-12f2fe1a228d\",\"columns\":[{\"UUID\":\"d86cec05-fb82-459a-9912-981461b1de6f\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "986ac7b7-d419-41fb-8f93-af039f671af9",
+      "id" : "0228af1e-b42d-4fa2-bac0-12f2fe1a228d",
       "regions" : [ {
-        "id" : "6794ca1e-5523-46da-bf20-41a991ca55b2",
+        "id" : "d86cec05-fb82-459a-9912-981461b1de6f",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -25,7 +25,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "42be0e95-e66a-437a-978a-997233af7928",
+    "id" : "eac6349a-faf3-4996-a00e-7baab36a0b64",
     "regionName" : "content",
     "type" : "region"
   } ],

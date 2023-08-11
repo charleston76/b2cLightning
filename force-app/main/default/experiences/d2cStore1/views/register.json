@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "590c5c68-c902-40db-93b8-35d7f5571a82",
+  "id" : "3603cc7f-dda2-4886-bfc3-a66fd146b783",
   "label" : "Register",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"e1553cd2-96b9-4a8f-bb75-8aea7b6ec506\",\"columns\":[{\"UUID\":\"c1610f0a-ef51-44b6-8531-5eede27e89b2\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"ac9847e8-f3b9-46a5-90a2-865699346bd8\",\"columns\":[{\"UUID\":\"8a9849aa-985d-4e27-ad90-ec84b9b78085\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "e1553cd2-96b9-4a8f-bb75-8aea7b6ec506",
+      "id" : "ac9847e8-f3b9-46a5-90a2-865699346bd8",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -21,29 +21,26 @@
             "logoWidth" : 250
           },
           "componentName" : "dxp_content_layout:siteLogo",
-          "id" : "527f05c3-ca2a-4f5f-b89b-ed9897fb74a3",
+          "id" : "a9b1002e-8972-46b1-9e1f-514ea53537c3",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         }, {
           "componentAttributes" : {
-            "cancelLinkLabel" : "Already have an account?",
-            "confirmPasswordLabel" : "Confirm Password",
             "emailLabel" : "Email",
-            "firstnameLabel" : "First Name",
-            "includePasswordField" : true,
-            "lastnameLabel" : "Last Name",
-            "passwordLabel" : "Create Password",
-            "regConfirmUrl" : "./CheckPasswordResetEmail",
-            "submitButtonLabel" : "Sign Up"
+            "emailPlaceholder" : "Your Email here",
+            "firstNameLabel" : "First Name",
+            "firstNamePlaceholder" : "Your First Name here",
+            "lastNameLabel" : "Last Name",
+            "lastNamePlaceholder" : "Your Last Name here"
           },
-          "componentName" : "b2c_lite_commerce:selfRegister",
-          "id" : "b9d030c6-c1c9-4808-83ce-bd251393689f",
+          "componentName" : "c:d2cSelfRegistration",
+          "id" : "ea30fa43-3b02-450b-98a7-2ac199f5562b",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "c1610f0a-ef51-44b6-8531-5eede27e89b2",
+        "id" : "8a9849aa-985d-4e27-ad90-ec84b9b78085",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -54,7 +51,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "a2e28c9e-be30-4d56-9e64-29dd6c130fe9",
+    "id" : "757d784d-e129-491b-91ab-844f1b0b6be2",
     "regionName" : "content",
     "type" : "region"
   }, {
@@ -66,12 +63,12 @@
         "recordId" : "{!recordId}"
       },
       "componentName" : "community_builder:seoAssistant",
-      "id" : "399c97fb-1d99-4b86-845c-f29b2b3f50b0",
+      "id" : "138efc4c-a74e-4e77-af9e-e1f56f01cbe3",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
     } ],
-    "id" : "38e097f9-61a2-4b44-b834-6363c8ea888f",
+    "id" : "25302157-9bed-4c5f-93a9-6c5b4681143a",
     "regionName" : "sfdcHiddenRegion",
     "type" : "region"
   } ],

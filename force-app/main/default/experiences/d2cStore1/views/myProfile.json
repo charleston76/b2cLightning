@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "a9dce875-d6b9-438b-886a-e186c80fcb70",
+  "id" : "e1f55b5e-bf93-4b5b-a1b6-7bbddde85423",
   "label" : "My Profile",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"8a18e4a2-0890-4b9f-8c15-826abe1c0e2e\",\"columns\":[{\"UUID\":\"b86dcdd0-a1f7-4bf4-bb72-5b184b50ece1\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        "sectionConfig" : "{\"UUID\":\"d0367122-befe-44aa-9fbb-55c64f63b0b7\",\"columns\":[{\"UUID\":\"0a2b9d4e-bb97-4b23-a905-76eaf05a1e5d\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "8a18e4a2-0890-4b9f-8c15-826abe1c0e2e",
+      "id" : "d0367122-befe-44aa-9fbb-55c64f63b0b7",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -25,12 +25,12 @@
             "textDisplayInfo" : "{\"textStyle\": \"heading-medium\", \"headingTag\": \"h2\"}"
           },
           "componentName" : "dxp_base:textBlock",
-          "id" : "9ca91785-e0f4-41d9-ba98-1a01f8a953b4",
+          "id" : "d04190b4-91cd-4a1b-a09d-e965687da18d",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "b86dcdd0-a1f7-4bf4-bb72-5b184b50ece1",
+        "id" : "0a2b9d4e-bb97-4b23-a905-76eaf05a1e5d",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -44,20 +44,20 @@
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"024c5451-926e-475e-aff3-ab539ca17979\",\"columns\":[{\"UUID\":\"557bdfff-f7d2-43dd-b16c-aea5e7e25289\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"6\",\"seedComponents\":[]},{\"UUID\":\"62087c18-922d-4708-a4af-8d0a56b17266\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"6\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"f45ee356-c75d-499c-ae87-c84dc698baf7\",\"columns\":[{\"UUID\":\"cda62fb5-a3c4-45c7-b8cc-ce35ca41441f\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"6\",\"seedComponents\":[]},{\"UUID\":\"e2c00fed-df43-4aa6-ab4c-b7a2a531f879\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"6\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "024c5451-926e-475e-aff3-ab539ca17979",
+      "id" : "f45ee356-c75d-499c-ae87-c84dc698baf7",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : { },
           "componentName" : "commerce_builder:myAccountProfile",
-          "id" : "ed7ed03d-1556-40c5-9cd4-efea0394c345",
+          "id" : "09329f6c-1580-4e9e-bae1-3d8c6ee7ba0b",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "557bdfff-f7d2-43dd-b16c-aea5e7e25289",
+        "id" : "cda62fb5-a3c4-45c7-b8cc-ce35ca41441f",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -66,12 +66,12 @@
         "components" : [ {
           "componentAttributes" : { },
           "componentName" : "commerce_builder:myAccountPassword",
-          "id" : "e3dd9c4d-2699-4467-9539-355101b7c641",
+          "id" : "eaa2a0b4-2eec-49ad-8b21-d78bd5d90d2c",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "62087c18-922d-4708-a4af-8d0a56b17266",
+        "id" : "e2c00fed-df43-4aa6-ab4c-b7a2a531f879",
         "regionLabel" : "Column 2",
         "regionName" : "col2",
         "renditionMap" : { },
@@ -82,7 +82,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "ff2caa1c-cfae-4b99-bc33-2ea5ecc7ce20",
+    "id" : "2ff98937-bfcd-43e1-a590-f1e3ff9e562d",
     "regionName" : "content",
     "type" : "region"
   } ],

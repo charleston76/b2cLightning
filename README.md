@@ -85,7 +85,7 @@ That will do all the configuration needed to achieve:
 
 ### CMS configuration
 
-In this current version, we are creating the B2B2C Commerce in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
+In this current version, we are creating the D2C Commerce (former B2B2C Lightning) in a scratch organization, and uploading [some products to there](scripts/json/Product2s.json).
 
 Nevertheless, that upload doesn't put some pretty images there... for now, to achieve that, we'll perform the manual steps below...
 

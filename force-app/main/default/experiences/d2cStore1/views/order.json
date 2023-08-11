@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "4afda37c-6cab-463b-9f26-447186907de8",
+  "id" : "11c0319b-2e70-4f1b-a372-552ddeb54bd5",
   "label" : "Order",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"c0180e8d-8f60-4eec-9273-8737609b0d32\",\"columns\":[{\"UUID\":\"5412b82b-f1a1-483d-83c1-c396c880db83\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"b06ead67-51c3-41e3-81b1-e848cca983ad\",\"columns\":[{\"UUID\":\"c024cac4-25b0-4547-ad2b-9907ea2c8543\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "c0180e8d-8f60-4eec-9273-8737609b0d32",
+      "id" : "b06ead67-51c3-41e3-81b1-e848cca983ad",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -22,12 +22,12 @@
             "headerText" : "Thank you for your order!"
           },
           "componentName" : "commerce_unified_checkout:orderConfirmation",
-          "id" : "c695d5ed-f382-4fb7-abfd-d4f784c21239",
+          "id" : "04eee438-df50-4884-a6d7-53b384dcb767",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "5412b82b-f1a1-483d-83c1-c396c880db83",
+        "id" : "c024cac4-25b0-4547-ad2b-9907ea2c8543",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -38,7 +38,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "46328079-13e4-463f-91af-4af8ca16d0b1",
+    "id" : "75b2e34c-10c8-447c-8f07-0c633fd01b5c",
     "regionName" : "content",
     "type" : "region"
   } ],

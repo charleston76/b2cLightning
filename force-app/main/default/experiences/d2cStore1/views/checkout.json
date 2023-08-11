@@ -1,5 +1,5 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ {
     "componentName" : "commerce_data_provider:checkoutDataProvider",
@@ -7,31 +7,31 @@
       "sfdcExpressionKey" : "Checkout"
     }
   } ],
-  "id" : "abc96051-a173-455b-8b7f-10a8f8458810",
+  "id" : "a7608c1b-4706-404f-967e-844ffe4434e5",
   "label" : "Checkout",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"aaff0398-def0-46b3-a33a-42f1ebe16bb6\",\"columns\":[{\"UUID\":\"7baff9f7-a870-42a1-9a2e-b79e5b3095f8\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"8\",\"seedComponents\":[]},{\"UUID\":\"802b34f4-5575-4210-a83e-076099622e8d\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"4\",\"seedComponents\":[]}]}"
+        "sectionConfig" : "{\"UUID\":\"5d250bb9-7e94-481b-9875-462332dbdd64\",\"columns\":[{\"UUID\":\"84e2eb68-89a9-4d34-a3bc-0d5670e3e45f\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"8\",\"seedComponents\":[]},{\"UUID\":\"3e9cda78-40f9-4e34-89c2-84d889cc4d06\",\"columnName\":\"Column 2\",\"columnKey\":\"col2\",\"columnWidth\":\"4\",\"seedComponents\":[]}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "aaff0398-def0-46b3-a33a-42f1ebe16bb6",
+      "id" : "5d250bb9-7e94-481b-9875-462332dbdd64",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
             "stepsConfig" : "[{\"checkoutStepKey\":\"ShippingAddress\",\"checkoutStepName\":\"Shipping Address\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:guestContact\",\"attributes\":null},{\"fqn\":\"commerce_unified_checkout:shipping\",\"attributes\":null}]},{\"checkoutStepKey\":\"ShippingMethod\",\"checkoutStepName\":\"Shipping Method\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:shippingMethod\",\"attributes\":null}]},{\"checkoutStepKey\":\"Payment\",\"checkoutStepName\":\"Payment\",\"proceedButtonLabel\":\"Place Order\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:multiPaymentAccordion\",\"attributes\":null}]}]"
           },
           "componentName" : "commerce_unified_checkout:checkout",
-          "id" : "f396958f-cc5e-4e62-9c29-6e876c74bec2",
+          "id" : "73dd2a9d-0c91-4389-a48c-9829c2640cf3",
           "regions" : [ {
             "components" : [ {
               "componentAttributes" : {
                 "emailLabel" : "Email"
               },
               "componentName" : "commerce_unified_checkout:guestContact",
-              "id" : "2a2c2041-0786-4ad6-a5a8-25e69f72bfe6",
+              "id" : "793be0c5-f7fa-494c-8c3a-9155c24757e6",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
@@ -44,18 +44,18 @@
                 "newAddressButtonLabel" : "New Address",
                 "phoneNumberLabel" : "Phone Number",
                 "phoneNumberPlaceholderText" : "",
-                "shippingAddressLimit" : "2",
-                "shippingAddressLimitIncrease" : "2",
+                "shippingAddressLimit" : "6",
+                "shippingAddressLimitIncrease" : "6",
                 "showMoreButtonLabel" : "Show More",
                 "summaryModeEnabled" : true
               },
               "componentName" : "commerce_unified_checkout:shipping",
-              "id" : "ce461cfa-1779-407a-a338-c0a881d9eb27",
+              "id" : "b1b2fb3c-a319-4134-923e-5f87078af242",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "fd973d54-a9fa-4336-ac6c-c1a7e18cd2af",
+            "id" : "d412480e-e792-4732-b0d4-8bf71fee42c6",
             "regionLabel" : "Shipping Address",
             "regionName" : "ShippingAddress",
             "renditionMap" : { },
@@ -64,12 +64,12 @@
             "components" : [ {
               "componentAttributes" : { },
               "componentName" : "commerce_unified_checkout:shippingMethod",
-              "id" : "a5ac8c11-99b0-4be9-9743-4c8081d5c5f0",
+              "id" : "883f1b4f-b69d-41b0-8618-019cf4e81322",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "431345eb-a1e1-4eb3-a6b9-6558d0862ac6",
+            "id" : "e87ef4e6-aa20-40cc-80ff-c7e6151dee22",
             "regionLabel" : "Shipping Method",
             "regionName" : "ShippingMethod",
             "renditionMap" : { },
@@ -87,12 +87,12 @@
                 "showBillingAddressHeading" : true
               },
               "componentName" : "commerce_unified_checkout:multiPaymentAccordion",
-              "id" : "2d0913a9-3af3-46a4-bbe5-8398bb979011",
+              "id" : "73b9f562-3005-4889-8222-91896efb8a6f",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "0b4cb6e2-a58e-44e3-96c0-efe36e39025e",
+            "id" : "c5baeef6-dc26-46a0-82ce-afd3f2ad569d",
             "regionLabel" : "Payment",
             "regionName" : "Payment",
             "renditionMap" : { },
@@ -102,7 +102,7 @@
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "7baff9f7-a870-42a1-9a2e-b79e5b3095f8",
+        "id" : "84e2eb68-89a9-4d34-a3bc-0d5670e3e45f",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -125,7 +125,7 @@
             "totalTextSize" : "medium"
           },
           "componentName" : "commerce_builder:cartSummary",
-          "id" : "2b58ba4b-fe57-4950-aaca-78875e011507",
+          "id" : "92a2fcc2-1b61-4e49-bb62-268d42d36171",
           "regions" : [ {
             "components" : [ {
               "componentAttributes" : {
@@ -138,12 +138,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"h2\", \"textStyle\": \"heading-medium\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "17095670-b410-4abd-8acf-7350fc85b597",
+              "id" : "b9e5f7e8-31da-4980-900e-9f8dd019ce4b",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "511ee55a-610f-4877-abd7-216804d464b0",
+            "id" : "95c6e368-d7b9-43dd-8d82-4b682b91496b",
             "regionName" : "headerText",
             "type" : "region"
           }, {
@@ -158,12 +158,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "2731bc38-54a5-4c3c-8e14-cd8bbfa00b72",
+              "id" : "48f3a8f5-0b3a-49a4-857f-710cb055a5f3",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "535f7fa0-c4a7-4f90-bf14-bc328526d32c",
+            "id" : "2aebd8f5-04f8-48f5-a503-b19005bb3de9",
             "regionName" : "promotionsLabel",
             "type" : "region"
           }, {
@@ -178,12 +178,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "97857f1f-3e5b-48bd-97b2-07dcb4d5e022",
+              "id" : "9c1962bf-87d0-43f8-a209-c6422ab5577f",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "cbdcb5fa-e40d-4bad-9c28-cf682e7785d3",
+            "id" : "2144ba6d-0bf6-4de4-bee5-b6bdbfdef8f6",
             "regionName" : "shippingLabel",
             "type" : "region"
           }, {
@@ -198,12 +198,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "0fa16038-4338-4e53-be28-e804aa41311e",
+              "id" : "2a0a39a4-1aa4-4546-9ac1-548944813bd6",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "f30ee2fa-6e13-47ee-b14f-59af16c0a75b",
+            "id" : "956d8b13-ab15-4679-85c9-70022363abb7",
             "regionName" : "subtotalLabel",
             "type" : "region"
           }, {
@@ -218,12 +218,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "0e201839-eb0e-45e6-b1c4-74d723db6746",
+              "id" : "453b2fa2-12bb-44cf-8272-e9d743c94146",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "3944efbc-2912-4219-bf77-d25e9d6fc18f",
+            "id" : "aa2a3c85-1bcf-43d7-9597-3a2c337bb899",
             "regionName" : "taxIncludedLabel",
             "type" : "region"
           }, {
@@ -238,12 +238,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "7caeaec5-f9d6-487e-89ae-840c2d103c47",
+              "id" : "ff7895de-0704-4086-962d-3bf368973ac6",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "3e398b3d-fa54-4407-9d3d-8e93bd2c6457",
+            "id" : "fd4e549f-d125-4e59-b5f6-e1524177df07",
             "regionName" : "taxLabel",
             "type" : "region"
           }, {
@@ -258,12 +258,12 @@
                 "textDisplayInfo" : "{\"headingTag\": \"p\", \"textStyle\": \"body-regular\"}"
               },
               "componentName" : "dxp_base:textBlock",
-              "id" : "55180f80-2c94-4678-b06e-d9fafde55f02",
+              "id" : "f7c5eafb-b2ef-48ad-ac12-a03825d0f94d",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "8bb6c9d4-e3e4-43ce-a719-21b432a694b5",
+            "id" : "5710fb79-6d00-431c-a9c1-0e7e8959d17e",
             "regionName" : "totalLabel",
             "type" : "region"
           } ],
@@ -271,7 +271,7 @@
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "802b34f4-5575-4210-a83e-076099622e8d",
+        "id" : "3e9cda78-40f9-4e34-89c2-84d889cc4d06",
         "regionLabel" : "Column 2",
         "regionName" : "col2",
         "renditionMap" : { },
@@ -282,7 +282,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "03698d3e-db77-4441-9f17-c6add2c01f4d",
+    "id" : "8ceb49aa-8913-4e8b-bc70-1157403fd50a",
     "regionName" : "content",
     "type" : "region"
   } ],

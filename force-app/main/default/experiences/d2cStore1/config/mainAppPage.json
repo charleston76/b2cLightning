@@ -1,9 +1,9 @@
 {
   "cmsSettings" : { },
-  "currentThemeId" : "c41eb5da-4a8e-4a13-a4b4-cbeec678097c",
+  "currentThemeId" : "20fd4aca-0c09-4930-ba0f-230022d707c1",
   "favIconAssetRef" : null,
   "headMarkup" : "<!-- General -->\n<link rel=\"shortcut icon\" href=\"{basePath}/assets/favicon.ico?{versionKey}\">\n<link rel=\"stylesheet\" href=\"{basePath}/assets/css/font-awesome.css?{versionKey}\">\n<link rel=\"stylesheet\" href=\"{basePath}/assets/css/theme.css?{versionKey}\">\n\n\n<!-- webruntime-branding-shared stylesheets -->\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/salesforce-lightning-design-system.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-site-spacing-styling-hooks.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-styling-hooks.min.css?{ versionKey }\" />\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/styles/dxp-slds-extensions.min.css?{ versionKey }\" />\n\n<link rel=\"stylesheet\" href=\"{ basePath }/assets/themes/alpine.css?{ versionKey }\" />\n\n<!-- webruntime-branding-shared stylesheets -->",
-  "id" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "id" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "isLockerServiceEnabled" : true,
   "isRelaxedCSPLevel" : false,
   "label" : "main",

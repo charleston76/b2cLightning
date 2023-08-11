@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "09ad90ab-56ef-4690-a2cf-b2b71697ab5f",
+  "id" : "c22e28dc-696e-4a3c-9fb8-5fbcb3050f7a",
   "label" : "Address Form",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"4e6f42c4-702e-4ff9-aaea-709ed26706a8\",\"columns\":[{\"UUID\":\"e209bb3f-27e0-4a20-a9a0-ca88f3c121eb\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"fc4c6a0d-4239-481f-9086-aa822e193f2a\",\"columns\":[{\"UUID\":\"3514fde2-37a0-4537-88e8-bd8a6f4361cf\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "4e6f42c4-702e-4ff9-aaea-709ed26706a8",
+      "id" : "fc4c6a0d-4239-481f-9086-aa822e193f2a",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -24,7 +24,7 @@
             "showDifferentAddressTypes" : true
           },
           "componentName" : "commerce_my_account:myAccountInputAddress",
-          "id" : "b12befd2-4034-4f0b-b78c-47ee59c402b2",
+          "id" : "153ff122-f8be-48b2-9560-333858ec97cc",
           "regions" : [ {
             "components" : [ {
               "componentAttributes" : {
@@ -38,12 +38,12 @@
                 "size" : "standard"
               },
               "componentName" : "commerce_builder:actionButtons",
-              "id" : "915a79c5-a255-4ab4-b892-0ebb3106690a",
+              "id" : "7ea5e67f-3208-45b9-806c-2c3eef781b95",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
             } ],
-            "id" : "dcab191f-b8f9-4b3b-bd58-7c40b0f9acba",
+            "id" : "daed72e0-2a92-470a-afa7-26735f88dea9",
             "regionName" : "actionButtons",
             "type" : "region"
           } ],
@@ -51,7 +51,7 @@
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "e209bb3f-27e0-4a20-a9a0-ca88f3c121eb",
+        "id" : "3514fde2-37a0-4537-88e8-bd8a6f4361cf",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -62,7 +62,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "c7f72763-60e0-47ad-be2d-b299c1d4ed65",
+    "id" : "d1c1d6a4-a7b0-4061-86d7-8a3c7de813b9",
     "regionName" : "content",
     "type" : "region"
   } ],

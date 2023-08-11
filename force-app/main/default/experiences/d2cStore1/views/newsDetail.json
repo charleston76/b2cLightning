@@ -1,20 +1,20 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "9b8a3c22-7895-4423-9453-fab868e25a3e",
+  "id" : "eaedbd63-0107-42a2-8bf8-5d969349ad45",
   "label" : "News Detail",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"c556eacf-0870-4961-a6ee-be35e13d13c6\",\"columns\":[{\"UUID\":\"4ef6d6bd-acf9-44b1-bda7-e3c6ce9c539c\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        "sectionConfig" : "{\"UUID\":\"3a105a23-c608-4581-9a1b-4c572ef5ce05\",\"columns\":[{\"UUID\":\"8ab3cadc-3acc-48f6-b58e-7d0fc859013b\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "c556eacf-0870-4961-a6ee-be35e13d13c6",
+      "id" : "3a105a23-c608-4581-9a1b-4c572ef5ce05",
       "regions" : [ {
-        "id" : "4ef6d6bd-acf9-44b1-bda7-e3c6ce9c539c",
+        "id" : "8ab3cadc-3acc-48f6-b58e-7d0fc859013b",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -25,7 +25,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "e57a779d-4436-40bf-8e44-15b5488e6713",
+    "id" : "1ef55aab-3023-4e8a-8caf-e1e4adffa467",
     "regionName" : "content",
     "type" : "region"
   }, {
@@ -37,12 +37,12 @@
         "recordId" : "{!recordId}"
       },
       "componentName" : "community_builder:seoAssistant",
-      "id" : "9cfaaeda-292d-4192-a7e8-fec0c4f30c0c",
+      "id" : "e6a05df2-f38b-4e4f-b972-5ac6996f7108",
       "renderPriority" : "NEUTRAL",
       "renditionMap" : { },
       "type" : "component"
     } ],
-    "id" : "01446282-081d-490c-becc-1e9d1f6d74ed",
+    "id" : "dc122e9b-9b54-47d0-aa51-dc02d2d18eee",
     "regionName" : "sfdcHiddenRegion",
     "type" : "region"
   } ],

@@ -1,8 +1,8 @@
 {
-  "activeViewId" : "590c5c68-c902-40db-93b8-35d7f5571a82",
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "activeViewId" : "3603cc7f-dda2-4886-bfc3-a66fd146b783",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "configurationTags" : [ ],
-  "id" : "b648008b-2bf3-4a1c-8bfd-35936037e345",
+  "id" : "32ac3e42-fa51-4c0d-aa8a-cc06f2ea48a5",
   "label" : "Register",
   "routeType" : "self-register",
   "type" : "route",

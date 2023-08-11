@@ -1,18 +1,18 @@
 {
-  "appPageId" : "bbb080ed-a03c-40b0-ad33-67bbfdca959b",
+  "appPageId" : "a1055a9c-8c31-4964-a684-80c675b9640c",
   "componentName" : "community_layout:sldsFlexibleLayout",
   "dataProviders" : [ ],
-  "id" : "7f89f635-046c-4c7b-8491-d7e859fc9cfa",
+  "id" : "5d38d2db-eb0c-4cfd-9b9a-e3fc16fa3ce4",
   "label" : "Order Summary List",
   "regions" : [ {
     "components" : [ {
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"c0a4576b-21dd-4e36-8106-0685686d6545\",\"columns\":[{\"UUID\":\"7af7addf-3a21-4acb-97d8-8a22e222a35d\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
+        "sectionConfig" : "{\"UUID\":\"26eba65b-81c7-46b7-b997-ebfcd4a539bc\",\"columns\":[{\"UUID\":\"4d10d990-fd5a-4585-a9de-88e2cc05b434\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":[]}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "c0a4576b-21dd-4e36-8106-0685686d6545",
+      "id" : "26eba65b-81c7-46b7-b997-ebfcd4a539bc",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -25,12 +25,12 @@
             "textDisplayInfo" : "{\"textStyle\": \"heading-medium\", \"headingTag\": \"h2\"}"
           },
           "componentName" : "dxp_base:textBlock",
-          "id" : "223b3549-bffa-496e-ab0d-7b2908d03e22",
+          "id" : "491a9d68-9c0e-4f41-a886-02df34f4186c",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "7af7addf-3a21-4acb-97d8-8a22e222a35d",
+        "id" : "4d10d990-fd5a-4585-a9de-88e2cc05b434",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -44,10 +44,10 @@
       "componentAttributes" : {
         "backgroundImageConfig" : "",
         "backgroundImageOverlay" : "rgba(0,0,0,0)",
-        "sectionConfig" : "{\"UUID\":\"5fcb32c2-f9c0-4e63-b382-aab703245eeb\",\"columns\":[{\"UUID\":\"4f22859c-f4b0-4271-a10d-fbb6ab7bc05e\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
+        "sectionConfig" : "{\"UUID\":\"ae6be509-e770-41d7-b6c8-6686a8c5382f\",\"columns\":[{\"UUID\":\"c85d0ccc-6fea-4572-a461-838ec27dfc42\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}"
       },
       "componentName" : "community_layout:section",
-      "id" : "5fcb32c2-f9c0-4e63-b382-aab703245eeb",
+      "id" : "ae6be509-e770-41d7-b6c8-6686a8c5382f",
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
@@ -67,12 +67,12 @@
             "viewMoreOrderBehaviour" : "SHOW_MORE"
           },
           "componentName" : "commerce_builder:orders",
-          "id" : "c100a991-eb2b-4b23-bdbd-7ab2050f4136",
+          "id" : "0deeb154-3343-4b17-ab01-5c9cb818e450",
           "renderPriority" : "NEUTRAL",
           "renditionMap" : { },
           "type" : "component"
         } ],
-        "id" : "4f22859c-f4b0-4271-a10d-fbb6ab7bc05e",
+        "id" : "c85d0ccc-6fea-4572-a461-838ec27dfc42",
         "regionLabel" : "Column 1",
         "regionName" : "col1",
         "renditionMap" : { },
@@ -83,7 +83,7 @@
       "scopedBrandingSetId" : null,
       "type" : "component"
     } ],
-    "id" : "1925a699-0567-41e0-9efa-4c4aca2f44bf",
+    "id" : "55aeed62-091d-4138-872d-1444653f6295",
     "regionName" : "content",
     "type" : "region"
   } ],

@@ -1,7 +1,7 @@
 {
   "brandingSetType" : "APP",
   "definitionName" : "b2b-storefront:branding",
-  "id" : "e9923199-2f2f-4e1b-91fc-8ab079fcdac0",
+  "id" : "0ec2cbff-dbab-4750-8fcc-7a1b46742397",
   "label" : "B2B Commerce",
   "type" : "brandingSet",
   "values" : {
@@ -111,7 +111,7 @@
     "MobileBaseFontSize" : "1rem",
     "PrimaryAccentColor" : "#005fb2",
     "PrimaryAccentForegroundColor" : "#ffffff",
-    "SiteLogo" : "/cms/delivery/media/MCE2PJ3LNRRJDR7MWJYI7ZNK345E",
+    "SiteLogo" : "/cms/delivery/media/MCG7N7GXSNRZCVTGNCOHCK7P3TSQ",
     "SuccessBackgroundColor" : "#4bca81",
     "SuccessTextColor" : "#000",
     "TextColor" : "#1c1c1c",
@@ -166,7 +166,7 @@
     "_PrimaryAccentForegroundColor1" : "#ffffff",
     "_PrimaryAccentForegroundColor2" : "#ffffff",
     "_PrimaryAccentForegroundColor3" : "#ffffff",
-    "_SiteLogoUrl" : "/cms/delivery/media/MCE2PJ3LNRRJDR7MWJYI7ZNK345E",
+    "_SiteLogoUrl" : "/cms/delivery/media/MCG7N7GXSNRZCVTGNCOHCK7P3TSQ",
     "_SuccessColor" : "#58bb62",
     "_SuccessColor1" : "rgb(68, 166, 78)",
     "_SuccessColor2" : "rgb(44, 108, 51)",
