@@ -1,7 +1,7 @@
 
 # Well, here we are!
 
-This repository is supposed to help with some necessary procedures to easily create a B2C Lighthing scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.
+This repository is supposed to help with some necessary procedures to easily create a D2C Lighthing scratch, developer, sandbox or even a production organization environment, of course, respecting some necessary steps, licenses and configurations to achieve that.
 
 
 Please, take a look on the **video demos** we have in the channel (better in playback speed 1.5)!
