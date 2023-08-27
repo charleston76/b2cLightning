@@ -6,7 +6,7 @@ This repository is supposed to help with some necessary procedures to easily cre
 
 Please, take a look on the **video demos** we have in the channel (better in playback speed 1.5)!
 
-[![Execution example](images/santosforceChannel.png)](https://www.youtube.com/channel/UCn4eRGgTiZLz1rb2qXLfjew)
+[![Execution example](images/D2cPart4TumbNail-btBR.png)](https://www.youtube.com/channel/UCn4eRGgTiZLz1rb2qXLfjew)
 
 
 Probably you may think: **from where they got those ideas?**
@@ -20,7 +20,7 @@ So simple:
 1. [Use the CMS App to Create Content](https://developer.salesforce.com/blogs/2019/11/use-the-cms-app-to-create-content)
 1. [Content Delivery API to Extend or Integrate Content](https://developer.salesforce.com/blogs/2019/11/content-delivery-api-to-extend-or-integrate-content)
 1. [JSON File Format for Content in Salesforce CMS](https://help.salesforce.com/s/articleView?id=sf.cms_import_content_json.htm&type=5)
-1. Generic ideas gathered meanwhile working in different projects around the world
+1. Generic ideas gathered meanwhile working on different projects around the world
 
 **Spoiler alert**: That multiLevel navigation is not implemented on this version yet... but it is very cool, take a look there.
 
@@ -28,8 +28,8 @@ So simple:
 To use this guidance, we are expecting that you are comfortable with:
 * [Salesforce DX](https://trailhead.salesforce.com/content/learn/projects/quick-start-salesforce-dx) ;
 * [Salesforce CLI features](https://developer.salesforce.com/tools/sfdxcli), and;
-* [Scratch Orgs](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs.htm)
-* [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line) (ok, we will not use it here, but it will help you to know).
+* [Scratch Orgs](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_scratch_orgs.htm);
+* [Git CLI](https://git-scm.com/book/en/v2/Getting-Started-The-Command-Line);
 
 ## First things first: Local environment
 
@@ -70,7 +70,7 @@ You use the things here in the following ways:
 If you already are working with scratch orgs and have all configured and defined in your main org (develop, production, etc), you just need to run the command below:
 
 * ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE] [TEMPLATE_TYPE]
-* Examples:
+* Examples (the first one uses the B2B template and the other one uses the B2C templa):
     ```
     ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2c d2cStore B2B
     ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2c d2cStore B2C
