@@ -213,7 +213,7 @@ To work with Scratch orgs, we supposed that, you need to to the steps below:
     * ./scripts/bash/2-createDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE]
     * Example:
     ```
-    ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2C d2cStore
+    ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2C d2cStore B2B
     ```
 
 ## Other org types
