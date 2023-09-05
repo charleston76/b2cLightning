@@ -80,8 +80,8 @@
           "componentAttributes" : {
             "highlightsCardBorderRadius" : 0,
             "highlightsTitle" : "Details",
-            "orderSummaryHighlightsFieldMapping" : "[{\"entity\": \"OrderSummary\",\"name\": \"OrderedDate\",\"label\": \"Ordered Date\",\"type\": \"Date/Time\"},{\"entity\": \"OrderSummary\",\"name\": \"AccountId\",\"label\": \"Account\",\"type\": \"Lookup(Account)\"},{\"entity\": \"OrderSummary\",\"name\": \"OwnerId\",\"label\": \"Placed By\",\"type\": \"Lookup(User,Group)\"},{\"entity\": \"OrderSummary\",\"name\": \"Status\",\"label\": \"Status\",\"type\": \"Picklist\"}]",
-            "orderSummaryId" : "{!Route.recordId}"
+            "orderSummaryDetails" : "{!Order.Details}",
+            "orderSummaryHighlightsFieldMapping" : "[{\"entity\":\"OrderSummary\",\"name\":\"OrderedDate\",\"label\":\"Ordered Date\",\"type\":\"Date/Time\",\"expression\":\"{!Order.OrderSummary.OrderedDate}\"},{\"entity\":\"OrderSummary\",\"name\":\"AccountId\",\"label\":\"Account\",\"type\":\"Lookup(Account)\",\"expression\":\"{!Order.OrderSummary.AccountId}\"},{\"entity\":\"OrderSummary\",\"name\":\"OwnerId\",\"label\":\"Placed By\",\"type\":\"Lookup(User,Group)\",\"expression\":\"{!Order.OrderSummary.OwnerId}\"},{\"entity\":\"OrderSummary\",\"name\":\"Status\",\"label\":\"Status\",\"type\":\"Picklist\",\"expression\":\"{!Order.OrderSummary.Status}\"}]"
           },
           "componentName" : "commerce_builder:orderDetails",
           "id" : "02206fc9-58e1-4aa5-a705-f02964a45aa9",
@@ -90,9 +90,9 @@
           "type" : "component"
         }, {
           "componentAttributes" : {
-            "grossTaxOrdersFieldMapping" : "[\n{\"entity\": \"OrderSummary\",\"name\": \"TotalProductAmountWithTax\",\"label\": \"Subtotal\",\"type\": \"Formula (Currency)\"\n},\n{\"entity\": \"OrderAdjustmentAggregateSummary\",\"name\": \"TotalProductPromotionAmount\",\"label\": \"Promotions\",\"type\": \"Currency\"\n},\n{\"entity\": \"OrderSummary\",\"name\": \"TotalAdjDeliveryAmtWithTax\",\"label\": \"Shipping\",\"type\": \"Formula (Currency)\"\n},\n{\"entity\": \"OrderSummary\",\"name\": \"TotalTaxAmount\",\"label\": \"Tax\",\"type\": \"Roll-Up Summary (SUM Order Product Summary)\"\n},\n{\"entity\": \"OrderSummary\",\"name\": \"GrandTotalAmount\",\"label\": \"Total\",\"type\": \"Formula (Currency)\"\n}\n]",
-            "netTaxOrdersFieldMapping" : "[{\"entity\": \"OrderSummary\",\"name\": \"TotalProductAmount\",\"label\": \"Subtotal\",\"type\": \"Roll-Up Summary ( Order Product Summary)\"},{\"entity\": \"OrderAdjustmentAggregateSummary\",\"name\": \"TotalProductPromotionAmount\",\"label\": \"Promotions\",\"type\": \"Currency\"},{\"entity\": \"OrderSummary\",\"name\": \"TotalAdjustedDeliveryAmount\",\"label\": \"Shipping\",\"type\": \"Roll-Up Summary ( Order Product Summary)\"},{\"entity\": \"OrderSummary\",\"name\": \"TotalTaxAmount\",\"label\": \"Tax\",\"type\": \"Roll-Up Summary (SUM Order Product Summary)\"},{\"entity\": \"OrderSummary\",\"name\": \"GrandTotalAmount\",\"label\": \"Total\",\"type\": \"Formula (Currency)\"}]",
-            "orderSummaryId" : "{!Route.recordId}",
+            "grossTaxOrdersFieldMapping" : "[{\"entity\":\"OrderSummary\",\"name\":\"TotalProductAmountWithTax\",\"label\":\"Subtotal\",\"type\":\"Formula (Currency)\",\"expression\":\"{!Order.OrderSummary.TotalProductAmountWithTax}\"},{\"entity\":\"OrderAdjustmentAggregateSummary\",\"name\":\"TotalProductPromotionAmount\",\"label\":\"Promotions\",\"type\":\"Currency\",\"expression\":\"{!Order.OrderAdjustmentAggregateSummary.TotalProductPromotionAmount}\"},{\"entity\":\"OrderSummary\",\"name\":\"TotalAdjDeliveryAmtWithTax\",\"label\":\"Shipping\",\"type\":\"Formula (Currency)\",\"expression\":\"{!Order.OrderSummary.TotalAdjDeliveryAmtWithTax}\"},{\"entity\":\"OrderSummary\",\"name\":\"TotalTaxAmount\",\"label\":\"Tax\",\"type\":\"Roll-Up Summary (SUM Order Product Summary)\",\"expression\":\"{!Order.OrderSummary.TotalTaxAmount}\"},{\"entity\":\"OrderSummary\",\"name\":\"GrandTotalAmount\",\"label\":\"Total\",\"type\":\"Formula (Currency)\",\"expression\":\"{!Order.OrderSummary.GrandTotalAmount}\"}]",
+            "netTaxOrdersFieldMapping" : "[{\"entity\":\"OrderSummary\",\"name\":\"TotalProductAmount\",\"label\":\"Subtotal\",\"type\":\"Roll-Up Summary ( Order Product Summary)\",\"expression\":\"{!Order.OrderSummary.TotalProductAmount}\"},{\"entity\":\"OrderAdjustmentAggregateSummary\",\"name\":\"TotalProductPromotionAmount\",\"label\":\"Promotions\",\"type\":\"Currency\",\"expression\":\"{!Order.OrderAdjustmentAggregateSummary.TotalProductPromotionAmount}\"},{\"entity\":\"OrderSummary\",\"name\":\"TotalAdjustedDeliveryAmount\",\"label\":\"Shipping\",\"type\":\"Roll-Up Summary ( Order Product Summary)\",\"expression\":\"{!Order.OrderSummary.TotalAdjustedDeliveryAmount}\"},{\"entity\":\"OrderSummary\",\"name\":\"TotalTaxAmount\",\"label\":\"Tax\",\"type\":\"Roll-Up Summary (SUM Order Product Summary)\",\"expression\":\"{!Order.OrderSummary.TotalTaxAmount}\"},{\"entity\":\"OrderSummary\",\"name\":\"GrandTotalAmount\",\"label\":\"Total\",\"type\":\"Formula (Currency)\",\"expression\":\"{!Order.OrderSummary.GrandTotalAmount}\"}]",
+            "orderSummaryDetails" : "{!Order.Details}",
             "showHorizontalLineAboveLastField" : true,
             "showLastFieldAsBold" : true,
             "totalsCardBorderRadius" : 0,
@@ -106,7 +106,7 @@
         }, {
           "componentAttributes" : {
             "borderRadius" : 0,
-            "orderSummaryId" : "{!Route.recordId}",
+            "orderPromotionDetails" : "{!Order.Adjustments}",
             "promotionTitle" : "Applied Promotions"
           },
           "componentName" : "commerce_builder:orderAppliedPromotions",
@@ -123,12 +123,12 @@
       }, {
         "components" : [ {
           "componentAttributes" : {
-            "orderSummaryId" : "{!Route.recordId}",
+            "orderDeliveryGroups" : "{!Order.DeliveryGroups}",
             "otherAdjustmentsLabel" : "Other Adjustments",
             "prefixToShippingGroup" : "Ship To:",
-            "productFieldMapping" : "[{\"entity\": \"OrderItemSummary\",\"name\": \"StockKeepingUnit\",\"label\": \"Product SKU\",\"type\": \"Text(255)\"},{\"entity\": \"OrderItemSummary\",\"name\": \"Quantity\",\"label\": \"Quantity\",\"type\": \"Number(18, 0)\"},{\"entity\": \"OrderItemSummary\",\"name\": \"TotalLineAdjustmentAmount\",\"label\": \"Line Adjustments\",\"type\": \"Roll-Up Summary ( Order Product Adjustment Line Item Summary)\"},{\"entity\": \"OrderItemSummary\",\"name\": \"AdjustedLineAmount\",\"label\": \"Subtotal\",\"type\": \"Formula (Currency)\"}]",
+            "productFieldMapping" : "[{\"entity\":\"OrderItemSummary\",\"name\":\"StockKeepingUnit\",\"label\":\"Product SKU\",\"type\":\"Text(255)\",\"expression\":\"{!Order.OrderItemSummary.StockKeepingUnit}\"},{\"entity\":\"OrderItemSummary\",\"name\":\"Quantity\",\"label\":\"Quantity\",\"type\":\"Number(18, 0)\",\"expression\":\"{!Order.OrderItemSummary.Quantity}\"},{\"entity\":\"OrderItemSummary\",\"name\":\"TotalLineAdjustmentAmount\",\"label\":\"Line Adjustments\",\"type\":\"Roll-Up Summary ( Order Product Adjustment Line Item Summary)\",\"expression\":\"{!Order.OrderItemSummary.TotalLineAdjustmentAmount}\"},{\"entity\":\"OrderItemSummary\",\"name\":\"AdjustedLineAmount\",\"label\":\"Subtotal\",\"type\":\"Formula (Currency)\",\"expression\":\"{!Order.OrderItemSummary.AdjustedLineAmount}\"}]",
             "productUnavailableMessage" : "(No More Available)",
-            "shippingGroupFieldMapping" : "[{\"entity\": \"OrderDeliveryMethod\",\"name\": \"Name\",\"label\": \"Name\",\"type\": \"Text(255)\"},{\"entity\": \"OrderDeliveryGroupSummary\",\"name\": \"TotalLineAmount\",\"label\": \"Shipping Subtotal\",\"type\": \"Currency(16, 2)\"}]",
+            "shippingGroupFieldMapping" : "[{\"entity\":\"OrderDeliveryMethod\",\"name\":\"Name\",\"label\":\"Name\",\"type\":\"Text(255)\",\"expression\":\"{!Order.OrderDeliveryMethod.Name}\"},{\"entity\":\"OrderDeliveryGroupSummary\",\"name\":\"TotalLineAmount\",\"label\":\"Shipping Subtotal\",\"type\":\"Currency(16, 2)\",\"expression\":\"{!Order.OrderDeliveryGroupSummary.TotalLineAmount}\"}]",
             "showMoreProductLabel" : "Show More",
             "showProductImage" : true,
             "showTotal" : true,
@@ -153,23 +153,6 @@
     } ],
     "id" : "a2c868f3-a294-4a41-85b7-9845a96320bb",
     "regionName" : "content",
-    "type" : "region"
-  }, {
-    "components" : [ {
-      "componentAttributes" : {
-        "customHeadTags" : "",
-        "description" : "",
-        "pageTitle" : "{!Record._Object}: {!Record._Title}",
-        "recordId" : "{!recordId}"
-      },
-      "componentName" : "community_builder:seoAssistant",
-      "id" : "ea5a6e36-7468-47f9-9165-da942b46232a",
-      "renderPriority" : "NEUTRAL",
-      "renditionMap" : { },
-      "type" : "component"
-    } ],
-    "id" : "1d947baa-f8b9-494a-9580-219a80837b38",
-    "regionName" : "sfdcHiddenRegion",
     "type" : "region"
   } ],
   "themeLayoutType" : "Inner",

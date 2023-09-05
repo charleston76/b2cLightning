@@ -21,6 +21,18 @@
       "regions" : [ {
         "components" : [ {
           "componentAttributes" : {
+            "checkoutDetails" : "{!Checkout.Details}",
+            "emailLabel" : "Email",
+            "phoneNumberLabel" : "Phone Number",
+            "phoneNumberPlaceholderText" : ""
+          },
+          "componentName" : "commerce_builder:checkoutContactInfo",
+          "id" : "6421b57b-ee72-48ac-90a7-de02dffd7ce3",
+          "renderPriority" : "NEUTRAL",
+          "renditionMap" : { },
+          "type" : "component"
+        }, {
+          "componentAttributes" : {
             "stepsConfig" : "[{\"checkoutStepKey\":\"ShippingAddress\",\"checkoutStepName\":\"Shipping Address\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:guestContact\",\"attributes\":null},{\"fqn\":\"commerce_unified_checkout:shipping\",\"attributes\":null}]},{\"checkoutStepKey\":\"ShippingMethod\",\"checkoutStepName\":\"Shipping Method\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:shippingMethod\",\"attributes\":null}]},{\"checkoutStepKey\":\"Payment\",\"checkoutStepName\":\"Payment\",\"proceedButtonLabel\":\"Place Order\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:multiPaymentAccordion\",\"attributes\":null}]}]"
           },
           "componentName" : "commerce_unified_checkout:checkout",
@@ -28,29 +40,20 @@
           "regions" : [ {
             "components" : [ {
               "componentAttributes" : {
-                "emailLabel" : "Email"
-              },
-              "componentName" : "commerce_unified_checkout:guestContact",
-              "id" : "793be0c5-f7fa-494c-8c3a-9155c24757e6",
-              "renderPriority" : "NEUTRAL",
-              "renditionMap" : { },
-              "type" : "component"
-            }, {
-              "componentAttributes" : {
-                "backToListLabel" : "Back to list",
+                "checkoutAddresses" : "{!Checkout.Addresses}",
+                "checkoutDetails" : "{!Checkout.Details}",
                 "componentHeaderEditAddressLabel" : "Edit Address",
-                "editAddressLabel" : "Edit",
+                "editAddressLabel" : "Edit Address",
                 "makeDefaultAddressLabel" : "Make this my default address",
                 "newAddressButtonLabel" : "New Address",
-                "phoneNumberLabel" : "Phone Number",
-                "phoneNumberPlaceholderText" : "",
                 "shippingAddressLimit" : "6",
                 "shippingAddressLimitIncrease" : "6",
+                "showCompanyName" : false,
                 "showMoreButtonLabel" : "Show More",
                 "summaryModeEnabled" : true
               },
-              "componentName" : "commerce_unified_checkout:shipping",
-              "id" : "b1b2fb3c-a319-4134-923e-5f87078af242",
+              "componentName" : "commerce_builder:checkoutDeliveryAddress",
+              "id" : "607b9d0f-86f8-45c0-a86a-748ddf617079",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
@@ -62,9 +65,11 @@
             "type" : "region"
           }, {
             "components" : [ {
-              "componentAttributes" : { },
-              "componentName" : "commerce_unified_checkout:shippingMethod",
-              "id" : "883f1b4f-b69d-41b0-8618-019cf4e81322",
+              "componentAttributes" : {
+                "checkoutDetails" : "{!Checkout.Details}"
+              },
+              "componentName" : "commerce_builder:checkoutDeliveryMethod",
+              "id" : "6730ee1f-b07c-411d-b244-1dab4ae574c4",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"
@@ -77,17 +82,19 @@
           }, {
             "components" : [ {
               "componentAttributes" : {
-                "billingAddressFieldsetLegendLabel" : "Billing Address",
                 "billingAddressSameAsShippingAddressLabel" : "Same as shipping address",
                 "cardPaymentLabel" : "Credit Card",
+                "checkoutDetails" : "{!Checkout.Details}",
                 "headerLabel" : "Purchase Order",
                 "inputLabel" : "Purchase Order Number",
+                "isPurchaseOrderAvailable" : true,
+                "phoneNumberLabel" : "Phone Number",
+                "phoneNumberPlaceholderText" : "",
                 "placeholderLabel" : "",
-                "requireBillingAddress" : true,
-                "showBillingAddressHeading" : true
+                "requireBillingAddress" : true
               },
-              "componentName" : "commerce_unified_checkout:multiPaymentAccordion",
-              "id" : "73b9f562-3005-4889-8222-91896efb8a6f",
+              "componentName" : "commerce_builder:checkoutDualPayment",
+              "id" : "c9e63a28-7ba1-462c-9e66-9ab2dddd1cdf",
               "renderPriority" : "NEUTRAL",
               "renditionMap" : { },
               "type" : "component"

@@ -67,17 +67,6 @@
           "renditionMap" : { },
           "type" : "component"
         }, {
-          "componentAttributes" : {
-            "browseStep" : 3,
-            "headerText" : "Shop By Category",
-            "pageSize" : 6
-          },
-          "componentName" : "b2c_lite_commerce:shopCategory",
-          "id" : "c2da2538-3eec-4ee1-9b28-a7c010f813b4",
-          "renderPriority" : "NEUTRAL",
-          "renditionMap" : { },
-          "type" : "component"
-        }, {
           "componentAttributes" : { },
           "componentName" : "commerce_builder:searchResultsLayout",
           "id" : "d2641b31-e239-4da4-b54b-18d44e98ebca",
@@ -183,9 +172,13 @@
                 "gridColumnSpacing" : "small",
                 "gridMaxColumnsDisplayed" : "3",
                 "gridRowSpacing" : "small",
+                "incrementValueGuideText" : "Increment quantity is {0}",
                 "listRowSpacing" : "small",
+                "maximumValueGuideText" : "Maximum quantity is {0}",
+                "minimumValueGuideText" : "Minimum quantity is {0}",
                 "negotiatedPriceTextSize" : "medium",
                 "originalPriceTextSize" : "medium",
+                "quantitySelectorLabel" : "QTY",
                 "resultsLayout" : "list",
                 "searchResults" : "{!Search.Results}",
                 "searchResultsFields" : "{!Search.Name},{!Search.StockKeepingUnit}",
