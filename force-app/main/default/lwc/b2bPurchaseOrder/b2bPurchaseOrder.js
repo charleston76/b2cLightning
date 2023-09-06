@@ -19,6 +19,7 @@ export default class B2bPurchaseOrder extends LightningElement {
     @api
     placeHolder;
     purchaseOrderNumber = '';
+    showError=false;
 
     /**
      * Required by checkout to register as a checkout component
@@ -28,7 +29,12 @@ export default class B2bPurchaseOrder extends LightningElement {
     checkoutMode = 1;
 
     isValidPurchaseOrder(){
-        this.purchaseOrderNumber.trim() != '' && this.purchaseOrderNumber.length > 3
+        console.log('isValidPurchaseOrder ', this.purchaseOrderNumber.trim() != '' && this.purchaseOrderNumber.length > 3);
+        return this.purchaseOrderNumber.trim() != '' && this.purchaseOrderNumber.length > 3
+    }
+
+    handleChange(event) {
+        this.purchaseOrderNumber = event.target.value;
     }
 
     /**
@@ -36,6 +42,7 @@ export default class B2bPurchaseOrder extends LightningElement {
      */
     @api
     get checkValidity() {
+        console.log('checkValidity ');
         return this.isValidPurchaseOrder();
     }
 
@@ -53,8 +60,9 @@ export default class B2bPurchaseOrder extends LightningElement {
     @api
     reportValidity() {
         let isValid = ! this.isValidPurchaseOrder();
+        console.log('reportValidity isValid ', isValid);
         this.showError = isValid;
- 
+        console.log('reportValidity showError ', this.showError);
         return isValid;
     }    
  

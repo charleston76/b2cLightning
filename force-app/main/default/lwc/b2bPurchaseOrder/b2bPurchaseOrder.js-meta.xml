@@ -2,7 +2,7 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>58.0</apiVersion>
     <isExposed>true</isExposed>
-    <masterLabel>B2B Pruchase Order</masterLabel>
+    <masterLabel>B2B Purchase Order</masterLabel>
     <targets>
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
@@ -13,7 +13,7 @@
             label="Error Message" 
             name="errorMessage" 
             type="String" 
-            default="Please fill the checkbox Pruchase Order"/>
+            default="Please fill the mandatory Purchase Order"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
