@@ -1,0 +1,15 @@
+<template>
+    <div>
+        <input
+            type="text"
+            id="purchaseOrder"
+            name="terms"
+            placeholder={placeHolder}
+            value={purchaseOrderNumber}
+            onchange={handleChange}
+        ></input>
+    </div>
+    <label if:true={showError} class="slds-text-color_error">
+        {errorMessage}
+    </label>    
+</template>
