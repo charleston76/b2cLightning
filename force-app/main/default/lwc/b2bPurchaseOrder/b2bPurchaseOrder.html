@@ -10,7 +10,7 @@
             onchange={handleChange}
         ></input>
     </div>
-    <label if:true={showError} class="slds-text-color_error">
+    <label if:true={showError} class="slds-has-error slds-form-element__help slds-required">
         {errorMessage}
     </label>    
 </template>

@@ -33,6 +33,10 @@ export default class B2bPurchaseOrder extends LightningElement {
         return this.purchaseOrderNumber.trim() != '' && this.purchaseOrderNumber.length > 3
     }
 
+    /**
+     * Update the variable
+     * @param {*} event
+     */
     handleChange(event) {
         this.purchaseOrderNumber = event.target.value;
     }
@@ -64,6 +68,40 @@ export default class B2bPurchaseOrder extends LightningElement {
         this.showError = isValid;
         console.log('reportValidity showError ', this.showError);
         return isValid;
-    }    
+    } 
+    
+   /**
+    * Works in Accordion when terms component before payment component.
+    * 
+    * Works in One Page when terms component placed anywhere.
+    * 
+    * Can be in same step/section as payment component as long as it is placed 
+    * before payment info.
+    *
+    * (In this case this method is redundant and optional but shows as an 
+    * example of how checkoutSave can also throw an error to temporarily halt 
+    * checkout on the ui)
+    */
+    @api
+    checkoutSave() {
+        if (!this.checkValidity) {
+            throw new Error(this.errorMessage);
+        }
+    }
+
+    /**
+     * The method is called in one-page layout only when the place order button 
+     * is clicked. Used in conjunction with the payment component/section for 
+     * checkout one-page layout.
+     *
+     * Must be placed before the payment component in the same payment section 
+     * or any prior section.
+     *
+     * @type Promise<void>
+     */
+    @api
+    placeOrder() {
+        return this.reportValidity();
+    }
  
 }

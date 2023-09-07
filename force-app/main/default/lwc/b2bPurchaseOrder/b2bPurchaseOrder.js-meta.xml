@@ -13,7 +13,7 @@
             label="Error Message" 
             name="errorMessage" 
             type="String" 
-            default="Please fill the mandatory Purchase Order"/>
+            default="Please fill the mandatory Purchase Order Number"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>

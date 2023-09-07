@@ -33,7 +33,7 @@
           "type" : "component"
         }, {
           "componentAttributes" : {
-            "stepsConfig" : "[{\"checkoutStepKey\":\"ShippingAddress\",\"checkoutStepName\":\"Shipping Address\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:guestContact\",\"attributes\":null},{\"fqn\":\"commerce_unified_checkout:shipping\",\"attributes\":null}]},{\"checkoutStepKey\":\"ShippingMethod\",\"checkoutStepName\":\"Shipping Method\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:shippingMethod\",\"attributes\":null}]},{\"checkoutStepKey\":\"Payment\",\"checkoutStepName\":\"Payment\",\"proceedButtonLabel\":\"Place Order\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:multiPaymentAccordion\",\"attributes\":null}]}]"
+            "stepsConfig" : "[{\"checkoutStepKey\":\"ShippingAddress\",\"checkoutStepName\":\"Shipping Address\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:guestContact\",\"attributes\":null},{\"fqn\":\"commerce_unified_checkout:shipping\",\"attributes\":null}]},{\"checkoutStepKey\":\"ShippingMethod\",\"checkoutStepName\":\"Shipping Method\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:shippingMethod\",\"attributes\":null}]},{\"checkoutStepKey\":\"PurchaseOrder\",\"checkoutStepName\":\"Purchase Order\",\"proceedButtonLabel\":\"Next\",\"isExpanded\":true,\"seedComponents\":[]},{\"checkoutStepKey\":\"Payment\",\"checkoutStepName\":\"Payment\",\"proceedButtonLabel\":\"Place Order\",\"isExpanded\":true,\"seedComponents\":[{\"fqn\":\"commerce_unified_checkout:multiPaymentAccordion\",\"attributes\":null}]}]"
           },
           "componentName" : "commerce_unified_checkout:checkout",
           "id" : "73dd2a9d-0c91-4389-a48c-9829c2640cf3",
@@ -77,6 +77,22 @@
             "id" : "e87ef4e6-aa20-40cc-80ff-c7e6151dee22",
             "regionLabel" : "Shipping Method",
             "regionName" : "ShippingMethod",
+            "renditionMap" : { },
+            "type" : "region"
+          }, {
+            "components" : [ {
+              "componentAttributes" : {
+                "errorMessage" : "Please fill the mandatory Purchase Order"
+              },
+              "componentName" : "c:b2bPurchaseOrder",
+              "id" : "d9286e94-6d64-4997-83f2-dfcede8156b7",
+              "renderPriority" : "NEUTRAL",
+              "renditionMap" : { },
+              "type" : "component"
+            } ],
+            "id" : "6d997f2d-c587-4ea7-9388-bc12d1bd8448",
+            "regionLabel" : "Purchase Order Number",
+            "regionName" : "PurchaseOrder",
             "renditionMap" : { },
             "type" : "region"
           }, {
