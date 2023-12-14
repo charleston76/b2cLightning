@@ -15,6 +15,17 @@
 # - activate the store
 # - publish your store so that the changes are reflected
 
+function createJsonFile() {
+    fieldValues="{\"records\": [ {$1} ]}" 
+    echo $fieldValues
+    # Clear the previous data
+    echo ""  > Data.json
+    rm  Data.json
+    # Save the new data
+    echo "$fieldValues" > Data.json
+}
+
+
 function createNewQuery() {
     soqlQuery=$1
     echo "$soqlQuery"
@@ -28,6 +39,7 @@ function createNewQuery() {
 function removeTempFiles(){
     rm  query.txt
     rm  apexRun.apex
+	rm  Data.json
 }
 
 function exit_error_message() {
@@ -116,7 +128,12 @@ function register_and_map_integration() {
 		echo "Make sure that you run convert-examples-to-sfdx.sh and execute sfdx force:source:push -f before setting up your store."
 	else
 		# Register the Apex class. If the class is already registered, a "duplicate value found" error will be displayed but the script will continue.
-		sfdx force:data:record:create -s RegisteredExternalService -v "DeveloperName=$2 ExternalServiceProviderId=$apexClassId ExternalServiceProviderType=$3 MasterLabel=$2"
+		# sfdx force:data:record:create -s RegisteredExternalService -v "DeveloperName=$2 ExternalServiceProviderId=$apexClassId ExternalServiceProviderType=$3 MasterLabel=$2"
+		objectName="RegisteredExternalService"
+		attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+		fieldValues="\"DeveloperName\":\"$2\", \"ExternalServiceProviderId\":\"$apexClassId\", \"ExternalServiceProviderType\":\"$3\", \"MasterLabel\":\"$2\""
+		createJsonFile "$attributes $fieldValues"
+		sf data import tree --files Data.json
 
 		# Map the Apex class to the store if no other mapping exists for the same Service Provider Type
 		# local storeIntegratedServiceId=`sf data query -q "SELECT Id FROM StoreIntegratedService WHERE ServiceProviderType='$3' AND StoreId='$storeId' LIMIT 1" -r csv |tail -n +2`
@@ -130,7 +147,13 @@ function register_and_map_integration() {
 			createNewQuery "SELECT Id FROM RegisteredExternalService WHERE ExternalServiceProviderId='$apexClassId' LIMIT 1"
 			local registeredExternalServiceId=`sf data query --file query.txt -r csv |tail -n +2`
 
-			sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$registeredExternalServiceId StoreId=$storeId ServiceProviderType=$3"
+			# sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$registeredExternalServiceId StoreId=$storeId ServiceProviderType=$3"
+			objectName="StoreIntegratedService"
+			attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+			fieldValues="\"Integration\":\"$registeredExternalServiceId\", \"StoreId\":\"$storeId\", \"ServiceProviderType\":\"$3\""
+			createJsonFile "$attributes $fieldValues"
+			sf data import tree --files Data.json
+
 		else
 			echo "There is already a mapping in this store for $3 ServiceProviderType: $storeIntegratedServiceId"
 		fi
@@ -150,7 +173,12 @@ function map_standard_integration {
 
 	if [ -z "$integrationId" ]
 	then
-		sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$integrationName StoreId=$storeId ServiceProviderType=$serviceProviderType"
+		# sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$integrationName StoreId=$storeId ServiceProviderType=$serviceProviderType"
+		objectName="StoreIntegratedService"
+		attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+		fieldValues="\"Integration\":\"$integrationName\", \"StoreId\":\"$storeId\", \"ServiceProviderType\":\"$serviceProviderType\""
+		createJsonFile "$attributes $fieldValues"
+		sf data import tree --files Data.json
 		echo "To register an external ($serviceProviderType) integration, delete the internal mapping and then add the external ($serviceProviderType) mapping.  See the code for details how."
 	else
 		echo "There is already a mapping in this store for ($serviceProviderType) ServiceProviderType: $integrationId"
@@ -174,8 +202,13 @@ function register_and_map_credit_card_payment_integration {
 	apexClassId=`sf data query --file query.txt -r csv |tail -n +2`
 
 	echo "Creating PaymentGatewayProvider record using ApexAdapterId=$apexClassId."
-	# sfdx force:data:record:create -s PaymentGatewayProvider -v "DeveloperName=SalesforcePGP ApexAdapterId=$apexClassId MasterLabel=SalesforcePGP IdempotencySupported=Yes Comments=Comments"
-	sfdx force:data:record:create -s PaymentGatewayProvider -v "DeveloperName=AuthorizeNetPGProvider ApexAdapterId=$apexClassId MasterLabel=AuthorizeNetPGProvider IdempotencySupported=Yes Comments=Comments"
+	# sfdx force:data:record:create -s PaymentGatewayProvider -v "DeveloperName=AuthorizeNetPGProvider ApexAdapterId=$apexClassId MasterLabel=AuthorizeNetPGProvider IdempotencySupported=Yes Comments=Comments"
+	objectName="PaymentGatewayProvider"
+	attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+	fieldValues="\"DeveloperName\":\"AuthorizeNetPGProvider\", \"ApexAdapterId\":\"$apexClassId\", \"MasterLabel\":\"AuthorizeNetPGProvider\", \"IdempotencySupported\":\"Yes\", \"Comments\":\"Comments\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
 
 	# Creating Payment Gateway
 	# paymentGatewayProviderId=`sf data query -q "SELECT Id FROM PaymentGatewayProvider WHERE DeveloperName='AuthorizeNetPGProvider' LIMIT 1" -r csv | tail -n +2`
@@ -187,8 +220,13 @@ function register_and_map_credit_card_payment_integration {
 	namedCredentialId=`sf data query --file query.txt -r csv |tail -n +2`
 
 	echo "Creating PaymentGateway record using MerchantCredentialId=$namedCredentialId, PaymentGatewayProviderId=$paymentGatewayProviderId."
-	# sfdx force:data:record:create -s PaymentGateway -v "MerchantCredentialId=$namedCredentialId PaymentGatewayName=SalesforcePG PaymentGatewayProviderId=$paymentGatewayProviderId Status=Active"
-	sfdx force:data:record:create -s PaymentGateway -v "MerchantCredentialId=$namedCredentialId PaymentGatewayName=AuthorizeNetPGateway PaymentGatewayProviderId=$paymentGatewayProviderId Status=ACTIVE Comments='This is the payment gateway related with Authorize.Net'"
+	# sfdx force:data:record:create -s PaymentGateway -v "MerchantCredentialId=$namedCredentialId PaymentGatewayName=AuthorizeNetPGateway PaymentGatewayProviderId=$paymentGatewayProviderId Status=ACTIVE Comments='This is the payment gateway related with Authorize.Net'"
+	objectName="PaymentGateway"
+	attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+	fieldValues="\"MerchantCredentialId\":\"$namedCredentialId\", \"PaymentGatewayName\":\"AuthorizeNetPGateway\", \"PaymentGatewayProviderId\":\"$paymentGatewayProviderId\", \"Status\":\"ACTIVE\", \"Comments\":\"This is the payment gateway related with Authorize.Net\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
 
 	# Creating Store Integrated Service
 	# storeId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$communityNetworkName' LIMIT 1" -r csv | tail -n +2`
@@ -202,7 +240,13 @@ function register_and_map_credit_card_payment_integration {
 
 
 	echo "Creating StoreIntegratedService using the $communityNetworkName store and Integration=$paymentGatewayId (PaymentGatewayId)"
-	sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$paymentGatewayId StoreId=$storeId ServiceProviderType=Payment"
+	# sfdx force:data:record:create -s StoreIntegratedService -v "Integration=$paymentGatewayId StoreId=$storeId ServiceProviderType=Payment"
+	objectName="StoreIntegratedService"
+	attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+	fieldValues="\"Integration\":\"$paymentGatewayId\", \"StoreId\":\"$storeId\", \"ServiceProviderType\":\"Payment\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
 }
 
 register_and_map_integration "B2BCheckInventorySample" "CHECK_INVENTORY" "Inventory"
@@ -272,7 +316,13 @@ then
 	createNewQuery "SELECT Id FROM UserRole WHERE Name = 'CEO'"
 	ceoID=`sf data query --file query.txt -r csv |tail -n +2`
 
-	sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
+	# sfdx force:data:record:create -s UserRole -v "ParentRoleId='$ceoID' Name='AdminRoleScriptCreation' DeveloperName='AdminRoleScriptCreation' RollupDescription='AdminRoleScriptCreation' "
+	objectName="UserRole"
+	attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+	fieldValues="\"ParentRoleId\":\"$ceoID\", \"Name\":\"AdminRoleScriptCreation\", \"DeveloperName\":\"AdminRoleScriptCreation\", \"RollupDescription\":\"AdminRoleScriptCreation\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
 	# after creating, just wait a little to get the id back
 	# newRoleID=`sf data query --query \ "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'" -r csv |tail -n +2`
 	createNewQuery "SELECT Id FROM UserRole WHERE Name = 'AdminRoleScriptCreation'"
@@ -295,7 +345,10 @@ userId=`sf data query --file query.txt -r csv |tail -n +2`
 
 echo_attention "Logged in username $userName ID $userId"
 # after creating, just wait a little to get the id back
-sfdx force:data:record:update -s User -w "Id='$userId' username='$userName'" -v "UserRoleId='$newRoleID'" 
+# sfdx force:data:record:update -s User -w "Id='$userId' username='$userName'" -v "UserRoleId='$newRoleID'" 
+# Since we have a bash issue running on windows system, I have separeted the update
+sf data update record --sobject User --record-id $userId --values "username='$userName'"
+sf data update record --sobject User --record-id $userId --values "UserRoleId='$newRoleID'"
 
 # Putted on the manifest to deploy there
 # echo_attention "Deploying the profile to create the user"
@@ -324,7 +377,15 @@ echo_attention "Assigning the Buyer permission set to the new user $createdUsern
 sfdx force:user:permset:assign --permsetname B2BBuyer --targetusername  $userName --onbehalfof $createdUsername
 
 # Update the user information to something more friendly
-sfdx force:data:record:update -s User -w "Username='$createdUsername'" -v "FirstName='User ${scratchOrgName}'" 
+# First get the user ID
+# userId=`sf data query --query \ "SELECT Id FROM User WHERE username = '$userName'" -r csv |tail -n +2`
+createNewQuery "SELECT Id FROM User WHERE username = '$createdUsername'"
+createdUserId=`sf data query --file query.txt -r csv |tail -n +2`
+# sfdx force:data:record:update -s User -w "Username='$createdUsername'" -v "FirstName='User ${scratchOrgName}'" 
+# Since we have a bash issue running on windows system, I have separeted the update
+sf data update record --sobject User --record-id $createdUserId --values "Username='$createdUsername'"
+sf data update record --sobject User --record-id $createdUserId --values "FirstName='User $scratchOrgName'"
+
 
 echo "Getting the contactId"
 # contactId=`sf data query --query \ "SELECT ContactId FROM User WHERE Username = '${createdUsername}' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
@@ -335,7 +396,10 @@ contactId=`sf data query --file query.txt -r csv |tail -n +2`
 echo_attention "Updating the contact information to the createdUsername $createdUsername ContactId $contactId"
 
 # Update the contact information to something more friendly
-sfdx force:data:record:update -s Contact -w "Id='$contactId'" -v "FirstName='Contact $scratchOrgName' LastName='$storename' Title='Mr.'" 
+# sfdx force:data:record:update -s Contact -w "Id='$contactId'" -v "FirstName='Contact $scratchOrgName' LastName='$storename' Title='Mr.'" 
+sf data update record --sobject Contact --record-id $contactId --values "FirstName='Contact $scratchOrgName'"
+sf data update record --sobject Contact --record-id $contactId --values "LastName='$storename'"
+sf data update record --sobject Contact --record-id $contactId --values "Title='Mr.'"
 
 echo "Selecting Account ID."
 # accountID=`sf data query --query \ "SELECT AccountId FROM Contact WHERE Id='$contactId' ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
@@ -346,14 +410,22 @@ accountID=`sf data query --file query.txt -r csv |tail -n +2`
 echo_attention "ContactId $contactId related with AccountId $accountID "
 
 # Update the account information to something more friendly
-sfdx force:data:record:update -s Account -w "Id='$accountID'" -v "Name='Account ${scratchOrgName} ${storename}' isBuyerEnabled__c=true" 
+# sfdx force:data:record:update -s Account -w "Id='$accountID'" -v "Name='Account ${scratchOrgName} ${storename}' isBuyerEnabled__c=true" 
+sf data update record --sobject Account --record-id $accountID --values "Name='Account $scratchOrgName $storename'"
+sf data update record --sobject Account --record-id $accountID --values "isBuyerEnabled__c=true"
 
 
 buyerAccountName="$storename Buyer Account"
 echo "Buyer account name defined as $buyerAccountName" 
 
 echo "Making the Account a Buyer Account."
-sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerAccountName' isActive=true"
+# sfdx force:data:record:create -s BuyerAccount -v "BuyerId='$accountID' Name='$buyerAccountName' isActive=true"
+objectName="BuyerAccount"
+attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+fieldValues="\"BuyerId\":\"$accountID\", \"Name\":\"$buyerAccountName\", \"isActive\":\"true\""
+createJsonFile "$attributes $fieldValues"
+sf data import tree --files Data.json
+
 
 # Assign Account to Buyer Group
 echo "Assigning Buyer Account to Buyer Group."
@@ -361,7 +433,14 @@ echo "Assigning Buyer Account to Buyer Group."
 createNewQuery "SELECT Id FROM BuyerGroup WHERE Name = '${buyergroupName}'"
 buyergroupID=`sf data query --file query.txt -r csv |tail -n +2`
 
-sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
+# sfdx force:data:record:create -s BuyerGroupMember -v "BuyerGroupId='$buyergroupID' BuyerId='$accountID'"
+objectName="BuyerGroupMember"
+attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+fieldValues="\"BuyerGroupId\":\"$buyergroupID\", \"BuyerId\":\"$accountID\""
+createJsonFile "$attributes $fieldValues"
+sf data import tree --files Data.json
+
+
 rm -rf setupB2b
 
 # Add Contact Point Addresses to the buyer account associated with the buyer user.
@@ -374,10 +453,20 @@ existingCPAForBuyerAccount=`sf data query --file query.txt -r csv |tail -n +2`
 
 if [ -z "$existingCPAForBuyerAccount" ]
 then
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Shipping' PostalCode='99950' Street='333 Seymour Street (Shipping)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Billing' PostalCode='99949' Street='333 Seymour Street (Billing)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Shipping' PostalCode='99948' Street='415 Mission Street (Shipping)'"
-	sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Billing' PostalCode='99957' Street='415 Mission Street (Billing)'"
+	# sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Shipping' PostalCode='99950' Street='333 Seymour Street (Shipping)'"
+	objectName="ContactPointAddress"
+	attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+	fieldValues="\"AddressType\":\"Shipping\", \"ParentId\":\"$accountID\", \"ActiveFromDate\":\"2023-01-01\", \"ActiveToDate\":\"2040-01-01\", \"City\":\"California\", \"Country\":\"US\", \"IsDefault\":\"true\", \"Name\":\"Default Shipping\", \"PostalCode\":\"99950\", \"Street\":\"333 Seymour Street (Shipping)\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
+	# sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='true' Name='Default Billing' PostalCode='99949' Street='333 Seymour Street (Billing)'"
+	fieldValues="\"AddressType\":\"Billing\", \"ParentId\":\"$accountID\", \"ActiveFromDate\":\"2023-01-01\", \"ActiveToDate\":\"2040-01-01\", \"City\":\"California\", \"Country\":\"US\", \"IsDefault\":\"true\", \"Name\":\"Default Billing\", \"PostalCode\":\"99950\", \"Street\":\"333 Seymour Street (Billing)\""
+	createJsonFile "$attributes $fieldValues"
+	sf data import tree --files Data.json
+
+	# sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Shipping' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Shipping' PostalCode='99948' Street='415 Mission Street (Shipping)'"
+	# sfdx force:data:record:create -s ContactPointAddress -v "AddressType='Billing' ParentId='$accountID' ActiveFromDate='2020-01-01' ActiveToDate='2040-01-01' City='California' Country='US' IsDefault='false' Name='Non-Default Billing' PostalCode='99957' Street='415 Mission Street (Billing)'"
 else
 	echo "There is already at least 1 Contact Point Address for your Buyer Account ${buyerAccountName}"
 fi

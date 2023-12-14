@@ -144,7 +144,8 @@ then
       echo "Yes, let's continue loading the things!"
     fi
 else
-  sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "Store $storename created by the script."
+  # sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "Store $storename created by the script."
+  sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "$storename"
   echo ""
 fi
 

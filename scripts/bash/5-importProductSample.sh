@@ -3,6 +3,16 @@
 # - amend files needed to fill out Product data
 # - import Products and related data to make store functional
 
+function createJsonFile() {
+    fieldValues="{\"records\": [ {$1} ]}" 
+    echo $fieldValues
+    # Clear the previous data
+    echo ""  > Data.json
+    rm  Data.json
+    # Save the new data
+    echo "$fieldValues" > Data.json
+}
+
 function createNewQuery() {
     soqlQuery=$1
     echo "$soqlQuery"
@@ -16,6 +26,7 @@ function createNewQuery() {
 function removeTempFiles(){
     rm  query.txt
     rm  apexRun.apex
+	rm  Data.json
 }
 
 
@@ -93,7 +104,9 @@ else
 		done < $INPUT
 
 		# Import Productless data
-		sfdx force:data:tree:import -p scripts/json/Productless-Plan-1.json
+		sf data import tree --plan 
+		# sfdx force:data:tree:import -p scripts/json/Productless-Plan-1.json
+		sf data import tree --plan scripts/json/Productless-Plan-1.json
 		# Get newly created Entitlement Policy ID
 		# policyID=`sf data query -q "SELECT Id FROM CommerceEntitlementPolicy ORDER BY CreatedDate Desc LIMIT 1" -r csv |tail -n +2`
 		createNewQuery "SELECT Id FROM CommerceEntitlementPolicy ORDER BY CreatedDate Desc LIMIT 1"
@@ -103,7 +116,13 @@ else
 		for i in "${array[@]}"
 		do
 	   		:
-			sfdx force:data:record:create -s CommerceEntitlementProduct -v "PolicyId='${policyID}' ProductId='${i}'"
+			# sfdx force:data:record:create -s CommerceEntitlementProduct -v "PolicyId='${policyID}' ProductId='${i}'"
+			objectName="CommerceEntitlementProduct"
+			attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+			fieldValues="\"PolicyId\":\"$policyID\", \"ProductId\":\"$i\""
+			createJsonFile "$attributes $fieldValues"
+			sf data import tree --files Data.json
+
 		done
 
 		# Get Webstore ID
@@ -117,27 +136,46 @@ else
 		createNewQuery "SELECT Id FROM ProductCatalog WHERE Name='CATALOG_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1"
 		catalogId=`sf data query --file query.txt -r csv |tail -n +2`
 
-		sfdx force:data:record:create -s WebStoreCatalog -v "ProductCatalogId='${catalogId}' SalesStoreId='${storeId}'"
+		# sfdx force:data:record:create -s WebStoreCatalog -v "ProductCatalogId='${catalogId}' SalesStoreId='${storeId}'"
+		objectName="WebStoreCatalog"
+		attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+		fieldValues="\"ProductCatalogId\":\"$catalogId\", \"SalesStoreId\":\"$storeId\""
+		createJsonFile "$attributes $fieldValues"
+		sf data import tree --files Data.json
+
 
 		# Add Store Pricebook mapping
 		# pricebook2Id=`sf data query -q "SELECT Id FROM Pricebook2 WHERE Name='BASIC_PRICEBOOK_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1" -r csv | tail -n +2`
 		createNewQuery "SELECT Id FROM Pricebook2 WHERE Name='BASIC_PRICEBOOK_FROM_QUICKSTART' ORDER BY CreatedDate Desc LIMIT 1"
 		pricebook2Id=`sf data query --file query.txt -r csv |tail -n +2`
-		sfdx force:data:record:create -s WebStorePricebook -v "IsActive=true Pricebook2Id='${pricebook2Id}' WebStoreId='${storeId}'"
+		# sfdx force:data:record:create -s WebStorePricebook -v "IsActive=true Pricebook2Id='${pricebook2Id}' WebStoreId='${storeId}'"
+		objectName="WebStorePricebook"
+		attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+		fieldValues="\"IsActive\":\"true\", \"Pricebook2Id\":\"$pricebook2Id\", \"WebStoreId\":\"$storeId\""
+		createJsonFile "$attributes $fieldValues"
+		sf data import tree --files Data.json
+
 		
 		# Add Buyer Group Pricebook mapping
 		# buyergroupId=`sf data query -q "SELECT Id FROM BuyerGroup WHERE Name='${newbuyergroupname}'  LIMIT 1" -r csv | tail -n +2`
 		createNewQuery "SELECT Id FROM BuyerGroup WHERE Name='${newbuyergroupname}'  LIMIT 1"
 		buyergroupId=`sf data query --file query.txt -r csv |tail -n +2`
 
-		sfdx force:data:record:create -s BuyerGroupPricebook -v "Pricebook2Id='${pricebook2Id}' BuyerGroupId='${buyergroupId}'"
+		# sfdx force:data:record:create -s BuyerGroupPricebook -v "Pricebook2Id='${pricebook2Id}' BuyerGroupId='${buyergroupId}'"
+		objectName="BuyerGroupPricebook"
+		attributes="\"attributes\": { \"type\": \"$objectName\", \"referenceId\": \"${objectName}Ref1\"},"
+		fieldValues="\"Pricebook2Id\":\"$pricebook2Id\", \"BuyerGroupId\":\"$buyergroupId\""
+		createJsonFile "$attributes $fieldValues"
+		sf data import tree --files Data.json
+
 
 		# Cleanup
 		rm productfile.csv
 
 	else
 		# Import files
-		sfdx force:data:tree:import -p scripts/json/Plan-1.json
+		# 'sfdx force:data:tree:import -p scripts/json/Plan-1.json
+		sf data import tree --plan scripts/json/Plan-1.json
 	fi
 
 	# Cleanup
