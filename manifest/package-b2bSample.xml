@@ -4,5 +4,5 @@
 		<members>searchResults</members>
 		<name>LightningComponentBundle</name>
 	</types>
-	<version>57.0</version>
+	<version>59.0</version>
 </Package>

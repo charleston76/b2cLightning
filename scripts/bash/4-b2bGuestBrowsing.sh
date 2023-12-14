@@ -7,12 +7,26 @@ then
 	exit 1
 fi
 
+function createNewQuery() {
+    soqlQuery=$1
+    echo "$soqlQuery"
+    # Clear the previous data
+    echo ""  > query.txt
+    rm  query.txt
+    # Save the new data
+    echo $soqlQuery > query.txt
+}
+
+function removeTempFiles(){
+    rm  query.txt
+    rm  apexRun.apex
+}
+
 function echo_attention() {
   local green='\033[0;32m'
   local no_color='\033[0m'
   echo -e "${green}$1${no_color}"
 }
-
 
 communityNetworkName=$1
 # If the name of the store starts with a digit, the CustomSite name will have a prepended X.
@@ -25,10 +39,17 @@ echo_attention "Creating guest user to $buyergroupName"
 # Enable Guest Browsing for WebStore and create Guest Buyer Profile. 
 # Assign to Buyer Group of choice.
 sfdx force:data:record:update -s WebStore -w "Name='$communityNetworkName'" -v "OptionsGuestBrowsingEnabled='true'" 
-guestBuyerProfileId=`sf data query --query \ "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'" -r csv |tail -n +2`
+# guestBuyerProfileId=`sf data query --query \ "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'" -r csv |tail -n +2`
+createNewQuery "SELECT GuestBuyerProfileId FROM WebStore WHERE Name = '$communityNetworkName'"
+guestBuyerProfileId=`sf data query --file query.txt -r csv |tail -n +2`
+
+
 echo_attention "Guest Buyer Profile Id $guestBuyerProfileId"
 
-buyergroupID=`sf data query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$buyergroupName'" -r csv |tail -n +2`
+# buyergroupID=`sf data query --query \ "SELECT Id FROM BuyerGroup WHERE Name = '$buyergroupName'" -r csv |tail -n +2`
+createNewQuery "SELECT Id FROM BuyerGroup WHERE Name = '$buyergroupName'"
+buyergroupID=`sf data query --file query.txt -r csv |tail -n +2`
+
 echo_attention "Buyer Group ID $buyergroupID"
 
 sfdx force:data:record:create -s BuyerGroupMember -v "BuyerId='$guestBuyerProfileId' BuyerGroupId='$buyergroupID'"
@@ -39,6 +60,8 @@ sfdx 1commerce:search:start -n "$communityNetworkName"
 echo "Publishing the community."
 sfdx force:community:publish -n "$communityNetworkName"
 sleep 10
+
+removeTempFiles
 
 echo
 echo

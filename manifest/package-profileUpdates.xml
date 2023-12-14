@@ -92,5 +92,5 @@
         <members>Commerce Business User Profile</members>
         <name>Profile</name>
     </types>
-    <version>57.0</version>
+    <version>59.0</version>
 </Package>

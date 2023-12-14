@@ -10,6 +10,22 @@ export SF_S3_HOST="http://platform-cli-s3.eng.sfdc.net:9000/sfdx/media/salesforc
 # 
 # templateName="B2B Commerce (LWR)"
 # 
+
+function createNewQuery() {
+    soqlQuery=$1
+    echo "$soqlQuery"
+    # Clear the previous data
+    echo ""  > query.txt
+    rm  query.txt
+    # Save the new data
+    echo $soqlQuery > query.txt
+}
+
+function removeTempFiles(){
+    rm  query.txt
+    rm  apexRun.apex
+}
+
 function echo_attention() {
   local green='\033[0;32m'
   local no_color='\033[0m'
@@ -103,8 +119,12 @@ else
 fi
 
 # Check if the store nam already exist, to no try create with error
-# checkExistinStoreId=`sfdx force:data:soql:query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
-checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+# checkExistinStoreId=`sf data query -q "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1" -r csv |tail -n +2`
+# Getting the apex class ID
+# apexClassId=`sf data query -q "SELECT Id FROM ApexClass WHERE Name='$appexClassName' LIMIT 1" -r csv |tail -n +2`
+createNewQuery "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1"
+checkExistinStoreId=`sf data query --file query.txt -r csv |tail -n +2`
+ 
 
 
 echo_attention "Doing the first settings definition (being scratch organization or not)"
@@ -133,7 +153,9 @@ storeId=""
 while [ -z "${storeId}" ];
 do
     echo_attention "Store not yet created, waiting 10 seconds..."
-    storeId=$(sf data query -q "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
+    # storeId=$(sf data query -q "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
+    createNewQuery "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1"
+    storeId=$(sf data query --file query.txt -r csv |tail -n +2)
     
     sleep 10
 done
@@ -164,5 +186,8 @@ echo ""
 echo_attention "Finishing the digital experience creation at $(date)"
 echo ""
 echo ""
+
+# Remove the temp files used
+removeTempFiles
 
 ./scripts/bash/3-setupStore.sh $scratchOrgName $storename || error_and_exit "Store setup failed."
