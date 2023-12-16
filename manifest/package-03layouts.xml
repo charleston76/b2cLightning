@@ -12,6 +12,7 @@
     </types>
     <types>
         <members>Account-Account Layout</members>
+        <members>BuyerGroup-Buyer Group Layout</members>
         <members>Contact-Contact Layout</members>
 		<members>PersonAccount-Person Account Layout</members>
         <name>Layout</name>

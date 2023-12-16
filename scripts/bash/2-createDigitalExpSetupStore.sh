@@ -26,7 +26,6 @@ function createNewQuery() {
 
 function removeTempFiles(){
     rm  query.txt
-    rm  apexRun.apex
 }
 
 function echo_attention() {
@@ -98,7 +97,7 @@ fi
 
 if [ -z "$4" ]
 then
-	exit_error_message "You need to specify if it is a Windows environment (Yes or No)."
+	error_and_exit "You need to specify if it is a Windows environment (Yes or No)."
 fi
 
 echo_attention "Starting the digital experience creation at $(date)"
@@ -133,12 +132,9 @@ fi
 createNewQuery "SELECT Id FROM WebStore WHERE Name='$storename' LIMIT 1"
 checkExistinStoreId=`sf data query --file query.txt -r csv |tail -n +2`
  
-
-
 echo_attention "Doing the first settings definition (being scratch organization or not)"
 # rm -rf Deploy
 sf project deploy start --ignore-conflicts --manifest manifest/package-01additionalSettings.xml
-
 if [ ! -z "$checkExistinStoreId" ]
 then
     echo_attention "Already exists an web store with this name, do you want to continue loading the data to there?"
@@ -152,9 +148,23 @@ then
       echo "Yes, let's continue loading the things!"
     fi
 else
-  # sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "Store $storename created by the script."
-  sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "$storename"
+  if [[ "$windowsEnvironment" = "Yes" || "$windowsEnvironment" = "yes" ]]
+  then
+    echo_attention "I'm having some double quotes issues on windows environments... due to that"
+    echo_attention "you need to copy the command below, run on the CMD or powershell, wait to receive the email about the store creation"
+    echo_attention "and start this script execution overgain, confirming to continue with the store previous created"
+
+    echo "sf community create --name \"$storename\" --template-name \"$templateName\" --url-path-prefix \"$storename\" --description \"$storename\""
+
+    # copyBuyerGroupsAnswer="N"
+    error_and_exit "So, go get them tiger. The process will stop now!"
+  else
+    echo_attention "Not is a windows environment"
+    sf community create --name "$storename" --template-name "$templateName" --url-path-prefix "$storename" --description "$storename"
+
+  fi
   echo ""
+  
 fi
 
 storeId=""

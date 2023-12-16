@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NetworkBranding xmlns="http://soap.sforce.com/2006/04/metadata">
+    <loginLogo>Experiences_Shared_Document_Folder/logo.png</loginLogo>
+    <loginLogoName>logo</loginLogoName>
+    <network>d2cStore</network>
+    <loginFooterText>This is my Company Footer</loginFooterText>
+    <loginPrimaryColor>#d43a17</loginPrimaryColor>
+    <loginQuaternaryColor>#FFFFFF</loginQuaternaryColor>
+    <primaryColor>#a3238e</primaryColor>
+    <primaryComplementColor>#000000</primaryComplementColor>
+    <quaternaryColor>#714fbb</quaternaryColor>
+    <quaternaryComplementColor>#222222</quaternaryComplementColor>
+    <secondaryColor>#51606E</secondaryColor>
+    <tertiaryColor>#DDE4E9</tertiaryColor>
+    <tertiaryComplementColor>#222222</tertiaryComplementColor>
+    <zeronaryColor>#51606E</zeronaryColor>
+    <zeronaryComplementColor>#000000</zeronaryComplementColor>
+</NetworkBranding>
