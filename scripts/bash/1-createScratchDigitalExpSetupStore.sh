@@ -29,6 +29,11 @@ then
 	exit_error_message "You need to specify the template type (B2B or B2C) to create it."
 fi
 
+if [ -z "$4" ]
+then
+	exit_error_message "You need to specify if it is a Windows environment (Yes or No)."
+fi
+
 
 echo_attention "Starting the scratch org creation at $(date)"
 echo ""
@@ -38,6 +43,7 @@ scratchOrgDuration=30
 scratchOrgName=$1
 storename=$2
 templateType=$3
+windowsEnvironment=$4
 
 
 if [[ "$templateType" != "B2B" && "$templateType" != "B2C" ]]
@@ -59,4 +65,4 @@ echo_attention "Finishing the scratch org creation at $(date)"
 echo ""
 echo ""
 
-./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename $templateType
+./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename $templateType $windowsEnvironment

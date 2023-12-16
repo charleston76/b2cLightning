@@ -1,3 +1,6 @@
+# ./scripts/bash/2-createDigitalExpSetupStore.sh tmpAgnostic d2cStore B2B
+# ./scripts/bash/2-createDigitalExpSetupStore.sh tmpAgnostic testStore B2C
+
 #!/bin/bash
 # Use this command to create a new store.
 # The name of the store can be passed as a parameter.
@@ -93,6 +96,10 @@ then
 	error_and_exit "You need to specify the template type (B2B or B2C) to create it."
 fi
 
+if [ -z "$4" ]
+then
+	exit_error_message "You need to specify if it is a Windows environment (Yes or No)."
+fi
 
 echo_attention "Starting the digital experience creation at $(date)"
 echo ""
@@ -101,6 +108,7 @@ echo ""
 scratchOrgName=$1
 storename=$2
 templateType=$3
+windowsEnvironment=$4
 
 checkExistinStoreContinue=""
 checkExistinStoreAnswer=""
@@ -156,7 +164,7 @@ do
     echo_attention "Store not yet created, waiting 10 seconds..."
     # storeId=$(sf data query -q "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1" -r csv |tail -n +2)
     createNewQuery "SELECT Id FROM WebStore WHERE Name='${storename}' LIMIT 1"
-    storeId=$(sf data query --file query.txt -r csv |tail -n +2)
+    storeId=`sf data query --file query.txt -r csv |tail -n +2`
     
     sleep 10
 done

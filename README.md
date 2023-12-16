@@ -69,11 +69,11 @@ You use the things here in the following ways:
 
 If you already are working with scratch orgs and have all configured and defined in your main org (develop, production, etc), you just need to run the command below:
 
-* ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE] [TEMPLATE_TYPE]
+* ./scripts/bash/1-createScratchDigitalExpSetupStore.sh [YOUR_SCRATCH_NAME_HERE] [YOUR_SHOP_NAME_HERE] [TEMPLATE_TYPE] [WINDOWS_ENVIRONMENT]
 * Examples (the first one uses the B2B template and the other one uses the B2C templa):
     ```
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2c d2cStore B2B
-    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2c d2cStore B2C
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpD2c d2cStore B2B Yes
+    ./scripts/bash/1-createScratchDigitalExpSetupStore.sh tmpB2c d2cStore B2C Yes
     ```
     
 That will do all the configuration needed to achieve:
