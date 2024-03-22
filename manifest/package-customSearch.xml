@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>*</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>builderSearchFilters</members>
+        <members>builderSearchResults</members>
+        <members>commonButton</members>
+        <members>commonLink</members>
+        <members>commonModal</members>
+        <members>commonNumberInput</members>
+        <members>productGalleryUtils</members>
+        <members>productPricing</members>
+        <members>productQuantitySelector</members>
+        <members>productQuantitySelectorPopover</members>
+        <members>productVariantSelector</members>
+        <members>searchCategoryTree</members>
+        <members>searchFacet</members>
+        <members>searchFacetItem</members>
+        <members>searchFilters</members>
+        <members>searchFiltersModal</members>
+        <members>searchFiltersModalPanel</members>
+        <members>searchFiltersPanel</members>
+        <members>searchInputFacet</members>
+        <members>searchPagingControl</members>
+        <members>searchProductCard</members>
+        <members>searchProductField</members>
+        <members>searchProductGrid</members>
+        <members>searchResults</members>
+        <members>searchSliderFacet</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>59.0</version>
+</Package>
