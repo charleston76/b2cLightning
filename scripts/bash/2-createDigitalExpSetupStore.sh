@@ -153,8 +153,14 @@ else
     echo_attention "I'm having some double quotes issues on windows environments... due to that"
     echo_attention "you need to copy the command below, run on the CMD or powershell, wait to receive the email about the store creation"
     echo_attention "and start this script execution overgain, confirming to continue with the store previous created"
-
+    echo_attention ""
     echo "sf community create --name \"$storename\" --template-name \"$templateName\" --url-path-prefix \"$storename\" --description \"$storename\""
+    echo_attention ""
+    echo_attention "As soon as the previous command has been finished successfully, you can continue with the comand below"
+    echo_attention "over again through the bash"
+    echo_attention ""
+
+    echo "./scripts/bash/2-createDigitalExpSetupStore.sh \"$scratchOrgName\" \"$storename\" \"$templateType\" \"$windowsEnvironment\""
 
     # copyBuyerGroupsAnswer="N"
     error_and_exit "So, go get them tiger. The process will stop now!"

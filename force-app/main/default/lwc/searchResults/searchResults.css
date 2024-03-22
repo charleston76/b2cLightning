@@ -1,38 +1,16 @@
-.layout-contiainer {
+.layout-container {
     display: flex;
     flex-direction: row;
     position: relative;
 }
-
-.aside-section {
-    flex: 1 0 20%;
-    max-width: 15rem;
+aside.aside-section {
+    width: 23%;
+    min-width: 13.75rem;
+    color: #000;
+    font-size: 0.875rem;
+    font-family: "goldplay-regular";
 }
 
-.main-section {
-    flex: 1 0 80%;
-}
-
-.filters-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.filters-header .clear-all-button {
-    align-self: flex-end;
-}
-
-/* 
-    small form factor 
-    SLDS media query reference: https://www.lightningdesignsystem.com/design-tokens/#category-media-query
-*/
-@media only screen and (max-width: 47.9375em) {
-    .layout-contiainer {
-        flex-direction: column;
-    }
-
-    .aside-section {
-        max-width: 100%;
-    }
+.pagination-control {
+    width: 100%;
 }

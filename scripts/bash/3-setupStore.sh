@@ -93,6 +93,7 @@ echo "Using this to retrieve your store info:"
 cat package-retrieve.xml
 
 echo "Retrieving the store metadata and extracting it from the zip file."
+# project retrieve start
 sfdx force:mdapi:retrieve -r experience-bundle-package -k  package-retrieve.xml
 unzip -d experience-bundle-package experience-bundle-package/unpackaged.zip
 

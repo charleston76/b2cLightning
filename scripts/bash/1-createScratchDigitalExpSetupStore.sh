@@ -66,3 +66,5 @@ echo ""
 echo ""
 
 ./scripts/bash/2-createDigitalExpSetupStore.sh $scratchOrgName $storename $templateType $windowsEnvironment
+
+# ./scripts/bash/2-createDigitalExpSetupStore.sh tmpB2c d2cStore B2C Yes

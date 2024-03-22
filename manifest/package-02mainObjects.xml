@@ -53,6 +53,10 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>*</members>
+        <name>CustomLabel</name>
+    </types>
+    <types>
         <members>D2CSelfRegistration.GENERAL_B2B_PROFILE</members>
         <members>D2CSelfRegistration.GENERAL_BUYER_GROUP</members>
         <members>D2CSelfRegistration.GENERAL_CASE_CREATION</members>
