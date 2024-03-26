@@ -1,0 +1,22 @@
+/**********************************************************************************************
+ * You can easily add this custom css in the community, like that:
+ *   Settings > Advanced > Header Markup
+ *   <!-- Custom CSS -->
+ *   <link rel="stylesheet" href="/sfsites/c/resource/custom_css/custom_css.css" />
+ *
+ **********************************************************************************************/
+
+/***********************************
+ * Standard salesforce elements
+ ***********************************/
+commerce_builder-layout-header commerce-layout-header header {
+    height: 112px;
+}
+
+commerce_builder-layout-header commerce-layout-header header div {
+    background-color: cornsilk;
+}
+
+commerce_builder-layout-footer commerce-layout-footer footer {
+    height: 70px;
+}
