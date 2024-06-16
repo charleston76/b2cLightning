@@ -13,6 +13,7 @@
 		<members>OrderManagement</members>
 		-->
 		<members>Security</members>
+		<members>UserManagement</members>
 		<name>Settings</name>
 	</types>
 	<types>
