@@ -1,0 +1,69 @@
+.b2bProductCarouselCardMain {
+    margin: 0;
+    padding: 0;
+    border: none !important;
+    box-shadow: none !important; 
+    position: relative !important;
+}
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* position: relative !important; */
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+.carousel-button {
+    background: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1;
+    border: 1px solid #919EAB;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-button.left {
+    left: 20px;    
+}
+
+.carousel-button.right {
+    right: 20px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    min-height: 300px;
+}
+
+.carousel-item {
+    flex: 0 0 calc(100% / var(--items-by-slide));
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* MOBILE  */
+@media only screen and (max-width: 600px) {
+    .carousel-button {
+        width: 36px;
+        height: 36px;
+
+    }
+}

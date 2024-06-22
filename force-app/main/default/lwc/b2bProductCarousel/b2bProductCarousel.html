@@ -1,0 +1,28 @@
+<template>
+    <div class="b2bProductCarouselCardMain">
+        <button class="carousel-button left" onclick={handlePrev}>
+            <img src={icChevronLeft}>
+        </button>
+        <div class="carousel-container" style={carouselStyle}>
+            <div class="carousel-track">
+                <template for:each={products} for:item="product">
+                    <c-b2b-product-carousel-item 
+                        key={product.Id}
+                        class="carousel-item"
+                        product={product}  
+                        show-detail-image={showDetailImage}
+                        show-prices={showPrices}
+                        desktop-width={desktopWidth}
+                        desktop-height={desktopHeight}
+                        mobile-width={mobileWidth}
+                        mobile-height={mobileHeight}
+                        >
+                    </c-b2b-product-carousel-item>
+                </template>
+            </div>
+        </div>
+        <button class="carousel-button right" onclick={handleNext}>
+            <img src={icChevronRight}>
+        </button>
+    </div>
+</template>

@@ -1,0 +1,112 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* border: 1px solid #ccc; */
+    padding: 1rem;
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
+    /* border-radius: 8exato kkkkkpx; */
+    background-color: #fff;
+}
+
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.main-image {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.details-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-images {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.detail-image {
+    width: 50px;
+    height: 50px;
+    margin: 0 5px;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+}
+
+.placeholder-detail-images {
+    min-height: 60px; /* Placeholder para manter o espaço quando não há imagens detalhadas */
+}
+
+.product-name {
+    font-family: Fira Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    text-align: center;
+    flex-grow: 1;
+    text-transform: uppercase;
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 100%;
+    margin-top: 1rem;
+    height: 46px;
+    padding-left: 12px;
+    padding-bottom: 12px;
+    padding-right: 12px;
+}
+
+.placeholder-price-container {
+    min-height: 40px; /* Placeholder para manter o espaço quando não há preços */
+}
+
+.list-price {
+    color: #919EAB;
+    text-decoration: line-through;
+    font-family: Fira Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+
+}
+
+.unit-price {
+    color: #212B36;
+    font-family: Fira Sans, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+
+}
+
+/* MOBILE  */
+@media only screen and (max-width: 600px) {
+
+    .detail-image {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-name {    
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 22px;
+    }
+}

@@ -60,10 +60,10 @@
         <name>standard__SalesforceCMS</name>
         <type>CustomApplication</type>
     </appMenuItems>
-    <appMenuItems>
+    <!-- <appMenuItems>
         <name>standard__Commerce</name>
         <type>CustomApplication</type>
-    </appMenuItems>
+    </appMenuItems> -->
     <appMenuItems>
         <name>standard__OMConsole</name>
         <type>CustomApplication</type>

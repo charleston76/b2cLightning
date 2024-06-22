@@ -1,0 +1,29 @@
+<template>
+    <div class="card-container" style={cardStyle} onclick={handleClick}>
+        <div class="image-container">
+            <img src={product.Product_List_Image__c} alt={product.Product_Name__c} class="main-image"/>
+        </div>
+        <div class="details-container">
+            <template if:true={showDetailImage}>
+                <div class="detail-images">
+                    <template for:each={truncatedDetailImages} for:item="detailImage">
+                        <img src={detailImage} key={detailImage} alt={product.Product_Name__c} class="detail-image" />
+                    </template>
+                </div>
+            </template>
+            <template if:false={showDetailImage}>
+                <div class="placeholder-detail-images"></div>
+            </template>
+            <div class="product-name">{truncatedProductName}</div>
+            <template if:true={showPrices}>
+                <div class="price-container">
+                    <div class="list-price">{productPrices.ListPrice}</div>
+                    <div class="unit-price">{productPrices.UnitPrice}</div>
+                </div>
+            </template>
+            <template if:false={showPrices}>
+                <div class="placeholder-price-container"></div>
+            </template>
+        </div>
+    </div>
+</template>

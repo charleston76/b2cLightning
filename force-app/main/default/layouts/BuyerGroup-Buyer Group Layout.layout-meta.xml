@@ -53,11 +53,11 @@
         <fields>IS_POLICY_ACTIVE</fields>
         <relatedList>CommerceEntitlementPolicies</relatedList>
     </relatedLists>
-    <relatedLists>
+    <!-- <relatedLists>
         <fields>WebStore</fields>
         <fields>BuyerGroup</fields>
         <relatedList>WebStoreBuyerGroups</relatedList>
-    </relatedLists>
+    </relatedLists> -->
     <relatedLists>
         <fields>PromotionSegment</fields>
         <relatedList>PromotionSegmentBuyerGroups</relatedList>

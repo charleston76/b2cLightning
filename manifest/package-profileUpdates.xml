@@ -5,7 +5,7 @@
         <name>ApexClass</name>
     </types>
     <types>
-        <members>standard__Commerce</members>
+        <!-- members>standard__Commerce</members -->
         <members>standard__SalesforceCMS</members>
         <name>CustomApplication</name>
     </types>

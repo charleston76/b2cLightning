@@ -187,9 +187,10 @@
         <name>SharingRules</name>
     </types>
     <types>
+        <members>custom_css</members>
         <members>EmployeePhotos</members>
         <members>menusManager</members>
         <name>StaticResource</name>
     </types>
-    <version>59.0</version>
+    <version>60.0</version>
 </Package>
