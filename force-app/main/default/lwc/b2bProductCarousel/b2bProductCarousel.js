@@ -1,7 +1,6 @@
 import { LightningElement, api, track, wire } from 'lwc';
 import { MOBILE_INNERWIDTH, BASE_IMAGE_MEDIA_PATH } from 'c/globalConstants';
 import { ProductSearchAdapter , ProductCategoryAdapter } from 'commerce/productApi';
-import staticResource from "@salesforce/resourceUrl/custom_css";
 import getProductCategoryIdByName from '@salesforce/apex/ProductCategoryPicklist.getProductCategoryIdByName';
 import siteId from "@salesforce/site/Id";
 
@@ -27,9 +26,6 @@ export default class B2bProductCarousel extends LightningElement {
     currentSlide = 0;
     autoSlideTimer;
     transitionDirection = 'next'; 
-
-    icChevronLeft = `${staticResource}/image/icon/ic_chevron_left_black.svg`;
-    icChevronRight = `${staticResource}/image/icon/ic_chevron_right_black.svg`;
 
     get isMobile() {
         return window.innerWidth < MOBILE_INNERWIDTH;
@@ -144,6 +140,7 @@ export default class B2bProductCarousel extends LightningElement {
     
     async loadCategoryId() {
         try {
+            // console.log('b2bProductCarousel loadCategoryId this.productCategoryName', this.productCategoryName);
             const categoryId = await getProductCategoryIdByName({ categoryName: this.productCategoryName });
             this.searchParams = {
                 siteId: siteId,
@@ -151,6 +148,8 @@ export default class B2bProductCarousel extends LightningElement {
                 categoryId: categoryId,
                 availability: 'inStock'
             };
+
+            // console.log('b2bProductCarousel loadCategoryId this.searchParams', this.searchParams);
         } catch (error) {
             console.error('Error searching category Id:', error);
         }
@@ -158,6 +157,8 @@ export default class B2bProductCarousel extends LightningElement {
 
     @wire(ProductCategoryAdapter, { categoryId: '$searchParams.categoryId', siteId: siteId })
     wiredProductCategoryPath({ error, data }) {
+        // console.log('b2bProductCarousel wiredProductCategoryPath this.searchParams', this.searchParams);
+        // console.log('b2bProductCarousel wiredProductCategoryPath this.searchParams.categoryId', this.searchParams?.categoryId);
         if (this.searchParams && this.searchParams.categoryId){
             if (data) {
                 this.productCategory = data;
@@ -171,6 +172,8 @@ export default class B2bProductCarousel extends LightningElement {
 
     @wire(ProductSearchAdapter, { searchQuery: '$searchParams' })
     wiredProducts({ error, data }) {
+        // console.log('b2bProductCarousel wiredProducts this.searchParams', this.searchParams);
+        // console.log('b2bProductCarousel wiredProducts this.searchParams.searchQuery', this.searchParams?.searchQuery);
         if (this.searchParams && this.searchParams.searchQuery) {
             //if have data and CategoryType selected is true on the category
             if (data && this.doSearch) {
@@ -207,12 +210,14 @@ export default class B2bProductCarousel extends LightningElement {
     }
 
     checkDoSearch() {
+        // console.log('b2bProductCarousel checkDoSearch this.categoryTypeApiName', this.categoryTypeApiName);
         const categoryField = this.categoryTypeApiName;
+        // console.log('b2bProductCarousel checkDoSearch categoryField', categoryField);
         if (categoryField === 'Todos') {
             this.doSearch = true;
         } else {
             this.doSearch = this.productCategory.fields[categoryField] === 'true';
         }
-        // console.log('>>> doSearch:', this.doSearch);
+        // console.log('b2bProductCarousel checkDoSearch this.doSearch', this.doSearch);
     }
 }

@@ -16,9 +16,9 @@
                 name="categoryType"
                 type="String"
                 label="Category Type"
-                description="Selecione el tipo de categoria para carregar"
-                datasource="Productos Destacados, Productos Nuevos, Nuestra Marca, Todos"
-                default="Todos"
+                description="Select the category type to upload"
+                datasource="All"
+                default="All"
             />
             <property
                 name="productCategoryName"
@@ -43,7 +43,7 @@
                 name="sliderSpeed"
                 type="String"
                 label="Slider Speed"
-                description="Defina la velocidad para mover las imágenes"
+                description="Set the speed to move images"
                 datasource="2,3,4,5,6,7, Deactivated"
                 default="Deactivated"
             />
