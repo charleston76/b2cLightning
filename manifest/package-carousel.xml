@@ -10,9 +10,4 @@
         <members>b2bProductCarouselItem</members>
         <name>LightningComponentBundle</name>
     </types>
-    <types>
-        <members>SOLUAccdesa</members>
-        <name>StaticResource</name>
-    </types>
-
 </Package>
